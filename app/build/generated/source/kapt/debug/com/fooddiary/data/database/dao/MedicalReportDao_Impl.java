@@ -207,7 +207,7 @@ public final class MedicalReportDao_Impl implements MedicalReportDao {
   }
 
   @Override
-  public Object insert(final MedicalReport report, final Continuation<? super Long> $completion) {
+  public Object insert(final MedicalReport report, final Continuation<? super Long> arg1) {
     return CoroutinesRoom.execute(__db, true, new Callable<Long>() {
       @Override
       @NonNull
@@ -221,11 +221,11 @@ public final class MedicalReportDao_Impl implements MedicalReportDao {
           __db.endTransaction();
         }
       }
-    }, $completion);
+    }, arg1);
   }
 
   @Override
-  public Object update(final MedicalReport report, final Continuation<? super Unit> $completion) {
+  public Object update(final MedicalReport report, final Continuation<? super Unit> arg1) {
     return CoroutinesRoom.execute(__db, true, new Callable<Unit>() {
       @Override
       @NonNull
@@ -239,11 +239,11 @@ public final class MedicalReportDao_Impl implements MedicalReportDao {
           __db.endTransaction();
         }
       }
-    }, $completion);
+    }, arg1);
   }
 
   @Override
-  public Object delete(final String id, final Continuation<? super Unit> $completion) {
+  public Object delete(final String id, final Continuation<? super Unit> arg1) {
     return CoroutinesRoom.execute(__db, true, new Callable<Unit>() {
       @Override
       @NonNull
@@ -268,11 +268,11 @@ public final class MedicalReportDao_Impl implements MedicalReportDao {
           __preparedStmtOfDelete.release(_stmt);
         }
       }
-    }, $completion);
+    }, arg1);
   }
 
   @Override
-  public Object deleteAll(final Continuation<? super Unit> $completion) {
+  public Object deleteAll(final Continuation<? super Unit> arg0) {
     return CoroutinesRoom.execute(__db, true, new Callable<Unit>() {
       @Override
       @NonNull
@@ -291,11 +291,11 @@ public final class MedicalReportDao_Impl implements MedicalReportDao {
           __preparedStmtOfDeleteAll.release(_stmt);
         }
       }
-    }, $completion);
+    }, arg0);
   }
 
   @Override
-  public Object getById(final String id, final Continuation<? super MedicalReport> $completion) {
+  public Object getById(final String id, final Continuation<? super MedicalReport> arg1) {
     final String _sql = "SELECT * FROM medical_reports WHERE id = ?";
     final RoomSQLiteQuery _statement = RoomSQLiteQuery.acquire(_sql, 1);
     int _argIndex = 1;
@@ -405,7 +405,7 @@ public final class MedicalReportDao_Impl implements MedicalReportDao {
           _statement.release();
         }
       }
-    }, $completion);
+    }, arg1);
   }
 
   @Override
@@ -855,7 +855,7 @@ public final class MedicalReportDao_Impl implements MedicalReportDao {
   }
 
   @Override
-  public Object getCount(final Continuation<? super Integer> $completion) {
+  public Object getCount(final Continuation<? super Integer> arg0) {
     final String _sql = "SELECT COUNT(*) FROM medical_reports";
     final RoomSQLiteQuery _statement = RoomSQLiteQuery.acquire(_sql, 0);
     final CancellationSignal _cancellationSignal = DBUtil.createCancellationSignal();
@@ -883,11 +883,11 @@ public final class MedicalReportDao_Impl implements MedicalReportDao {
           _statement.release();
         }
       }
-    }, $completion);
+    }, arg0);
   }
 
   @Override
-  public Object getGeneratedCount(final Continuation<? super Integer> $completion) {
+  public Object getGeneratedCount(final Continuation<? super Integer> arg0) {
     final String _sql = "SELECT COUNT(*) FROM medical_reports WHERE filePath IS NOT NULL";
     final RoomSQLiteQuery _statement = RoomSQLiteQuery.acquire(_sql, 0);
     final CancellationSignal _cancellationSignal = DBUtil.createCancellationSignal();
@@ -915,11 +915,11 @@ public final class MedicalReportDao_Impl implements MedicalReportDao {
           _statement.release();
         }
       }
-    }, $completion);
+    }, arg0);
   }
 
   @Override
-  public Object getTotalFileSize(final Continuation<? super Long> $completion) {
+  public Object getTotalFileSize(final Continuation<? super Long> arg0) {
     final String _sql = "SELECT SUM(COALESCE(fileSize, 0)) FROM medical_reports WHERE filePath IS NOT NULL";
     final RoomSQLiteQuery _statement = RoomSQLiteQuery.acquire(_sql, 0);
     final CancellationSignal _cancellationSignal = DBUtil.createCancellationSignal();
@@ -947,7 +947,7 @@ public final class MedicalReportDao_Impl implements MedicalReportDao {
           _statement.release();
         }
       }
-    }, $completion);
+    }, arg0);
   }
 
   @NonNull

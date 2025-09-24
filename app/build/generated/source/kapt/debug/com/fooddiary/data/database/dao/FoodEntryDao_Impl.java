@@ -259,7 +259,7 @@ public final class FoodEntryDao_Impl implements FoodEntryDao {
   }
 
   @Override
-  public Object insert(final FoodEntry entry, final Continuation<? super Long> $completion) {
+  public Object insert(final FoodEntry entry, final Continuation<? super Long> arg1) {
     return CoroutinesRoom.execute(__db, true, new Callable<Long>() {
       @Override
       @NonNull
@@ -273,11 +273,11 @@ public final class FoodEntryDao_Impl implements FoodEntryDao {
           __db.endTransaction();
         }
       }
-    }, $completion);
+    }, arg1);
   }
 
   @Override
-  public Object update(final FoodEntry entry, final Continuation<? super Unit> $completion) {
+  public Object update(final FoodEntry entry, final Continuation<? super Unit> arg1) {
     return CoroutinesRoom.execute(__db, true, new Callable<Unit>() {
       @Override
       @NonNull
@@ -291,12 +291,12 @@ public final class FoodEntryDao_Impl implements FoodEntryDao {
           __db.endTransaction();
         }
       }
-    }, $completion);
+    }, arg1);
   }
 
   @Override
   public Object softDelete(final String id, final Instant deletedAt, final Instant modifiedAt,
-      final Continuation<? super Unit> $completion) {
+      final Continuation<? super Unit> arg3) {
     return CoroutinesRoom.execute(__db, true, new Callable<Unit>() {
       @Override
       @NonNull
@@ -335,11 +335,11 @@ public final class FoodEntryDao_Impl implements FoodEntryDao {
           __preparedStmtOfSoftDelete.release(_stmt);
         }
       }
-    }, $completion);
+    }, arg3);
   }
 
   @Override
-  public Object hardDelete(final String id, final Continuation<? super Unit> $completion) {
+  public Object hardDelete(final String id, final Continuation<? super Unit> arg1) {
     return CoroutinesRoom.execute(__db, true, new Callable<Unit>() {
       @Override
       @NonNull
@@ -364,11 +364,11 @@ public final class FoodEntryDao_Impl implements FoodEntryDao {
           __preparedStmtOfHardDelete.release(_stmt);
         }
       }
-    }, $completion);
+    }, arg1);
   }
 
   @Override
-  public Object deleteAll(final Continuation<? super Unit> $completion) {
+  public Object deleteAll(final Continuation<? super Unit> arg0) {
     return CoroutinesRoom.execute(__db, true, new Callable<Unit>() {
       @Override
       @NonNull
@@ -387,11 +387,11 @@ public final class FoodEntryDao_Impl implements FoodEntryDao {
           __preparedStmtOfDeleteAll.release(_stmt);
         }
       }
-    }, $completion);
+    }, arg0);
   }
 
   @Override
-  public Object getById(final String id, final Continuation<? super FoodEntry> $completion) {
+  public Object getById(final String id, final Continuation<? super FoodEntry> arg1) {
     final String _sql = "SELECT * FROM food_entries WHERE id = ? AND isDeleted = 0";
     final RoomSQLiteQuery _statement = RoomSQLiteQuery.acquire(_sql, 1);
     int _argIndex = 1;
@@ -526,7 +526,7 @@ public final class FoodEntryDao_Impl implements FoodEntryDao {
           _statement.release();
         }
       }
-    }, $completion);
+    }, arg1);
   }
 
   @Override
@@ -1104,8 +1104,7 @@ public final class FoodEntryDao_Impl implements FoodEntryDao {
   }
 
   @Override
-  public Object getMostFrequent(final int limit,
-      final Continuation<? super List<FoodEntry>> $completion) {
+  public Object getMostFrequent(final int limit, final Continuation<? super List<FoodEntry>> arg1) {
     final String _sql = "\n"
             + "        SELECT * FROM food_entries\n"
             + "        WHERE isDeleted = 0\n"
@@ -1242,7 +1241,7 @@ public final class FoodEntryDao_Impl implements FoodEntryDao {
           _statement.release();
         }
       }
-    }, $completion);
+    }, arg1);
   }
 
   @Override
@@ -1393,7 +1392,7 @@ public final class FoodEntryDao_Impl implements FoodEntryDao {
   }
 
   @Override
-  public Object getAllFoodNames(final Continuation<? super List<String>> $completion) {
+  public Object getAllFoodNames(final Continuation<? super List<String>> arg0) {
     final String _sql = "\n"
             + "        SELECT DISTINCT name FROM food_entries\n"
             + "        WHERE isDeleted = 0\n"
@@ -1423,11 +1422,11 @@ public final class FoodEntryDao_Impl implements FoodEntryDao {
           _statement.release();
         }
       }
-    }, $completion);
+    }, arg0);
   }
 
   @Override
-  public Object getAllIngredients(final Continuation<? super List<String>> $completion) {
+  public Object getAllIngredients(final Continuation<? super List<String>> arg0) {
     final String _sql = "\n"
             + "        SELECT DISTINCT ingredients FROM food_entries\n"
             + "        WHERE isDeleted = 0 AND ingredients IS NOT NULL\n"
@@ -1456,11 +1455,11 @@ public final class FoodEntryDao_Impl implements FoodEntryDao {
           _statement.release();
         }
       }
-    }, $completion);
+    }, arg0);
   }
 
   @Override
-  public Object getCount(final Continuation<? super Integer> $completion) {
+  public Object getCount(final Continuation<? super Integer> arg0) {
     final String _sql = "SELECT COUNT(*) FROM food_entries WHERE isDeleted = 0";
     final RoomSQLiteQuery _statement = RoomSQLiteQuery.acquire(_sql, 0);
     final CancellationSignal _cancellationSignal = DBUtil.createCancellationSignal();
@@ -1488,11 +1487,11 @@ public final class FoodEntryDao_Impl implements FoodEntryDao {
           _statement.release();
         }
       }
-    }, $completion);
+    }, arg0);
   }
 
   @Override
-  public Object getCountByDate(final String date, final Continuation<? super Integer> $completion) {
+  public Object getCountByDate(final String date, final Continuation<? super Integer> arg1) {
     final String _sql = "\n"
             + "        SELECT COUNT(*) FROM food_entries\n"
             + "        WHERE DATE(timestamp, 'unixepoch') = ?\n"
@@ -1530,12 +1529,12 @@ public final class FoodEntryDao_Impl implements FoodEntryDao {
           _statement.release();
         }
       }
-    }, $completion);
+    }, arg1);
   }
 
   @Override
   public Object getEntriesInTimeWindow(final Instant startTime, final Instant endTime,
-      final Continuation<? super List<FoodEntry>> $completion) {
+      final Continuation<? super List<FoodEntry>> arg2) {
     final String _sql = "\n"
             + "        SELECT * FROM food_entries\n"
             + "        WHERE timestamp BETWEEN ? AND ?\n"
@@ -1683,7 +1682,7 @@ public final class FoodEntryDao_Impl implements FoodEntryDao {
           _statement.release();
         }
       }
-    }, $completion);
+    }, arg2);
   }
 
   @NonNull

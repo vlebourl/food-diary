@@ -64,14 +64,14 @@ public final class FoodDiaryDatabase_Impl extends FoodDiaryDatabase {
       public void createAllTables(@NonNull final SupportSQLiteDatabase db) {
         db.execSQL("CREATE TABLE IF NOT EXISTS `food_entries` (`id` TEXT NOT NULL, `timestamp` INTEGER NOT NULL, `timezone` TEXT NOT NULL, `name` TEXT NOT NULL, `ingredients` TEXT NOT NULL, `portions` REAL NOT NULL, `portionUnit` TEXT NOT NULL, `preparationMethod` TEXT, `mealType` TEXT NOT NULL, `context` TEXT NOT NULL, `notes` TEXT, `createdAt` INTEGER NOT NULL, `modifiedAt` INTEGER, `isDeleted` INTEGER NOT NULL, `deletedAt` INTEGER, PRIMARY KEY(`id`))");
         db.execSQL("CREATE TABLE IF NOT EXISTS `beverage_entries` (`id` TEXT NOT NULL, `timestamp` INTEGER NOT NULL, `timezone` TEXT NOT NULL, `name` TEXT NOT NULL, `type` TEXT NOT NULL, `volume` REAL NOT NULL, `volumeUnit` TEXT NOT NULL, `caffeineContent` REAL, `alcoholContent` REAL, `carbonation` INTEGER NOT NULL, `temperature` TEXT NOT NULL, `notes` TEXT, `createdAt` INTEGER NOT NULL, `modifiedAt` INTEGER, `isDeleted` INTEGER NOT NULL, `deletedAt` INTEGER, PRIMARY KEY(`id`))");
-        db.execSQL("CREATE TABLE IF NOT EXISTS `symptom_events` (`id` TEXT NOT NULL, `timestamp` INTEGER NOT NULL, `timezone` TEXT NOT NULL, `type` TEXT NOT NULL, `severity` INTEGER NOT NULL, `duration` INTEGER, `location` TEXT, `bristolScale` INTEGER, `suspectedTriggers` TEXT, `notes` TEXT, `photoPath` TEXT, `createdAt` INTEGER NOT NULL, `modifiedAt` INTEGER, `isDeleted` INTEGER NOT NULL, `deletedAt` INTEGER, PRIMARY KEY(`id`))");
+        db.execSQL("CREATE TABLE IF NOT EXISTS `symptom_events` (`id` TEXT NOT NULL, `timestamp` INTEGER NOT NULL, `timezone` TEXT NOT NULL, `type` TEXT NOT NULL, `severity` INTEGER NOT NULL, `duration` INTEGER, `location` TEXT, `bristolScale` INTEGER, `bristolStoolType` INTEGER, `suspectedTriggers` TEXT, `notes` TEXT, `photoPath` TEXT, `createdAt` INTEGER NOT NULL, `modifiedAt` INTEGER, `isDeleted` INTEGER NOT NULL, `deletedAt` INTEGER, PRIMARY KEY(`id`))");
         db.execSQL("CREATE TABLE IF NOT EXISTS `environmental_contexts` (`date` INTEGER NOT NULL, `stressLevel` INTEGER NOT NULL, `sleepHours` REAL NOT NULL, `sleepQuality` INTEGER NOT NULL, `exerciseMinutes` INTEGER, `exerciseType` TEXT, `exerciseIntensity` TEXT, `menstrualPhase` TEXT, `weather` TEXT, `location` TEXT, `additionalNotes` TEXT, PRIMARY KEY(`date`))");
         db.execSQL("CREATE TABLE IF NOT EXISTS `quick_entry_templates` (`id` TEXT NOT NULL, `name` TEXT NOT NULL, `entryType` TEXT NOT NULL, `defaultData` TEXT NOT NULL, `buttonColor` TEXT NOT NULL, `buttonIcon` TEXT NOT NULL, `isActive` INTEGER NOT NULL, `sortOrder` INTEGER NOT NULL, `createdAt` INTEGER NOT NULL, `modifiedAt` INTEGER, PRIMARY KEY(`id`))");
         db.execSQL("CREATE TABLE IF NOT EXISTS `elimination_protocols` (`id` TEXT NOT NULL, `name` TEXT NOT NULL, `startDate` INTEGER NOT NULL, `endDate` INTEGER, `currentPhase` TEXT NOT NULL, `eliminatedFoods` TEXT NOT NULL, `reintroducedFoods` TEXT NOT NULL, `phaseStartDate` INTEGER NOT NULL, `notes` TEXT, `isActive` INTEGER NOT NULL, `createdAt` INTEGER NOT NULL, `modifiedAt` INTEGER, PRIMARY KEY(`id`))");
         db.execSQL("CREATE TABLE IF NOT EXISTS `trigger_patterns` (`id` TEXT NOT NULL, `foodName` TEXT NOT NULL, `symptomType` TEXT NOT NULL, `correlationStrength` REAL NOT NULL, `averageTimeOffsetMinutes` INTEGER NOT NULL, `occurrences` INTEGER NOT NULL, `confidence` REAL NOT NULL, `lastCalculated` INTEGER NOT NULL, `pValue` REAL, `standardDeviation` REAL, `minTimeOffset` INTEGER, `maxTimeOffset` INTEGER, PRIMARY KEY(`id`))");
         db.execSQL("CREATE TABLE IF NOT EXISTS `medical_reports` (`id` TEXT NOT NULL, `title` TEXT NOT NULL, `startDate` INTEGER NOT NULL, `endDate` INTEGER NOT NULL, `format` TEXT NOT NULL, `sections` TEXT NOT NULL, `filePath` TEXT, `fileSize` INTEGER, `generatedAt` INTEGER NOT NULL, `isShared` INTEGER NOT NULL, `shareHistory` TEXT NOT NULL, `notes` TEXT, PRIMARY KEY(`id`))");
         db.execSQL("CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)");
-        db.execSQL("INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'da03617ff2a7adaf6d6896239bdb0729')");
+        db.execSQL("INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '77a7abd78ecea39f603fd7d27a658d8b')");
       }
 
       @Override
@@ -178,7 +178,7 @@ public final class FoodDiaryDatabase_Impl extends FoodDiaryDatabase {
                   + " Expected:\n" + _infoBeverageEntries + "\n"
                   + " Found:\n" + _existingBeverageEntries);
         }
-        final HashMap<String, TableInfo.Column> _columnsSymptomEvents = new HashMap<String, TableInfo.Column>(15);
+        final HashMap<String, TableInfo.Column> _columnsSymptomEvents = new HashMap<String, TableInfo.Column>(16);
         _columnsSymptomEvents.put("id", new TableInfo.Column("id", "TEXT", true, 1, null, TableInfo.CREATED_FROM_ENTITY));
         _columnsSymptomEvents.put("timestamp", new TableInfo.Column("timestamp", "INTEGER", true, 0, null, TableInfo.CREATED_FROM_ENTITY));
         _columnsSymptomEvents.put("timezone", new TableInfo.Column("timezone", "TEXT", true, 0, null, TableInfo.CREATED_FROM_ENTITY));
@@ -187,6 +187,7 @@ public final class FoodDiaryDatabase_Impl extends FoodDiaryDatabase {
         _columnsSymptomEvents.put("duration", new TableInfo.Column("duration", "INTEGER", false, 0, null, TableInfo.CREATED_FROM_ENTITY));
         _columnsSymptomEvents.put("location", new TableInfo.Column("location", "TEXT", false, 0, null, TableInfo.CREATED_FROM_ENTITY));
         _columnsSymptomEvents.put("bristolScale", new TableInfo.Column("bristolScale", "INTEGER", false, 0, null, TableInfo.CREATED_FROM_ENTITY));
+        _columnsSymptomEvents.put("bristolStoolType", new TableInfo.Column("bristolStoolType", "INTEGER", false, 0, null, TableInfo.CREATED_FROM_ENTITY));
         _columnsSymptomEvents.put("suspectedTriggers", new TableInfo.Column("suspectedTriggers", "TEXT", false, 0, null, TableInfo.CREATED_FROM_ENTITY));
         _columnsSymptomEvents.put("notes", new TableInfo.Column("notes", "TEXT", false, 0, null, TableInfo.CREATED_FROM_ENTITY));
         _columnsSymptomEvents.put("photoPath", new TableInfo.Column("photoPath", "TEXT", false, 0, null, TableInfo.CREATED_FROM_ENTITY));
@@ -312,7 +313,7 @@ public final class FoodDiaryDatabase_Impl extends FoodDiaryDatabase {
         }
         return new RoomOpenHelper.ValidationResult(true, null);
       }
-    }, "da03617ff2a7adaf6d6896239bdb0729", "7a54b2be1a60e7dd2a13fc1781163232");
+    }, "77a7abd78ecea39f603fd7d27a658d8b", "c635a51e8b7354522d25d21c031a78ed");
     final SupportSQLiteOpenHelper.Configuration _sqliteConfig = SupportSQLiteOpenHelper.Configuration.builder(config.context).name(config.name).callback(_openCallback).build();
     final SupportSQLiteOpenHelper _helper = config.sqliteOpenHelperFactory.create(_sqliteConfig);
     return _helper;
