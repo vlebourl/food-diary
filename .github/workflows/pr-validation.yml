@@ -278,6 +278,7 @@ jobs:
           emulator-options: -no-window -gpu swiftshader_indirect -noaudio -no-boot-anim -camera-back none -no-metrics
           disable-animations: true
           disable-linux-hw-accel: true
+          emulator-boot-timeout: 900
           script: echo "Generated AVD snapshot for caching."
 
       - name: 🧪 Run Instrumented Tests
@@ -290,6 +291,7 @@ jobs:
           emulator-options: -no-snapshot-save -no-window -gpu swiftshader_indirect -noaudio -no-boot-anim -camera-back none -no-metrics
           disable-animations: true
           disable-linux-hw-accel: true
+          emulator-boot-timeout: 900
           script: ./gradlew connectedDebugAndroidTest --continue
 
       - name: 📊 Upload Instrumented Test Results
