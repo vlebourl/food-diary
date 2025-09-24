@@ -31,6 +31,7 @@ data class FODMAPFood(
                 polyols = FODMAPLevel.LOW,
                 overallLevel = FODMAPLevel.HIGH,
                 servingSize = "1/4 medium",
+                notes = null,
                 aliases = listOf("onions", "white onion", "yellow onion")
             ),
             FODMAPFood(
@@ -43,6 +44,7 @@ data class FODMAPFood(
                 polyols = FODMAPLevel.LOW,
                 overallLevel = FODMAPLevel.HIGH,
                 servingSize = "1 clove",
+                notes = null,
                 aliases = listOf("garlic cloves", "fresh garlic")
             ),
             FODMAPFood(
@@ -55,6 +57,7 @@ data class FODMAPFood(
                 polyols = FODMAPLevel.LOW,
                 overallLevel = FODMAPLevel.HIGH,
                 servingSize = "2 slices",
+                notes = null,
                 aliases = listOf("bread", "wheat", "white bread")
             ),
             FODMAPFood(
@@ -67,6 +70,7 @@ data class FODMAPFood(
                 polyols = FODMAPLevel.LOW,
                 overallLevel = FODMAPLevel.HIGH,
                 servingSize = "1/2 cup",
+                notes = null,
                 aliases = listOf("milk", "dairy milk", "whole milk")
             ),
             FODMAPFood(
@@ -79,6 +83,7 @@ data class FODMAPFood(
                 polyols = FODMAPLevel.MEDIUM,
                 overallLevel = FODMAPLevel.HIGH,
                 servingSize = "1/2 medium",
+                notes = null,
                 aliases = listOf("apples", "red apple", "green apple")
             ),
             FODMAPFood(
@@ -91,6 +96,7 @@ data class FODMAPFood(
                 polyols = FODMAPLevel.LOW,
                 overallLevel = FODMAPLevel.HIGH,
                 servingSize = "1/4 cup",
+                notes = null,
                 aliases = listOf("beans", "red beans", "legumes")
             )
         )
@@ -107,6 +113,7 @@ data class FODMAPFood(
                 polyols = FODMAPLevel.LOW,
                 overallLevel = FODMAPLevel.LOW,
                 servingSize = "1 cup cooked",
+                notes = null,
                 aliases = listOf("rice", "basmati rice", "jasmine rice")
             ),
             FODMAPFood(
@@ -119,6 +126,7 @@ data class FODMAPFood(
                 polyols = FODMAPLevel.LOW,
                 overallLevel = FODMAPLevel.LOW,
                 servingSize = "150g",
+                notes = null,
                 aliases = listOf("chicken", "chicken breast", "poultry")
             ),
             FODMAPFood(
@@ -131,6 +139,7 @@ data class FODMAPFood(
                 polyols = FODMAPLevel.LOW,
                 overallLevel = FODMAPLevel.LOW,
                 servingSize = "1 cup",
+                notes = null,
                 aliases = listOf("carrots", "baby carrots")
             ),
             FODMAPFood(
@@ -143,6 +152,7 @@ data class FODMAPFood(
                 polyols = FODMAPLevel.LOW,
                 overallLevel = FODMAPLevel.LOW,
                 servingSize = "1 medium",
+                notes = null,
                 aliases = listOf("bananas", "ripe banana")
             )
         )

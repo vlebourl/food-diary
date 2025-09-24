@@ -52,7 +52,8 @@ data class BeverageEntry(
             alcoholContent = alcoholContent,
             carbonation = carbonation,
             temperature = temperature,
-            notes = notes
+            notes = notes,
+            modifiedAt = null
         )
     }
 

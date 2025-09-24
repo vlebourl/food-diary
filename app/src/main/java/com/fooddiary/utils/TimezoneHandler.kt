@@ -31,10 +31,7 @@ class TimezoneHandler @Inject constructor() {
         val originalDateTime = ZonedDateTime.ofInstant(entryTimestamp, originalZone)
         val currentDateTime = ZonedDateTime.ofInstant(entryTimestamp, currentTimezone)
 
-        val offsetDifference = ChronoUnit.HOURS.between(
-            originalDateTime.offset.totalSeconds / 3600,
-            currentDateTime.offset.totalSeconds / 3600
-        )
+        val offsetDifference = ((currentDateTime.offset.totalSeconds - originalDateTime.offset.totalSeconds) / 3600).toLong()
 
         return when {
             offsetDifference == 0L -> {

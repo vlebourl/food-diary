@@ -43,6 +43,8 @@ data class MedicalReport(
             endDate = endDate,
             format = format,
             sections = sections.map { it.name },
+            filePath = null,
+            fileSize = null,
             notes = notes
         )
     }

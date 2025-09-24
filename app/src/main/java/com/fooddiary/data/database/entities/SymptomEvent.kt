@@ -69,7 +69,8 @@ data class SymptomEvent(
             bristolScale = bristolScale,
             suspectedTriggers = suspectedTriggers,
             notes = notes,
-            photoPath = photoPath
+            photoPath = photoPath,
+            modifiedAt = null
         )
     }
 

@@ -55,7 +55,8 @@ data class FoodEntry(
             preparationMethod = preparationMethod,
             mealType = mealType,
             context = context,
-            notes = notes
+            notes = notes,
+            modifiedAt = null
         )
     }
 
