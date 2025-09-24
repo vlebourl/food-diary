@@ -230,8 +230,10 @@ jobs:
         api-level: [28, 30, 33]
         target: [default, google_apis]
         exclude:
-          # Optimize matrix to reduce CI cost
-          - api-level: 28
+          # Optimize matrix to reduce CI cost and avoid emulator boot issues
+          - api-level: 30
+            target: google_apis
+          - api-level: 33
             target: google_apis
 
     steps:
