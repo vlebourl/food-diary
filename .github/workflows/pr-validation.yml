@@ -227,13 +227,11 @@ jobs:
 
     strategy:
       matrix:
-        api-level: [28, 30, 33]
+        api-level: [28, 35]
         target: [default, google_apis]
         exclude:
-          # Optimize matrix to reduce CI cost and avoid emulator boot issues
-          - api-level: 30
-            target: google_apis
-          - api-level: 33
+          # Focus on Pixel 9 Pro (Android 16/API 35) compatibility while keeping stable API 28 baseline
+          - api-level: 35
             target: google_apis
 
     steps:
