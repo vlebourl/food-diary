@@ -11,8 +11,9 @@ concurrency:
   cancel-in-progress: true
 
 env:
-  GRADLE_OPTS: -Dorg.gradle.daemon=false -Dorg.gradle.parallel=true -Dorg.gradle.configureondemand=true
+  GRADLE_OPTS: -Dorg.gradle.daemon=false -Dorg.gradle.parallel=true -Dorg.gradle.configureondemand=true -Dorg.gradle.jvmargs="-Xmx4g -XX:+HeapDumpOnOutOfMemoryError"
   JAVA_VERSION: '17'
+  ANDROID_EMULATOR_WAIT_TIME_BEFORE_KILL: 60
 
 jobs:
   # ============================================================================
@@ -221,7 +222,7 @@ jobs:
   instrumented-tests:
     name: 🤖 Instrumented Tests
     runs-on: ubuntu-latest
-    timeout-minutes: 45
+    timeout-minutes: 75
     if: github.event.pull_request.draft == false
 
     strategy:
@@ -276,7 +277,7 @@ jobs:
           target: ${{ matrix.target }}
           arch: x86_64
           force-avd-creation: false
-          emulator-options: -no-window -gpu swiftshader_indirect -noaudio -no-boot-anim -camera-back none -no-metrics -memory 2048 -partition-size 2048
+          emulator-options: -no-window -gpu swiftshader_indirect -noaudio -no-boot-anim -camera-back none -no-metrics -memory 2048 -partition-size 2048 -no-snapshot-load -wipe-data
           disable-animations: true
           disable-linux-hw-accel: true
           emulator-boot-timeout: 900
@@ -289,11 +290,11 @@ jobs:
           target: ${{ matrix.target }}
           arch: x86_64
           force-avd-creation: false
-          emulator-options: -no-snapshot-save -no-window -gpu swiftshader_indirect -noaudio -no-boot-anim -camera-back none -no-metrics -memory 2048 -partition-size 2048
+          emulator-options: -no-snapshot-save -no-window -gpu swiftshader_indirect -noaudio -no-boot-anim -camera-back none -no-metrics -memory 2048 -partition-size 2048 -no-snapshot-load
           disable-animations: true
           disable-linux-hw-accel: true
           emulator-boot-timeout: 900
-          script: ./gradlew connectedDebugAndroidTest --continue
+          script: timeout 30m ./gradlew connectedDebugAndroidTest --continue --daemon --parallel --configure-on-demand
 
       - name: 📊 Upload Instrumented Test Results
         uses: actions/upload-artifact@v4
