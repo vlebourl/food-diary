@@ -13,9 +13,11 @@ import androidx.room.SharedSQLiteStatement;
 import androidx.room.util.CursorUtil;
 import androidx.room.util.DBUtil;
 import androidx.sqlite.db.SupportSQLiteStatement;
+import com.fooddiary.data.database.converters.BristolStoolTypeConverter;
 import com.fooddiary.data.database.converters.InstantConverter;
 import com.fooddiary.data.database.converters.StringListConverter;
 import com.fooddiary.data.database.entities.SymptomEvent;
+import com.fooddiary.data.models.BristolStoolType;
 import com.fooddiary.data.models.SymptomFrequency;
 import com.fooddiary.data.models.SymptomType;
 import java.lang.Class;
@@ -45,6 +47,8 @@ public final class SymptomEventDao_Impl implements SymptomEventDao {
 
   private final InstantConverter __instantConverter = new InstantConverter();
 
+  private final BristolStoolTypeConverter __bristolStoolTypeConverter = new BristolStoolTypeConverter();
+
   private final StringListConverter __stringListConverter = new StringListConverter();
 
   private final EntityDeletionOrUpdateAdapter<SymptomEvent> __updateAdapterOfSymptomEvent;
@@ -61,7 +65,7 @@ public final class SymptomEventDao_Impl implements SymptomEventDao {
       @Override
       @NonNull
       protected String createQuery() {
-        return "INSERT OR ABORT INTO `symptom_events` (`id`,`timestamp`,`timezone`,`type`,`severity`,`duration`,`location`,`bristolScale`,`suspectedTriggers`,`notes`,`photoPath`,`createdAt`,`modifiedAt`,`isDeleted`,`deletedAt`) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+        return "INSERT OR ABORT INTO `symptom_events` (`id`,`timestamp`,`timezone`,`type`,`severity`,`duration`,`location`,`bristolScale`,`bristolStoolType`,`suspectedTriggers`,`notes`,`photoPath`,`createdAt`,`modifiedAt`,`isDeleted`,`deletedAt`) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
       }
 
       @Override
@@ -100,41 +104,47 @@ public final class SymptomEventDao_Impl implements SymptomEventDao {
         } else {
           statement.bindLong(8, entity.getBristolScale());
         }
-        final String _tmp_1 = __stringListConverter.fromStringList(entity.getSuspectedTriggers());
+        final Integer _tmp_1 = __bristolStoolTypeConverter.fromBristolStoolType(entity.getBristolStoolType());
         if (_tmp_1 == null) {
           statement.bindNull(9);
         } else {
-          statement.bindString(9, _tmp_1);
+          statement.bindLong(9, _tmp_1);
         }
-        if (entity.getNotes() == null) {
+        final String _tmp_2 = __stringListConverter.fromStringList(entity.getSuspectedTriggers());
+        if (_tmp_2 == null) {
           statement.bindNull(10);
         } else {
-          statement.bindString(10, entity.getNotes());
+          statement.bindString(10, _tmp_2);
         }
-        if (entity.getPhotoPath() == null) {
+        if (entity.getNotes() == null) {
           statement.bindNull(11);
         } else {
-          statement.bindString(11, entity.getPhotoPath());
+          statement.bindString(11, entity.getNotes());
         }
-        final Long _tmp_2 = __instantConverter.fromInstant(entity.getCreatedAt());
-        if (_tmp_2 == null) {
+        if (entity.getPhotoPath() == null) {
           statement.bindNull(12);
         } else {
-          statement.bindLong(12, _tmp_2);
+          statement.bindString(12, entity.getPhotoPath());
         }
-        final Long _tmp_3 = __instantConverter.fromInstant(entity.getModifiedAt());
+        final Long _tmp_3 = __instantConverter.fromInstant(entity.getCreatedAt());
         if (_tmp_3 == null) {
           statement.bindNull(13);
         } else {
           statement.bindLong(13, _tmp_3);
         }
-        final int _tmp_4 = entity.isDeleted() ? 1 : 0;
-        statement.bindLong(14, _tmp_4);
-        final Long _tmp_5 = __instantConverter.fromInstant(entity.getDeletedAt());
-        if (_tmp_5 == null) {
-          statement.bindNull(15);
+        final Long _tmp_4 = __instantConverter.fromInstant(entity.getModifiedAt());
+        if (_tmp_4 == null) {
+          statement.bindNull(14);
         } else {
-          statement.bindLong(15, _tmp_5);
+          statement.bindLong(14, _tmp_4);
+        }
+        final int _tmp_5 = entity.isDeleted() ? 1 : 0;
+        statement.bindLong(15, _tmp_5);
+        final Long _tmp_6 = __instantConverter.fromInstant(entity.getDeletedAt());
+        if (_tmp_6 == null) {
+          statement.bindNull(16);
+        } else {
+          statement.bindLong(16, _tmp_6);
         }
       }
     };
@@ -142,7 +152,7 @@ public final class SymptomEventDao_Impl implements SymptomEventDao {
       @Override
       @NonNull
       protected String createQuery() {
-        return "UPDATE OR ABORT `symptom_events` SET `id` = ?,`timestamp` = ?,`timezone` = ?,`type` = ?,`severity` = ?,`duration` = ?,`location` = ?,`bristolScale` = ?,`suspectedTriggers` = ?,`notes` = ?,`photoPath` = ?,`createdAt` = ?,`modifiedAt` = ?,`isDeleted` = ?,`deletedAt` = ? WHERE `id` = ?";
+        return "UPDATE OR ABORT `symptom_events` SET `id` = ?,`timestamp` = ?,`timezone` = ?,`type` = ?,`severity` = ?,`duration` = ?,`location` = ?,`bristolScale` = ?,`bristolStoolType` = ?,`suspectedTriggers` = ?,`notes` = ?,`photoPath` = ?,`createdAt` = ?,`modifiedAt` = ?,`isDeleted` = ?,`deletedAt` = ? WHERE `id` = ?";
       }
 
       @Override
@@ -181,46 +191,52 @@ public final class SymptomEventDao_Impl implements SymptomEventDao {
         } else {
           statement.bindLong(8, entity.getBristolScale());
         }
-        final String _tmp_1 = __stringListConverter.fromStringList(entity.getSuspectedTriggers());
+        final Integer _tmp_1 = __bristolStoolTypeConverter.fromBristolStoolType(entity.getBristolStoolType());
         if (_tmp_1 == null) {
           statement.bindNull(9);
         } else {
-          statement.bindString(9, _tmp_1);
+          statement.bindLong(9, _tmp_1);
         }
-        if (entity.getNotes() == null) {
+        final String _tmp_2 = __stringListConverter.fromStringList(entity.getSuspectedTriggers());
+        if (_tmp_2 == null) {
           statement.bindNull(10);
         } else {
-          statement.bindString(10, entity.getNotes());
+          statement.bindString(10, _tmp_2);
         }
-        if (entity.getPhotoPath() == null) {
+        if (entity.getNotes() == null) {
           statement.bindNull(11);
         } else {
-          statement.bindString(11, entity.getPhotoPath());
+          statement.bindString(11, entity.getNotes());
         }
-        final Long _tmp_2 = __instantConverter.fromInstant(entity.getCreatedAt());
-        if (_tmp_2 == null) {
+        if (entity.getPhotoPath() == null) {
           statement.bindNull(12);
         } else {
-          statement.bindLong(12, _tmp_2);
+          statement.bindString(12, entity.getPhotoPath());
         }
-        final Long _tmp_3 = __instantConverter.fromInstant(entity.getModifiedAt());
+        final Long _tmp_3 = __instantConverter.fromInstant(entity.getCreatedAt());
         if (_tmp_3 == null) {
           statement.bindNull(13);
         } else {
           statement.bindLong(13, _tmp_3);
         }
-        final int _tmp_4 = entity.isDeleted() ? 1 : 0;
-        statement.bindLong(14, _tmp_4);
-        final Long _tmp_5 = __instantConverter.fromInstant(entity.getDeletedAt());
-        if (_tmp_5 == null) {
-          statement.bindNull(15);
+        final Long _tmp_4 = __instantConverter.fromInstant(entity.getModifiedAt());
+        if (_tmp_4 == null) {
+          statement.bindNull(14);
         } else {
-          statement.bindLong(15, _tmp_5);
+          statement.bindLong(14, _tmp_4);
         }
-        if (entity.getId() == null) {
+        final int _tmp_5 = entity.isDeleted() ? 1 : 0;
+        statement.bindLong(15, _tmp_5);
+        final Long _tmp_6 = __instantConverter.fromInstant(entity.getDeletedAt());
+        if (_tmp_6 == null) {
           statement.bindNull(16);
         } else {
-          statement.bindString(16, entity.getId());
+          statement.bindLong(16, _tmp_6);
+        }
+        if (entity.getId() == null) {
+          statement.bindNull(17);
+        } else {
+          statement.bindString(17, entity.getId());
         }
       }
     };
@@ -411,6 +427,7 @@ public final class SymptomEventDao_Impl implements SymptomEventDao {
           final int _cursorIndexOfDuration = CursorUtil.getColumnIndexOrThrow(_cursor, "duration");
           final int _cursorIndexOfLocation = CursorUtil.getColumnIndexOrThrow(_cursor, "location");
           final int _cursorIndexOfBristolScale = CursorUtil.getColumnIndexOrThrow(_cursor, "bristolScale");
+          final int _cursorIndexOfBristolStoolType = CursorUtil.getColumnIndexOrThrow(_cursor, "bristolStoolType");
           final int _cursorIndexOfSuspectedTriggers = CursorUtil.getColumnIndexOrThrow(_cursor, "suspectedTriggers");
           final int _cursorIndexOfNotes = CursorUtil.getColumnIndexOrThrow(_cursor, "notes");
           final int _cursorIndexOfPhotoPath = CursorUtil.getColumnIndexOrThrow(_cursor, "photoPath");
@@ -462,14 +479,22 @@ public final class SymptomEventDao_Impl implements SymptomEventDao {
             } else {
               _tmpBristolScale = _cursor.getInt(_cursorIndexOfBristolScale);
             }
-            final List<String> _tmpSuspectedTriggers;
-            final String _tmp_1;
-            if (_cursor.isNull(_cursorIndexOfSuspectedTriggers)) {
+            final BristolStoolType _tmpBristolStoolType;
+            final Integer _tmp_1;
+            if (_cursor.isNull(_cursorIndexOfBristolStoolType)) {
               _tmp_1 = null;
             } else {
-              _tmp_1 = _cursor.getString(_cursorIndexOfSuspectedTriggers);
+              _tmp_1 = _cursor.getInt(_cursorIndexOfBristolStoolType);
             }
-            _tmpSuspectedTriggers = __stringListConverter.toStringList(_tmp_1);
+            _tmpBristolStoolType = __bristolStoolTypeConverter.toBristolStoolType(_tmp_1);
+            final List<String> _tmpSuspectedTriggers;
+            final String _tmp_2;
+            if (_cursor.isNull(_cursorIndexOfSuspectedTriggers)) {
+              _tmp_2 = null;
+            } else {
+              _tmp_2 = _cursor.getString(_cursorIndexOfSuspectedTriggers);
+            }
+            _tmpSuspectedTriggers = __stringListConverter.toStringList(_tmp_2);
             final String _tmpNotes;
             if (_cursor.isNull(_cursorIndexOfNotes)) {
               _tmpNotes = null;
@@ -483,34 +508,34 @@ public final class SymptomEventDao_Impl implements SymptomEventDao {
               _tmpPhotoPath = _cursor.getString(_cursorIndexOfPhotoPath);
             }
             final Instant _tmpCreatedAt;
-            final Long _tmp_2;
-            if (_cursor.isNull(_cursorIndexOfCreatedAt)) {
-              _tmp_2 = null;
-            } else {
-              _tmp_2 = _cursor.getLong(_cursorIndexOfCreatedAt);
-            }
-            _tmpCreatedAt = __instantConverter.toInstant(_tmp_2);
-            final Instant _tmpModifiedAt;
             final Long _tmp_3;
-            if (_cursor.isNull(_cursorIndexOfModifiedAt)) {
+            if (_cursor.isNull(_cursorIndexOfCreatedAt)) {
               _tmp_3 = null;
             } else {
-              _tmp_3 = _cursor.getLong(_cursorIndexOfModifiedAt);
+              _tmp_3 = _cursor.getLong(_cursorIndexOfCreatedAt);
             }
-            _tmpModifiedAt = __instantConverter.toInstant(_tmp_3);
-            final boolean _tmpIsDeleted;
-            final int _tmp_4;
-            _tmp_4 = _cursor.getInt(_cursorIndexOfIsDeleted);
-            _tmpIsDeleted = _tmp_4 != 0;
-            final Instant _tmpDeletedAt;
-            final Long _tmp_5;
-            if (_cursor.isNull(_cursorIndexOfDeletedAt)) {
-              _tmp_5 = null;
+            _tmpCreatedAt = __instantConverter.toInstant(_tmp_3);
+            final Instant _tmpModifiedAt;
+            final Long _tmp_4;
+            if (_cursor.isNull(_cursorIndexOfModifiedAt)) {
+              _tmp_4 = null;
             } else {
-              _tmp_5 = _cursor.getLong(_cursorIndexOfDeletedAt);
+              _tmp_4 = _cursor.getLong(_cursorIndexOfModifiedAt);
             }
-            _tmpDeletedAt = __instantConverter.toInstant(_tmp_5);
-            _result = new SymptomEvent(_tmpId,_tmpTimestamp,_tmpTimezone,_tmpType,_tmpSeverity,_tmpDuration,_tmpLocation,_tmpBristolScale,_tmpSuspectedTriggers,_tmpNotes,_tmpPhotoPath,_tmpCreatedAt,_tmpModifiedAt,_tmpIsDeleted,_tmpDeletedAt);
+            _tmpModifiedAt = __instantConverter.toInstant(_tmp_4);
+            final boolean _tmpIsDeleted;
+            final int _tmp_5;
+            _tmp_5 = _cursor.getInt(_cursorIndexOfIsDeleted);
+            _tmpIsDeleted = _tmp_5 != 0;
+            final Instant _tmpDeletedAt;
+            final Long _tmp_6;
+            if (_cursor.isNull(_cursorIndexOfDeletedAt)) {
+              _tmp_6 = null;
+            } else {
+              _tmp_6 = _cursor.getLong(_cursorIndexOfDeletedAt);
+            }
+            _tmpDeletedAt = __instantConverter.toInstant(_tmp_6);
+            _result = new SymptomEvent(_tmpId,_tmpTimestamp,_tmpTimezone,_tmpType,_tmpSeverity,_tmpDuration,_tmpLocation,_tmpBristolScale,_tmpBristolStoolType,_tmpSuspectedTriggers,_tmpNotes,_tmpPhotoPath,_tmpCreatedAt,_tmpModifiedAt,_tmpIsDeleted,_tmpDeletedAt);
           } else {
             _result = null;
           }
@@ -541,6 +566,7 @@ public final class SymptomEventDao_Impl implements SymptomEventDao {
           final int _cursorIndexOfDuration = CursorUtil.getColumnIndexOrThrow(_cursor, "duration");
           final int _cursorIndexOfLocation = CursorUtil.getColumnIndexOrThrow(_cursor, "location");
           final int _cursorIndexOfBristolScale = CursorUtil.getColumnIndexOrThrow(_cursor, "bristolScale");
+          final int _cursorIndexOfBristolStoolType = CursorUtil.getColumnIndexOrThrow(_cursor, "bristolStoolType");
           final int _cursorIndexOfSuspectedTriggers = CursorUtil.getColumnIndexOrThrow(_cursor, "suspectedTriggers");
           final int _cursorIndexOfNotes = CursorUtil.getColumnIndexOrThrow(_cursor, "notes");
           final int _cursorIndexOfPhotoPath = CursorUtil.getColumnIndexOrThrow(_cursor, "photoPath");
@@ -593,14 +619,22 @@ public final class SymptomEventDao_Impl implements SymptomEventDao {
             } else {
               _tmpBristolScale = _cursor.getInt(_cursorIndexOfBristolScale);
             }
-            final List<String> _tmpSuspectedTriggers;
-            final String _tmp_1;
-            if (_cursor.isNull(_cursorIndexOfSuspectedTriggers)) {
+            final BristolStoolType _tmpBristolStoolType;
+            final Integer _tmp_1;
+            if (_cursor.isNull(_cursorIndexOfBristolStoolType)) {
               _tmp_1 = null;
             } else {
-              _tmp_1 = _cursor.getString(_cursorIndexOfSuspectedTriggers);
+              _tmp_1 = _cursor.getInt(_cursorIndexOfBristolStoolType);
             }
-            _tmpSuspectedTriggers = __stringListConverter.toStringList(_tmp_1);
+            _tmpBristolStoolType = __bristolStoolTypeConverter.toBristolStoolType(_tmp_1);
+            final List<String> _tmpSuspectedTriggers;
+            final String _tmp_2;
+            if (_cursor.isNull(_cursorIndexOfSuspectedTriggers)) {
+              _tmp_2 = null;
+            } else {
+              _tmp_2 = _cursor.getString(_cursorIndexOfSuspectedTriggers);
+            }
+            _tmpSuspectedTriggers = __stringListConverter.toStringList(_tmp_2);
             final String _tmpNotes;
             if (_cursor.isNull(_cursorIndexOfNotes)) {
               _tmpNotes = null;
@@ -614,34 +648,34 @@ public final class SymptomEventDao_Impl implements SymptomEventDao {
               _tmpPhotoPath = _cursor.getString(_cursorIndexOfPhotoPath);
             }
             final Instant _tmpCreatedAt;
-            final Long _tmp_2;
-            if (_cursor.isNull(_cursorIndexOfCreatedAt)) {
-              _tmp_2 = null;
-            } else {
-              _tmp_2 = _cursor.getLong(_cursorIndexOfCreatedAt);
-            }
-            _tmpCreatedAt = __instantConverter.toInstant(_tmp_2);
-            final Instant _tmpModifiedAt;
             final Long _tmp_3;
-            if (_cursor.isNull(_cursorIndexOfModifiedAt)) {
+            if (_cursor.isNull(_cursorIndexOfCreatedAt)) {
               _tmp_3 = null;
             } else {
-              _tmp_3 = _cursor.getLong(_cursorIndexOfModifiedAt);
+              _tmp_3 = _cursor.getLong(_cursorIndexOfCreatedAt);
             }
-            _tmpModifiedAt = __instantConverter.toInstant(_tmp_3);
-            final boolean _tmpIsDeleted;
-            final int _tmp_4;
-            _tmp_4 = _cursor.getInt(_cursorIndexOfIsDeleted);
-            _tmpIsDeleted = _tmp_4 != 0;
-            final Instant _tmpDeletedAt;
-            final Long _tmp_5;
-            if (_cursor.isNull(_cursorIndexOfDeletedAt)) {
-              _tmp_5 = null;
+            _tmpCreatedAt = __instantConverter.toInstant(_tmp_3);
+            final Instant _tmpModifiedAt;
+            final Long _tmp_4;
+            if (_cursor.isNull(_cursorIndexOfModifiedAt)) {
+              _tmp_4 = null;
             } else {
-              _tmp_5 = _cursor.getLong(_cursorIndexOfDeletedAt);
+              _tmp_4 = _cursor.getLong(_cursorIndexOfModifiedAt);
             }
-            _tmpDeletedAt = __instantConverter.toInstant(_tmp_5);
-            _item = new SymptomEvent(_tmpId,_tmpTimestamp,_tmpTimezone,_tmpType,_tmpSeverity,_tmpDuration,_tmpLocation,_tmpBristolScale,_tmpSuspectedTriggers,_tmpNotes,_tmpPhotoPath,_tmpCreatedAt,_tmpModifiedAt,_tmpIsDeleted,_tmpDeletedAt);
+            _tmpModifiedAt = __instantConverter.toInstant(_tmp_4);
+            final boolean _tmpIsDeleted;
+            final int _tmp_5;
+            _tmp_5 = _cursor.getInt(_cursorIndexOfIsDeleted);
+            _tmpIsDeleted = _tmp_5 != 0;
+            final Instant _tmpDeletedAt;
+            final Long _tmp_6;
+            if (_cursor.isNull(_cursorIndexOfDeletedAt)) {
+              _tmp_6 = null;
+            } else {
+              _tmp_6 = _cursor.getLong(_cursorIndexOfDeletedAt);
+            }
+            _tmpDeletedAt = __instantConverter.toInstant(_tmp_6);
+            _item = new SymptomEvent(_tmpId,_tmpTimestamp,_tmpTimezone,_tmpType,_tmpSeverity,_tmpDuration,_tmpLocation,_tmpBristolScale,_tmpBristolStoolType,_tmpSuspectedTriggers,_tmpNotes,_tmpPhotoPath,_tmpCreatedAt,_tmpModifiedAt,_tmpIsDeleted,_tmpDeletedAt);
             _result.add(_item);
           }
           return _result;
@@ -692,6 +726,7 @@ public final class SymptomEventDao_Impl implements SymptomEventDao {
           final int _cursorIndexOfDuration = CursorUtil.getColumnIndexOrThrow(_cursor, "duration");
           final int _cursorIndexOfLocation = CursorUtil.getColumnIndexOrThrow(_cursor, "location");
           final int _cursorIndexOfBristolScale = CursorUtil.getColumnIndexOrThrow(_cursor, "bristolScale");
+          final int _cursorIndexOfBristolStoolType = CursorUtil.getColumnIndexOrThrow(_cursor, "bristolStoolType");
           final int _cursorIndexOfSuspectedTriggers = CursorUtil.getColumnIndexOrThrow(_cursor, "suspectedTriggers");
           final int _cursorIndexOfNotes = CursorUtil.getColumnIndexOrThrow(_cursor, "notes");
           final int _cursorIndexOfPhotoPath = CursorUtil.getColumnIndexOrThrow(_cursor, "photoPath");
@@ -744,14 +779,22 @@ public final class SymptomEventDao_Impl implements SymptomEventDao {
             } else {
               _tmpBristolScale = _cursor.getInt(_cursorIndexOfBristolScale);
             }
-            final List<String> _tmpSuspectedTriggers;
-            final String _tmp_1;
-            if (_cursor.isNull(_cursorIndexOfSuspectedTriggers)) {
+            final BristolStoolType _tmpBristolStoolType;
+            final Integer _tmp_1;
+            if (_cursor.isNull(_cursorIndexOfBristolStoolType)) {
               _tmp_1 = null;
             } else {
-              _tmp_1 = _cursor.getString(_cursorIndexOfSuspectedTriggers);
+              _tmp_1 = _cursor.getInt(_cursorIndexOfBristolStoolType);
             }
-            _tmpSuspectedTriggers = __stringListConverter.toStringList(_tmp_1);
+            _tmpBristolStoolType = __bristolStoolTypeConverter.toBristolStoolType(_tmp_1);
+            final List<String> _tmpSuspectedTriggers;
+            final String _tmp_2;
+            if (_cursor.isNull(_cursorIndexOfSuspectedTriggers)) {
+              _tmp_2 = null;
+            } else {
+              _tmp_2 = _cursor.getString(_cursorIndexOfSuspectedTriggers);
+            }
+            _tmpSuspectedTriggers = __stringListConverter.toStringList(_tmp_2);
             final String _tmpNotes;
             if (_cursor.isNull(_cursorIndexOfNotes)) {
               _tmpNotes = null;
@@ -765,34 +808,34 @@ public final class SymptomEventDao_Impl implements SymptomEventDao {
               _tmpPhotoPath = _cursor.getString(_cursorIndexOfPhotoPath);
             }
             final Instant _tmpCreatedAt;
-            final Long _tmp_2;
-            if (_cursor.isNull(_cursorIndexOfCreatedAt)) {
-              _tmp_2 = null;
-            } else {
-              _tmp_2 = _cursor.getLong(_cursorIndexOfCreatedAt);
-            }
-            _tmpCreatedAt = __instantConverter.toInstant(_tmp_2);
-            final Instant _tmpModifiedAt;
             final Long _tmp_3;
-            if (_cursor.isNull(_cursorIndexOfModifiedAt)) {
+            if (_cursor.isNull(_cursorIndexOfCreatedAt)) {
               _tmp_3 = null;
             } else {
-              _tmp_3 = _cursor.getLong(_cursorIndexOfModifiedAt);
+              _tmp_3 = _cursor.getLong(_cursorIndexOfCreatedAt);
             }
-            _tmpModifiedAt = __instantConverter.toInstant(_tmp_3);
-            final boolean _tmpIsDeleted;
-            final int _tmp_4;
-            _tmp_4 = _cursor.getInt(_cursorIndexOfIsDeleted);
-            _tmpIsDeleted = _tmp_4 != 0;
-            final Instant _tmpDeletedAt;
-            final Long _tmp_5;
-            if (_cursor.isNull(_cursorIndexOfDeletedAt)) {
-              _tmp_5 = null;
+            _tmpCreatedAt = __instantConverter.toInstant(_tmp_3);
+            final Instant _tmpModifiedAt;
+            final Long _tmp_4;
+            if (_cursor.isNull(_cursorIndexOfModifiedAt)) {
+              _tmp_4 = null;
             } else {
-              _tmp_5 = _cursor.getLong(_cursorIndexOfDeletedAt);
+              _tmp_4 = _cursor.getLong(_cursorIndexOfModifiedAt);
             }
-            _tmpDeletedAt = __instantConverter.toInstant(_tmp_5);
-            _item = new SymptomEvent(_tmpId,_tmpTimestamp,_tmpTimezone,_tmpType,_tmpSeverity,_tmpDuration,_tmpLocation,_tmpBristolScale,_tmpSuspectedTriggers,_tmpNotes,_tmpPhotoPath,_tmpCreatedAt,_tmpModifiedAt,_tmpIsDeleted,_tmpDeletedAt);
+            _tmpModifiedAt = __instantConverter.toInstant(_tmp_4);
+            final boolean _tmpIsDeleted;
+            final int _tmp_5;
+            _tmp_5 = _cursor.getInt(_cursorIndexOfIsDeleted);
+            _tmpIsDeleted = _tmp_5 != 0;
+            final Instant _tmpDeletedAt;
+            final Long _tmp_6;
+            if (_cursor.isNull(_cursorIndexOfDeletedAt)) {
+              _tmp_6 = null;
+            } else {
+              _tmp_6 = _cursor.getLong(_cursorIndexOfDeletedAt);
+            }
+            _tmpDeletedAt = __instantConverter.toInstant(_tmp_6);
+            _item = new SymptomEvent(_tmpId,_tmpTimestamp,_tmpTimezone,_tmpType,_tmpSeverity,_tmpDuration,_tmpLocation,_tmpBristolScale,_tmpBristolStoolType,_tmpSuspectedTriggers,_tmpNotes,_tmpPhotoPath,_tmpCreatedAt,_tmpModifiedAt,_tmpIsDeleted,_tmpDeletedAt);
             _result.add(_item);
           }
           return _result;
@@ -828,6 +871,7 @@ public final class SymptomEventDao_Impl implements SymptomEventDao {
           final int _cursorIndexOfDuration = CursorUtil.getColumnIndexOrThrow(_cursor, "duration");
           final int _cursorIndexOfLocation = CursorUtil.getColumnIndexOrThrow(_cursor, "location");
           final int _cursorIndexOfBristolScale = CursorUtil.getColumnIndexOrThrow(_cursor, "bristolScale");
+          final int _cursorIndexOfBristolStoolType = CursorUtil.getColumnIndexOrThrow(_cursor, "bristolStoolType");
           final int _cursorIndexOfSuspectedTriggers = CursorUtil.getColumnIndexOrThrow(_cursor, "suspectedTriggers");
           final int _cursorIndexOfNotes = CursorUtil.getColumnIndexOrThrow(_cursor, "notes");
           final int _cursorIndexOfPhotoPath = CursorUtil.getColumnIndexOrThrow(_cursor, "photoPath");
@@ -880,14 +924,22 @@ public final class SymptomEventDao_Impl implements SymptomEventDao {
             } else {
               _tmpBristolScale = _cursor.getInt(_cursorIndexOfBristolScale);
             }
-            final List<String> _tmpSuspectedTriggers;
-            final String _tmp_1;
-            if (_cursor.isNull(_cursorIndexOfSuspectedTriggers)) {
+            final BristolStoolType _tmpBristolStoolType;
+            final Integer _tmp_1;
+            if (_cursor.isNull(_cursorIndexOfBristolStoolType)) {
               _tmp_1 = null;
             } else {
-              _tmp_1 = _cursor.getString(_cursorIndexOfSuspectedTriggers);
+              _tmp_1 = _cursor.getInt(_cursorIndexOfBristolStoolType);
             }
-            _tmpSuspectedTriggers = __stringListConverter.toStringList(_tmp_1);
+            _tmpBristolStoolType = __bristolStoolTypeConverter.toBristolStoolType(_tmp_1);
+            final List<String> _tmpSuspectedTriggers;
+            final String _tmp_2;
+            if (_cursor.isNull(_cursorIndexOfSuspectedTriggers)) {
+              _tmp_2 = null;
+            } else {
+              _tmp_2 = _cursor.getString(_cursorIndexOfSuspectedTriggers);
+            }
+            _tmpSuspectedTriggers = __stringListConverter.toStringList(_tmp_2);
             final String _tmpNotes;
             if (_cursor.isNull(_cursorIndexOfNotes)) {
               _tmpNotes = null;
@@ -901,34 +953,34 @@ public final class SymptomEventDao_Impl implements SymptomEventDao {
               _tmpPhotoPath = _cursor.getString(_cursorIndexOfPhotoPath);
             }
             final Instant _tmpCreatedAt;
-            final Long _tmp_2;
-            if (_cursor.isNull(_cursorIndexOfCreatedAt)) {
-              _tmp_2 = null;
-            } else {
-              _tmp_2 = _cursor.getLong(_cursorIndexOfCreatedAt);
-            }
-            _tmpCreatedAt = __instantConverter.toInstant(_tmp_2);
-            final Instant _tmpModifiedAt;
             final Long _tmp_3;
-            if (_cursor.isNull(_cursorIndexOfModifiedAt)) {
+            if (_cursor.isNull(_cursorIndexOfCreatedAt)) {
               _tmp_3 = null;
             } else {
-              _tmp_3 = _cursor.getLong(_cursorIndexOfModifiedAt);
+              _tmp_3 = _cursor.getLong(_cursorIndexOfCreatedAt);
             }
-            _tmpModifiedAt = __instantConverter.toInstant(_tmp_3);
-            final boolean _tmpIsDeleted;
-            final int _tmp_4;
-            _tmp_4 = _cursor.getInt(_cursorIndexOfIsDeleted);
-            _tmpIsDeleted = _tmp_4 != 0;
-            final Instant _tmpDeletedAt;
-            final Long _tmp_5;
-            if (_cursor.isNull(_cursorIndexOfDeletedAt)) {
-              _tmp_5 = null;
+            _tmpCreatedAt = __instantConverter.toInstant(_tmp_3);
+            final Instant _tmpModifiedAt;
+            final Long _tmp_4;
+            if (_cursor.isNull(_cursorIndexOfModifiedAt)) {
+              _tmp_4 = null;
             } else {
-              _tmp_5 = _cursor.getLong(_cursorIndexOfDeletedAt);
+              _tmp_4 = _cursor.getLong(_cursorIndexOfModifiedAt);
             }
-            _tmpDeletedAt = __instantConverter.toInstant(_tmp_5);
-            _item = new SymptomEvent(_tmpId,_tmpTimestamp,_tmpTimezone,_tmpType,_tmpSeverity,_tmpDuration,_tmpLocation,_tmpBristolScale,_tmpSuspectedTriggers,_tmpNotes,_tmpPhotoPath,_tmpCreatedAt,_tmpModifiedAt,_tmpIsDeleted,_tmpDeletedAt);
+            _tmpModifiedAt = __instantConverter.toInstant(_tmp_4);
+            final boolean _tmpIsDeleted;
+            final int _tmp_5;
+            _tmp_5 = _cursor.getInt(_cursorIndexOfIsDeleted);
+            _tmpIsDeleted = _tmp_5 != 0;
+            final Instant _tmpDeletedAt;
+            final Long _tmp_6;
+            if (_cursor.isNull(_cursorIndexOfDeletedAt)) {
+              _tmp_6 = null;
+            } else {
+              _tmp_6 = _cursor.getLong(_cursorIndexOfDeletedAt);
+            }
+            _tmpDeletedAt = __instantConverter.toInstant(_tmp_6);
+            _item = new SymptomEvent(_tmpId,_tmpTimestamp,_tmpTimezone,_tmpType,_tmpSeverity,_tmpDuration,_tmpLocation,_tmpBristolScale,_tmpBristolStoolType,_tmpSuspectedTriggers,_tmpNotes,_tmpPhotoPath,_tmpCreatedAt,_tmpModifiedAt,_tmpIsDeleted,_tmpDeletedAt);
             _result.add(_item);
           }
           return _result;
@@ -964,6 +1016,7 @@ public final class SymptomEventDao_Impl implements SymptomEventDao {
           final int _cursorIndexOfDuration = CursorUtil.getColumnIndexOrThrow(_cursor, "duration");
           final int _cursorIndexOfLocation = CursorUtil.getColumnIndexOrThrow(_cursor, "location");
           final int _cursorIndexOfBristolScale = CursorUtil.getColumnIndexOrThrow(_cursor, "bristolScale");
+          final int _cursorIndexOfBristolStoolType = CursorUtil.getColumnIndexOrThrow(_cursor, "bristolStoolType");
           final int _cursorIndexOfSuspectedTriggers = CursorUtil.getColumnIndexOrThrow(_cursor, "suspectedTriggers");
           final int _cursorIndexOfNotes = CursorUtil.getColumnIndexOrThrow(_cursor, "notes");
           final int _cursorIndexOfPhotoPath = CursorUtil.getColumnIndexOrThrow(_cursor, "photoPath");
@@ -1016,14 +1069,22 @@ public final class SymptomEventDao_Impl implements SymptomEventDao {
             } else {
               _tmpBristolScale = _cursor.getInt(_cursorIndexOfBristolScale);
             }
-            final List<String> _tmpSuspectedTriggers;
-            final String _tmp_1;
-            if (_cursor.isNull(_cursorIndexOfSuspectedTriggers)) {
+            final BristolStoolType _tmpBristolStoolType;
+            final Integer _tmp_1;
+            if (_cursor.isNull(_cursorIndexOfBristolStoolType)) {
               _tmp_1 = null;
             } else {
-              _tmp_1 = _cursor.getString(_cursorIndexOfSuspectedTriggers);
+              _tmp_1 = _cursor.getInt(_cursorIndexOfBristolStoolType);
             }
-            _tmpSuspectedTriggers = __stringListConverter.toStringList(_tmp_1);
+            _tmpBristolStoolType = __bristolStoolTypeConverter.toBristolStoolType(_tmp_1);
+            final List<String> _tmpSuspectedTriggers;
+            final String _tmp_2;
+            if (_cursor.isNull(_cursorIndexOfSuspectedTriggers)) {
+              _tmp_2 = null;
+            } else {
+              _tmp_2 = _cursor.getString(_cursorIndexOfSuspectedTriggers);
+            }
+            _tmpSuspectedTriggers = __stringListConverter.toStringList(_tmp_2);
             final String _tmpNotes;
             if (_cursor.isNull(_cursorIndexOfNotes)) {
               _tmpNotes = null;
@@ -1037,34 +1098,34 @@ public final class SymptomEventDao_Impl implements SymptomEventDao {
               _tmpPhotoPath = _cursor.getString(_cursorIndexOfPhotoPath);
             }
             final Instant _tmpCreatedAt;
-            final Long _tmp_2;
-            if (_cursor.isNull(_cursorIndexOfCreatedAt)) {
-              _tmp_2 = null;
-            } else {
-              _tmp_2 = _cursor.getLong(_cursorIndexOfCreatedAt);
-            }
-            _tmpCreatedAt = __instantConverter.toInstant(_tmp_2);
-            final Instant _tmpModifiedAt;
             final Long _tmp_3;
-            if (_cursor.isNull(_cursorIndexOfModifiedAt)) {
+            if (_cursor.isNull(_cursorIndexOfCreatedAt)) {
               _tmp_3 = null;
             } else {
-              _tmp_3 = _cursor.getLong(_cursorIndexOfModifiedAt);
+              _tmp_3 = _cursor.getLong(_cursorIndexOfCreatedAt);
             }
-            _tmpModifiedAt = __instantConverter.toInstant(_tmp_3);
-            final boolean _tmpIsDeleted;
-            final int _tmp_4;
-            _tmp_4 = _cursor.getInt(_cursorIndexOfIsDeleted);
-            _tmpIsDeleted = _tmp_4 != 0;
-            final Instant _tmpDeletedAt;
-            final Long _tmp_5;
-            if (_cursor.isNull(_cursorIndexOfDeletedAt)) {
-              _tmp_5 = null;
+            _tmpCreatedAt = __instantConverter.toInstant(_tmp_3);
+            final Instant _tmpModifiedAt;
+            final Long _tmp_4;
+            if (_cursor.isNull(_cursorIndexOfModifiedAt)) {
+              _tmp_4 = null;
             } else {
-              _tmp_5 = _cursor.getLong(_cursorIndexOfDeletedAt);
+              _tmp_4 = _cursor.getLong(_cursorIndexOfModifiedAt);
             }
-            _tmpDeletedAt = __instantConverter.toInstant(_tmp_5);
-            _item = new SymptomEvent(_tmpId,_tmpTimestamp,_tmpTimezone,_tmpType,_tmpSeverity,_tmpDuration,_tmpLocation,_tmpBristolScale,_tmpSuspectedTriggers,_tmpNotes,_tmpPhotoPath,_tmpCreatedAt,_tmpModifiedAt,_tmpIsDeleted,_tmpDeletedAt);
+            _tmpModifiedAt = __instantConverter.toInstant(_tmp_4);
+            final boolean _tmpIsDeleted;
+            final int _tmp_5;
+            _tmp_5 = _cursor.getInt(_cursorIndexOfIsDeleted);
+            _tmpIsDeleted = _tmp_5 != 0;
+            final Instant _tmpDeletedAt;
+            final Long _tmp_6;
+            if (_cursor.isNull(_cursorIndexOfDeletedAt)) {
+              _tmp_6 = null;
+            } else {
+              _tmp_6 = _cursor.getLong(_cursorIndexOfDeletedAt);
+            }
+            _tmpDeletedAt = __instantConverter.toInstant(_tmp_6);
+            _item = new SymptomEvent(_tmpId,_tmpTimestamp,_tmpTimezone,_tmpType,_tmpSeverity,_tmpDuration,_tmpLocation,_tmpBristolScale,_tmpBristolStoolType,_tmpSuspectedTriggers,_tmpNotes,_tmpPhotoPath,_tmpCreatedAt,_tmpModifiedAt,_tmpIsDeleted,_tmpDeletedAt);
             _result.add(_item);
           }
           return _result;
@@ -1103,6 +1164,7 @@ public final class SymptomEventDao_Impl implements SymptomEventDao {
           final int _cursorIndexOfDuration = CursorUtil.getColumnIndexOrThrow(_cursor, "duration");
           final int _cursorIndexOfLocation = CursorUtil.getColumnIndexOrThrow(_cursor, "location");
           final int _cursorIndexOfBristolScale = CursorUtil.getColumnIndexOrThrow(_cursor, "bristolScale");
+          final int _cursorIndexOfBristolStoolType = CursorUtil.getColumnIndexOrThrow(_cursor, "bristolStoolType");
           final int _cursorIndexOfSuspectedTriggers = CursorUtil.getColumnIndexOrThrow(_cursor, "suspectedTriggers");
           final int _cursorIndexOfNotes = CursorUtil.getColumnIndexOrThrow(_cursor, "notes");
           final int _cursorIndexOfPhotoPath = CursorUtil.getColumnIndexOrThrow(_cursor, "photoPath");
@@ -1155,14 +1217,22 @@ public final class SymptomEventDao_Impl implements SymptomEventDao {
             } else {
               _tmpBristolScale = _cursor.getInt(_cursorIndexOfBristolScale);
             }
-            final List<String> _tmpSuspectedTriggers;
-            final String _tmp_1;
-            if (_cursor.isNull(_cursorIndexOfSuspectedTriggers)) {
+            final BristolStoolType _tmpBristolStoolType;
+            final Integer _tmp_1;
+            if (_cursor.isNull(_cursorIndexOfBristolStoolType)) {
               _tmp_1 = null;
             } else {
-              _tmp_1 = _cursor.getString(_cursorIndexOfSuspectedTriggers);
+              _tmp_1 = _cursor.getInt(_cursorIndexOfBristolStoolType);
             }
-            _tmpSuspectedTriggers = __stringListConverter.toStringList(_tmp_1);
+            _tmpBristolStoolType = __bristolStoolTypeConverter.toBristolStoolType(_tmp_1);
+            final List<String> _tmpSuspectedTriggers;
+            final String _tmp_2;
+            if (_cursor.isNull(_cursorIndexOfSuspectedTriggers)) {
+              _tmp_2 = null;
+            } else {
+              _tmp_2 = _cursor.getString(_cursorIndexOfSuspectedTriggers);
+            }
+            _tmpSuspectedTriggers = __stringListConverter.toStringList(_tmp_2);
             final String _tmpNotes;
             if (_cursor.isNull(_cursorIndexOfNotes)) {
               _tmpNotes = null;
@@ -1176,34 +1246,34 @@ public final class SymptomEventDao_Impl implements SymptomEventDao {
               _tmpPhotoPath = _cursor.getString(_cursorIndexOfPhotoPath);
             }
             final Instant _tmpCreatedAt;
-            final Long _tmp_2;
-            if (_cursor.isNull(_cursorIndexOfCreatedAt)) {
-              _tmp_2 = null;
-            } else {
-              _tmp_2 = _cursor.getLong(_cursorIndexOfCreatedAt);
-            }
-            _tmpCreatedAt = __instantConverter.toInstant(_tmp_2);
-            final Instant _tmpModifiedAt;
             final Long _tmp_3;
-            if (_cursor.isNull(_cursorIndexOfModifiedAt)) {
+            if (_cursor.isNull(_cursorIndexOfCreatedAt)) {
               _tmp_3 = null;
             } else {
-              _tmp_3 = _cursor.getLong(_cursorIndexOfModifiedAt);
+              _tmp_3 = _cursor.getLong(_cursorIndexOfCreatedAt);
             }
-            _tmpModifiedAt = __instantConverter.toInstant(_tmp_3);
-            final boolean _tmpIsDeleted;
-            final int _tmp_4;
-            _tmp_4 = _cursor.getInt(_cursorIndexOfIsDeleted);
-            _tmpIsDeleted = _tmp_4 != 0;
-            final Instant _tmpDeletedAt;
-            final Long _tmp_5;
-            if (_cursor.isNull(_cursorIndexOfDeletedAt)) {
-              _tmp_5 = null;
+            _tmpCreatedAt = __instantConverter.toInstant(_tmp_3);
+            final Instant _tmpModifiedAt;
+            final Long _tmp_4;
+            if (_cursor.isNull(_cursorIndexOfModifiedAt)) {
+              _tmp_4 = null;
             } else {
-              _tmp_5 = _cursor.getLong(_cursorIndexOfDeletedAt);
+              _tmp_4 = _cursor.getLong(_cursorIndexOfModifiedAt);
             }
-            _tmpDeletedAt = __instantConverter.toInstant(_tmp_5);
-            _item = new SymptomEvent(_tmpId,_tmpTimestamp,_tmpTimezone,_tmpType,_tmpSeverity,_tmpDuration,_tmpLocation,_tmpBristolScale,_tmpSuspectedTriggers,_tmpNotes,_tmpPhotoPath,_tmpCreatedAt,_tmpModifiedAt,_tmpIsDeleted,_tmpDeletedAt);
+            _tmpModifiedAt = __instantConverter.toInstant(_tmp_4);
+            final boolean _tmpIsDeleted;
+            final int _tmp_5;
+            _tmp_5 = _cursor.getInt(_cursorIndexOfIsDeleted);
+            _tmpIsDeleted = _tmp_5 != 0;
+            final Instant _tmpDeletedAt;
+            final Long _tmp_6;
+            if (_cursor.isNull(_cursorIndexOfDeletedAt)) {
+              _tmp_6 = null;
+            } else {
+              _tmp_6 = _cursor.getLong(_cursorIndexOfDeletedAt);
+            }
+            _tmpDeletedAt = __instantConverter.toInstant(_tmp_6);
+            _item = new SymptomEvent(_tmpId,_tmpTimestamp,_tmpTimezone,_tmpType,_tmpSeverity,_tmpDuration,_tmpLocation,_tmpBristolScale,_tmpBristolStoolType,_tmpSuspectedTriggers,_tmpNotes,_tmpPhotoPath,_tmpCreatedAt,_tmpModifiedAt,_tmpIsDeleted,_tmpDeletedAt);
             _result.add(_item);
           }
           return _result;
@@ -1258,6 +1328,7 @@ public final class SymptomEventDao_Impl implements SymptomEventDao {
           final int _cursorIndexOfDuration = CursorUtil.getColumnIndexOrThrow(_cursor, "duration");
           final int _cursorIndexOfLocation = CursorUtil.getColumnIndexOrThrow(_cursor, "location");
           final int _cursorIndexOfBristolScale = CursorUtil.getColumnIndexOrThrow(_cursor, "bristolScale");
+          final int _cursorIndexOfBristolStoolType = CursorUtil.getColumnIndexOrThrow(_cursor, "bristolStoolType");
           final int _cursorIndexOfSuspectedTriggers = CursorUtil.getColumnIndexOrThrow(_cursor, "suspectedTriggers");
           final int _cursorIndexOfNotes = CursorUtil.getColumnIndexOrThrow(_cursor, "notes");
           final int _cursorIndexOfPhotoPath = CursorUtil.getColumnIndexOrThrow(_cursor, "photoPath");
@@ -1310,14 +1381,22 @@ public final class SymptomEventDao_Impl implements SymptomEventDao {
             } else {
               _tmpBristolScale = _cursor.getInt(_cursorIndexOfBristolScale);
             }
-            final List<String> _tmpSuspectedTriggers;
-            final String _tmp_3;
-            if (_cursor.isNull(_cursorIndexOfSuspectedTriggers)) {
+            final BristolStoolType _tmpBristolStoolType;
+            final Integer _tmp_3;
+            if (_cursor.isNull(_cursorIndexOfBristolStoolType)) {
               _tmp_3 = null;
             } else {
-              _tmp_3 = _cursor.getString(_cursorIndexOfSuspectedTriggers);
+              _tmp_3 = _cursor.getInt(_cursorIndexOfBristolStoolType);
             }
-            _tmpSuspectedTriggers = __stringListConverter.toStringList(_tmp_3);
+            _tmpBristolStoolType = __bristolStoolTypeConverter.toBristolStoolType(_tmp_3);
+            final List<String> _tmpSuspectedTriggers;
+            final String _tmp_4;
+            if (_cursor.isNull(_cursorIndexOfSuspectedTriggers)) {
+              _tmp_4 = null;
+            } else {
+              _tmp_4 = _cursor.getString(_cursorIndexOfSuspectedTriggers);
+            }
+            _tmpSuspectedTriggers = __stringListConverter.toStringList(_tmp_4);
             final String _tmpNotes;
             if (_cursor.isNull(_cursorIndexOfNotes)) {
               _tmpNotes = null;
@@ -1331,34 +1410,34 @@ public final class SymptomEventDao_Impl implements SymptomEventDao {
               _tmpPhotoPath = _cursor.getString(_cursorIndexOfPhotoPath);
             }
             final Instant _tmpCreatedAt;
-            final Long _tmp_4;
-            if (_cursor.isNull(_cursorIndexOfCreatedAt)) {
-              _tmp_4 = null;
-            } else {
-              _tmp_4 = _cursor.getLong(_cursorIndexOfCreatedAt);
-            }
-            _tmpCreatedAt = __instantConverter.toInstant(_tmp_4);
-            final Instant _tmpModifiedAt;
             final Long _tmp_5;
-            if (_cursor.isNull(_cursorIndexOfModifiedAt)) {
+            if (_cursor.isNull(_cursorIndexOfCreatedAt)) {
               _tmp_5 = null;
             } else {
-              _tmp_5 = _cursor.getLong(_cursorIndexOfModifiedAt);
+              _tmp_5 = _cursor.getLong(_cursorIndexOfCreatedAt);
             }
-            _tmpModifiedAt = __instantConverter.toInstant(_tmp_5);
-            final boolean _tmpIsDeleted;
-            final int _tmp_6;
-            _tmp_6 = _cursor.getInt(_cursorIndexOfIsDeleted);
-            _tmpIsDeleted = _tmp_6 != 0;
-            final Instant _tmpDeletedAt;
-            final Long _tmp_7;
-            if (_cursor.isNull(_cursorIndexOfDeletedAt)) {
-              _tmp_7 = null;
+            _tmpCreatedAt = __instantConverter.toInstant(_tmp_5);
+            final Instant _tmpModifiedAt;
+            final Long _tmp_6;
+            if (_cursor.isNull(_cursorIndexOfModifiedAt)) {
+              _tmp_6 = null;
             } else {
-              _tmp_7 = _cursor.getLong(_cursorIndexOfDeletedAt);
+              _tmp_6 = _cursor.getLong(_cursorIndexOfModifiedAt);
             }
-            _tmpDeletedAt = __instantConverter.toInstant(_tmp_7);
-            _item = new SymptomEvent(_tmpId,_tmpTimestamp,_tmpTimezone,_tmpType,_tmpSeverity,_tmpDuration,_tmpLocation,_tmpBristolScale,_tmpSuspectedTriggers,_tmpNotes,_tmpPhotoPath,_tmpCreatedAt,_tmpModifiedAt,_tmpIsDeleted,_tmpDeletedAt);
+            _tmpModifiedAt = __instantConverter.toInstant(_tmp_6);
+            final boolean _tmpIsDeleted;
+            final int _tmp_7;
+            _tmp_7 = _cursor.getInt(_cursorIndexOfIsDeleted);
+            _tmpIsDeleted = _tmp_7 != 0;
+            final Instant _tmpDeletedAt;
+            final Long _tmp_8;
+            if (_cursor.isNull(_cursorIndexOfDeletedAt)) {
+              _tmp_8 = null;
+            } else {
+              _tmp_8 = _cursor.getLong(_cursorIndexOfDeletedAt);
+            }
+            _tmpDeletedAt = __instantConverter.toInstant(_tmp_8);
+            _item = new SymptomEvent(_tmpId,_tmpTimestamp,_tmpTimezone,_tmpType,_tmpSeverity,_tmpDuration,_tmpLocation,_tmpBristolScale,_tmpBristolStoolType,_tmpSuspectedTriggers,_tmpNotes,_tmpPhotoPath,_tmpCreatedAt,_tmpModifiedAt,_tmpIsDeleted,_tmpDeletedAt);
             _result.add(_item);
           }
           return _result;
@@ -1510,6 +1589,7 @@ public final class SymptomEventDao_Impl implements SymptomEventDao {
           final int _cursorIndexOfDuration = CursorUtil.getColumnIndexOrThrow(_cursor, "duration");
           final int _cursorIndexOfLocation = CursorUtil.getColumnIndexOrThrow(_cursor, "location");
           final int _cursorIndexOfBristolScale = CursorUtil.getColumnIndexOrThrow(_cursor, "bristolScale");
+          final int _cursorIndexOfBristolStoolType = CursorUtil.getColumnIndexOrThrow(_cursor, "bristolStoolType");
           final int _cursorIndexOfSuspectedTriggers = CursorUtil.getColumnIndexOrThrow(_cursor, "suspectedTriggers");
           final int _cursorIndexOfNotes = CursorUtil.getColumnIndexOrThrow(_cursor, "notes");
           final int _cursorIndexOfPhotoPath = CursorUtil.getColumnIndexOrThrow(_cursor, "photoPath");
@@ -1562,14 +1642,22 @@ public final class SymptomEventDao_Impl implements SymptomEventDao {
             } else {
               _tmpBristolScale = _cursor.getInt(_cursorIndexOfBristolScale);
             }
-            final List<String> _tmpSuspectedTriggers;
-            final String _tmp_1;
-            if (_cursor.isNull(_cursorIndexOfSuspectedTriggers)) {
+            final BristolStoolType _tmpBristolStoolType;
+            final Integer _tmp_1;
+            if (_cursor.isNull(_cursorIndexOfBristolStoolType)) {
               _tmp_1 = null;
             } else {
-              _tmp_1 = _cursor.getString(_cursorIndexOfSuspectedTriggers);
+              _tmp_1 = _cursor.getInt(_cursorIndexOfBristolStoolType);
             }
-            _tmpSuspectedTriggers = __stringListConverter.toStringList(_tmp_1);
+            _tmpBristolStoolType = __bristolStoolTypeConverter.toBristolStoolType(_tmp_1);
+            final List<String> _tmpSuspectedTriggers;
+            final String _tmp_2;
+            if (_cursor.isNull(_cursorIndexOfSuspectedTriggers)) {
+              _tmp_2 = null;
+            } else {
+              _tmp_2 = _cursor.getString(_cursorIndexOfSuspectedTriggers);
+            }
+            _tmpSuspectedTriggers = __stringListConverter.toStringList(_tmp_2);
             final String _tmpNotes;
             if (_cursor.isNull(_cursorIndexOfNotes)) {
               _tmpNotes = null;
@@ -1583,34 +1671,34 @@ public final class SymptomEventDao_Impl implements SymptomEventDao {
               _tmpPhotoPath = _cursor.getString(_cursorIndexOfPhotoPath);
             }
             final Instant _tmpCreatedAt;
-            final Long _tmp_2;
-            if (_cursor.isNull(_cursorIndexOfCreatedAt)) {
-              _tmp_2 = null;
-            } else {
-              _tmp_2 = _cursor.getLong(_cursorIndexOfCreatedAt);
-            }
-            _tmpCreatedAt = __instantConverter.toInstant(_tmp_2);
-            final Instant _tmpModifiedAt;
             final Long _tmp_3;
-            if (_cursor.isNull(_cursorIndexOfModifiedAt)) {
+            if (_cursor.isNull(_cursorIndexOfCreatedAt)) {
               _tmp_3 = null;
             } else {
-              _tmp_3 = _cursor.getLong(_cursorIndexOfModifiedAt);
+              _tmp_3 = _cursor.getLong(_cursorIndexOfCreatedAt);
             }
-            _tmpModifiedAt = __instantConverter.toInstant(_tmp_3);
-            final boolean _tmpIsDeleted;
-            final int _tmp_4;
-            _tmp_4 = _cursor.getInt(_cursorIndexOfIsDeleted);
-            _tmpIsDeleted = _tmp_4 != 0;
-            final Instant _tmpDeletedAt;
-            final Long _tmp_5;
-            if (_cursor.isNull(_cursorIndexOfDeletedAt)) {
-              _tmp_5 = null;
+            _tmpCreatedAt = __instantConverter.toInstant(_tmp_3);
+            final Instant _tmpModifiedAt;
+            final Long _tmp_4;
+            if (_cursor.isNull(_cursorIndexOfModifiedAt)) {
+              _tmp_4 = null;
             } else {
-              _tmp_5 = _cursor.getLong(_cursorIndexOfDeletedAt);
+              _tmp_4 = _cursor.getLong(_cursorIndexOfModifiedAt);
             }
-            _tmpDeletedAt = __instantConverter.toInstant(_tmp_5);
-            _item = new SymptomEvent(_tmpId,_tmpTimestamp,_tmpTimezone,_tmpType,_tmpSeverity,_tmpDuration,_tmpLocation,_tmpBristolScale,_tmpSuspectedTriggers,_tmpNotes,_tmpPhotoPath,_tmpCreatedAt,_tmpModifiedAt,_tmpIsDeleted,_tmpDeletedAt);
+            _tmpModifiedAt = __instantConverter.toInstant(_tmp_4);
+            final boolean _tmpIsDeleted;
+            final int _tmp_5;
+            _tmp_5 = _cursor.getInt(_cursorIndexOfIsDeleted);
+            _tmpIsDeleted = _tmp_5 != 0;
+            final Instant _tmpDeletedAt;
+            final Long _tmp_6;
+            if (_cursor.isNull(_cursorIndexOfDeletedAt)) {
+              _tmp_6 = null;
+            } else {
+              _tmp_6 = _cursor.getLong(_cursorIndexOfDeletedAt);
+            }
+            _tmpDeletedAt = __instantConverter.toInstant(_tmp_6);
+            _item = new SymptomEvent(_tmpId,_tmpTimestamp,_tmpTimezone,_tmpType,_tmpSeverity,_tmpDuration,_tmpLocation,_tmpBristolScale,_tmpBristolStoolType,_tmpSuspectedTriggers,_tmpNotes,_tmpPhotoPath,_tmpCreatedAt,_tmpModifiedAt,_tmpIsDeleted,_tmpDeletedAt);
             _result.add(_item);
           }
           return _result;
@@ -1655,6 +1743,7 @@ public final class SymptomEventDao_Impl implements SymptomEventDao {
           final int _cursorIndexOfDuration = CursorUtil.getColumnIndexOrThrow(_cursor, "duration");
           final int _cursorIndexOfLocation = CursorUtil.getColumnIndexOrThrow(_cursor, "location");
           final int _cursorIndexOfBristolScale = CursorUtil.getColumnIndexOrThrow(_cursor, "bristolScale");
+          final int _cursorIndexOfBristolStoolType = CursorUtil.getColumnIndexOrThrow(_cursor, "bristolStoolType");
           final int _cursorIndexOfSuspectedTriggers = CursorUtil.getColumnIndexOrThrow(_cursor, "suspectedTriggers");
           final int _cursorIndexOfNotes = CursorUtil.getColumnIndexOrThrow(_cursor, "notes");
           final int _cursorIndexOfPhotoPath = CursorUtil.getColumnIndexOrThrow(_cursor, "photoPath");
@@ -1707,14 +1796,22 @@ public final class SymptomEventDao_Impl implements SymptomEventDao {
             } else {
               _tmpBristolScale = _cursor.getInt(_cursorIndexOfBristolScale);
             }
-            final List<String> _tmpSuspectedTriggers;
-            final String _tmp_1;
-            if (_cursor.isNull(_cursorIndexOfSuspectedTriggers)) {
+            final BristolStoolType _tmpBristolStoolType;
+            final Integer _tmp_1;
+            if (_cursor.isNull(_cursorIndexOfBristolStoolType)) {
               _tmp_1 = null;
             } else {
-              _tmp_1 = _cursor.getString(_cursorIndexOfSuspectedTriggers);
+              _tmp_1 = _cursor.getInt(_cursorIndexOfBristolStoolType);
             }
-            _tmpSuspectedTriggers = __stringListConverter.toStringList(_tmp_1);
+            _tmpBristolStoolType = __bristolStoolTypeConverter.toBristolStoolType(_tmp_1);
+            final List<String> _tmpSuspectedTriggers;
+            final String _tmp_2;
+            if (_cursor.isNull(_cursorIndexOfSuspectedTriggers)) {
+              _tmp_2 = null;
+            } else {
+              _tmp_2 = _cursor.getString(_cursorIndexOfSuspectedTriggers);
+            }
+            _tmpSuspectedTriggers = __stringListConverter.toStringList(_tmp_2);
             final String _tmpNotes;
             if (_cursor.isNull(_cursorIndexOfNotes)) {
               _tmpNotes = null;
@@ -1728,34 +1825,34 @@ public final class SymptomEventDao_Impl implements SymptomEventDao {
               _tmpPhotoPath = _cursor.getString(_cursorIndexOfPhotoPath);
             }
             final Instant _tmpCreatedAt;
-            final Long _tmp_2;
-            if (_cursor.isNull(_cursorIndexOfCreatedAt)) {
-              _tmp_2 = null;
-            } else {
-              _tmp_2 = _cursor.getLong(_cursorIndexOfCreatedAt);
-            }
-            _tmpCreatedAt = __instantConverter.toInstant(_tmp_2);
-            final Instant _tmpModifiedAt;
             final Long _tmp_3;
-            if (_cursor.isNull(_cursorIndexOfModifiedAt)) {
+            if (_cursor.isNull(_cursorIndexOfCreatedAt)) {
               _tmp_3 = null;
             } else {
-              _tmp_3 = _cursor.getLong(_cursorIndexOfModifiedAt);
+              _tmp_3 = _cursor.getLong(_cursorIndexOfCreatedAt);
             }
-            _tmpModifiedAt = __instantConverter.toInstant(_tmp_3);
-            final boolean _tmpIsDeleted;
-            final int _tmp_4;
-            _tmp_4 = _cursor.getInt(_cursorIndexOfIsDeleted);
-            _tmpIsDeleted = _tmp_4 != 0;
-            final Instant _tmpDeletedAt;
-            final Long _tmp_5;
-            if (_cursor.isNull(_cursorIndexOfDeletedAt)) {
-              _tmp_5 = null;
+            _tmpCreatedAt = __instantConverter.toInstant(_tmp_3);
+            final Instant _tmpModifiedAt;
+            final Long _tmp_4;
+            if (_cursor.isNull(_cursorIndexOfModifiedAt)) {
+              _tmp_4 = null;
             } else {
-              _tmp_5 = _cursor.getLong(_cursorIndexOfDeletedAt);
+              _tmp_4 = _cursor.getLong(_cursorIndexOfModifiedAt);
             }
-            _tmpDeletedAt = __instantConverter.toInstant(_tmp_5);
-            _item = new SymptomEvent(_tmpId,_tmpTimestamp,_tmpTimezone,_tmpType,_tmpSeverity,_tmpDuration,_tmpLocation,_tmpBristolScale,_tmpSuspectedTriggers,_tmpNotes,_tmpPhotoPath,_tmpCreatedAt,_tmpModifiedAt,_tmpIsDeleted,_tmpDeletedAt);
+            _tmpModifiedAt = __instantConverter.toInstant(_tmp_4);
+            final boolean _tmpIsDeleted;
+            final int _tmp_5;
+            _tmp_5 = _cursor.getInt(_cursorIndexOfIsDeleted);
+            _tmpIsDeleted = _tmp_5 != 0;
+            final Instant _tmpDeletedAt;
+            final Long _tmp_6;
+            if (_cursor.isNull(_cursorIndexOfDeletedAt)) {
+              _tmp_6 = null;
+            } else {
+              _tmp_6 = _cursor.getLong(_cursorIndexOfDeletedAt);
+            }
+            _tmpDeletedAt = __instantConverter.toInstant(_tmp_6);
+            _item = new SymptomEvent(_tmpId,_tmpTimestamp,_tmpTimezone,_tmpType,_tmpSeverity,_tmpDuration,_tmpLocation,_tmpBristolScale,_tmpBristolStoolType,_tmpSuspectedTriggers,_tmpNotes,_tmpPhotoPath,_tmpCreatedAt,_tmpModifiedAt,_tmpIsDeleted,_tmpDeletedAt);
             _result.add(_item);
           }
           return _result;
