@@ -220,7 +220,7 @@ jobs:
 
   instrumented-tests:
     name: 🤖 Instrumented Tests
-    runs-on: macos-latest
+    runs-on: ubuntu-latest
     if: github.event.pull_request.draft == false
 
     strategy:
@@ -277,6 +277,7 @@ jobs:
           force-avd-creation: false
           emulator-options: -no-window -gpu swiftshader_indirect -noaudio -no-boot-anim -camera-back none
           disable-animations: true
+          disable-linux-hw-accel: false
           script: echo "Generated AVD snapshot for caching."
 
       - name: 🧪 Run Instrumented Tests
@@ -288,6 +289,7 @@ jobs:
           force-avd-creation: false
           emulator-options: -no-snapshot-save -no-window -gpu swiftshader_indirect -noaudio -no-boot-anim -camera-back none
           disable-animations: true
+          disable-linux-hw-accel: false
           script: ./gradlew connectedDebugAndroidTest --continue
 
       - name: 📊 Upload Instrumented Test Results
