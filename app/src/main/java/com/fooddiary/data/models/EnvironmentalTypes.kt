@@ -3,7 +3,8 @@ package com.fooddiary.data.models
 enum class ExerciseIntensity {
     LOW,
     MODERATE,
-    HIGH;
+    HIGH,
+    ;
 
     val displayName: String
         get() = when (this) {
@@ -17,7 +18,8 @@ enum class MenstrualPhase {
     MENSTRUAL,
     FOLLICULAR,
     OVULATION,
-    LUTEAL;
+    LUTEAL,
+    ;
 
     val displayName: String
         get() = when (this) {

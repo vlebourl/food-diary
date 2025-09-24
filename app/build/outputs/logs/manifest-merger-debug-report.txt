@@ -161,11 +161,11 @@ MERGED from [androidx.startup:startup-runtime:1.1.1] /home/vlb/.gradle/caches/tr
 	android:fullBackupContent
 		ADDED from /home/vlb/food-diary/app/src/main/AndroidManifest.xml:26:9-54
 	android:roundIcon
-		ADDED from /home/vlb/food-diary/app/src/main/AndroidManifest.xml:29:9-61
+		ADDED from /home/vlb/food-diary/app/src/main/AndroidManifest.xml:29:9-47
 	tools:targetApi
 		ADDED from /home/vlb/food-diary/app/src/main/AndroidManifest.xml:33:9-29
 	android:icon
-		ADDED from /home/vlb/food-diary/app/src/main/AndroidManifest.xml:27:9-56
+		ADDED from /home/vlb/food-diary/app/src/main/AndroidManifest.xml:27:9-42
 	android:allowBackup
 		ADDED from /home/vlb/food-diary/app/src/main/AndroidManifest.xml:24:9-36
 	android:theme

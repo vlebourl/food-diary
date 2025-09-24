@@ -16,7 +16,7 @@ data class FODMAPFood(
     val overallLevel: FODMAPLevel,
     val servingSize: String,
     val notes: String?,
-    val aliases: List<String> = emptyList() // Alternative names for search
+    val aliases: List<String> = emptyList(), // Alternative names for search
 ) {
     companion object {
         // High FODMAP foods
@@ -32,7 +32,7 @@ data class FODMAPFood(
                 overallLevel = FODMAPLevel.HIGH,
                 servingSize = "1/4 medium",
                 notes = null,
-                aliases = listOf("onions", "white onion", "yellow onion")
+                aliases = listOf("onions", "white onion", "yellow onion"),
             ),
             FODMAPFood(
                 id = "garlic",
@@ -45,7 +45,7 @@ data class FODMAPFood(
                 overallLevel = FODMAPLevel.HIGH,
                 servingSize = "1 clove",
                 notes = null,
-                aliases = listOf("garlic cloves", "fresh garlic")
+                aliases = listOf("garlic cloves", "fresh garlic"),
             ),
             FODMAPFood(
                 id = "wheat",
@@ -58,7 +58,7 @@ data class FODMAPFood(
                 overallLevel = FODMAPLevel.HIGH,
                 servingSize = "2 slices",
                 notes = null,
-                aliases = listOf("bread", "wheat", "white bread")
+                aliases = listOf("bread", "wheat", "white bread"),
             ),
             FODMAPFood(
                 id = "milk",
@@ -71,7 +71,7 @@ data class FODMAPFood(
                 overallLevel = FODMAPLevel.HIGH,
                 servingSize = "1/2 cup",
                 notes = null,
-                aliases = listOf("milk", "dairy milk", "whole milk")
+                aliases = listOf("milk", "dairy milk", "whole milk"),
             ),
             FODMAPFood(
                 id = "apple",
@@ -84,7 +84,7 @@ data class FODMAPFood(
                 overallLevel = FODMAPLevel.HIGH,
                 servingSize = "1/2 medium",
                 notes = null,
-                aliases = listOf("apples", "red apple", "green apple")
+                aliases = listOf("apples", "red apple", "green apple"),
             ),
             FODMAPFood(
                 id = "beans",
@@ -97,8 +97,8 @@ data class FODMAPFood(
                 overallLevel = FODMAPLevel.HIGH,
                 servingSize = "1/4 cup",
                 notes = null,
-                aliases = listOf("beans", "red beans", "legumes")
-            )
+                aliases = listOf("beans", "red beans", "legumes"),
+            ),
         )
 
         // Low FODMAP foods
@@ -114,7 +114,7 @@ data class FODMAPFood(
                 overallLevel = FODMAPLevel.LOW,
                 servingSize = "1 cup cooked",
                 notes = null,
-                aliases = listOf("rice", "basmati rice", "jasmine rice")
+                aliases = listOf("rice", "basmati rice", "jasmine rice"),
             ),
             FODMAPFood(
                 id = "chicken",
@@ -127,7 +127,7 @@ data class FODMAPFood(
                 overallLevel = FODMAPLevel.LOW,
                 servingSize = "150g",
                 notes = null,
-                aliases = listOf("chicken", "chicken breast", "poultry")
+                aliases = listOf("chicken", "chicken breast", "poultry"),
             ),
             FODMAPFood(
                 id = "carrot",
@@ -140,7 +140,7 @@ data class FODMAPFood(
                 overallLevel = FODMAPLevel.LOW,
                 servingSize = "1 cup",
                 notes = null,
-                aliases = listOf("carrots", "baby carrots")
+                aliases = listOf("carrots", "baby carrots"),
             ),
             FODMAPFood(
                 id = "banana",
@@ -153,8 +153,8 @@ data class FODMAPFood(
                 overallLevel = FODMAPLevel.LOW,
                 servingSize = "1 medium",
                 notes = null,
-                aliases = listOf("bananas", "ripe banana")
-            )
+                aliases = listOf("bananas", "ripe banana"),
+            ),
         )
 
         fun getAllFODMAPFoods(): List<FODMAPFood> = HIGH_FODMAP_FOODS + LOW_FODMAP_FOODS
@@ -169,6 +169,6 @@ data class FODMAPFood(
     fun matches(searchTerm: String): Boolean {
         val term = searchTerm.lowercase()
         return name.lowercase().contains(term) ||
-                aliases.any { it.lowercase().contains(term) }
+            aliases.any { it.lowercase().contains(term) }
     }
 }

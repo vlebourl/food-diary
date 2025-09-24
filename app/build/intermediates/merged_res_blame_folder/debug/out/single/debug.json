@@ -60,6 +60,10 @@
         "source": "com.fooddiary.app-main-62:/drawable/ic_add_circle.xml"
     },
     {
+        "merged": "com.fooddiary.app-merged_res-60:/drawable_app_icon.png.flat",
+        "source": "com.fooddiary.app-main-62:/drawable/app_icon.png"
+    },
+    {
         "merged": "com.fooddiary.app-merged_res-60:/xml_data_extraction_rules.xml.flat",
         "source": "com.fooddiary.app-main-62:/xml/data_extraction_rules.xml"
     },

@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<checkstyle version="8.0">
+    <file name="/home/vlb/food-diary/app/src/androidTest/java/com/fooddiary/data/database/EncryptionTest.kt">
+        <error line="1" column="1" severity="error" message="File must end with a newline (\n)" source="final-newline" />
+        <error line="3" column="1" severity="error" message="Imports must be ordered in lexicographic order without any empty lines in-between" source="import-ordering" />
+        <error line="12" column="1" severity="error" message="Unused import" source="no-unused-imports" />
+        <error line="13" column="1" severity="error" message="Wildcard import" source="no-wildcard-imports" />
+        <error line="45" column="23" severity="error" message="Missing trailing comma before &quot;)&quot;" source="trailing-comma-on-call-site" />
+        <error line="76" column="23" severity="error" message="Missing trailing comma before &quot;)&quot;" source="trailing-comma-on-call-site" />
+        <error line="85" column="92" severity="error" message="Missing trailing comma before &quot;)&quot;" source="trailing-comma-on-call-site" />
+        <error line="88" column="74" severity="error" message="Missing trailing comma before &quot;)&quot;" source="trailing-comma-on-call-site" />
+        <error line="102" column="55" severity="error" message="Missing trailing comma before &quot;)&quot;" source="trailing-comma-on-call-site" />
+        <error line="118" column="23" severity="error" message="Missing trailing comma before &quot;)&quot;" source="trailing-comma-on-call-site" />
+        <error line="138" column="23" severity="error" message="Missing trailing comma before &quot;)&quot;" source="trailing-comma-on-call-site" />
+        <error line="161" column="23" severity="error" message="Missing trailing comma before &quot;)&quot;" source="trailing-comma-on-call-site" />
+        <error line="197" column="28" severity="error" message="Missing trailing comma before &quot;)&quot;" source="trailing-comma-on-call-site" />
+    </file>
+    <file name="/home/vlb/food-diary/app/src/androidTest/java/com/fooddiary/data/database/MigrationTest.kt">
+        <error line="1" column="1" severity="error" message="File must end with a newline (\n)" source="final-newline" />
+        <error line="3" column="1" severity="error" message="Imports must be ordered in lexicographic order without any empty lines in-between" source="import-ordering" />
+        <error line="3" column="1" severity="error" message="Unused import" source="no-unused-imports" />
+        <error line="11" column="1" severity="error" message="Wildcard import" source="no-wildcard-imports" />
+        <error line="21" column="38" severity="error" message="Missing trailing comma before &quot;)&quot;" source="trailing-comma-on-call-site" />
+        <error line="62" column="30" severity="error" message="Missing trailing comma before &quot;)&quot;" source="trailing-comma-on-call-site" />
+        <error line="86" column="48" severity="error" message="Missing trailing comma before &quot;)&quot;" source="trailing-comma-on-call-site" />
+        <error line="91" column="90" severity="error" message="Missing trailing comma before &quot;)&quot;" source="trailing-comma-on-call-site" />
+    </file>
+    <file name="/home/vlb/food-diary/app/src/androidTest/java/com/fooddiary/integration/EliminationProtocolTest.kt">
+        <error line="1" column="1" severity="error" message="File must end with a newline (\n)" source="final-newline" />
+        <error line="3" column="1" severity="error" message="Imports must be ordered in lexicographic order without any empty lines in-between" source="import-ordering" />
+        <error line="6" column="1" severity="error" message="Wildcard import" source="no-wildcard-imports" />
+        <error line="7" column="1" severity="error" message="Wildcard import" source="no-wildcard-imports" />
+        <error line="8" column="1" severity="error" message="Wildcard import" source="no-wildcard-imports" />
+    </file>
+    <file name="/home/vlb/food-diary/app/src/androidTest/java/com/fooddiary/integration/PatternAnalysisTest.kt">
+        <error line="1" column="1" severity="error" message="File must end with a newline (\n)" source="final-newline" />
+        <error line="3" column="1" severity="error" message="Imports must be ordered in lexicographic order without any empty lines in-between" source="import-ordering" />
+        <error line="6" column="1" severity="error" message="Wildcard import" source="no-wildcard-imports" />
+        <error line="7" column="1" severity="error" message="Wildcard import" source="no-wildcard-imports" />
+        <error line="8" column="1" severity="error" message="Wildcard import" source="no-wildcard-imports" />
+    </file>
+    <file name="/home/vlb/food-diary/app/src/androidTest/java/com/fooddiary/integration/QuickAddFlowTest.kt">
+        <error line="1" column="1" severity="error" message="File must end with a newline (\n)" source="final-newline" />
+        <error line="3" column="1" severity="error" message="Imports must be ordered in lexicographic order without any empty lines in-between" source="import-ordering" />
+        <error line="6" column="1" severity="error" message="Wildcard import" source="no-wildcard-imports" />
+        <error line="7" column="1" severity="error" message="Wildcard import" source="no-wildcard-imports" />
+        <error line="8" column="1" severity="error" message="Wildcard import" source="no-wildcard-imports" />
+        <error line="17" column="1" severity="error" message="Wildcard import" source="no-wildcard-imports" />
+    </file>
+    <file name="/home/vlb/food-diary/app/src/androidTest/java/com/fooddiary/integration/ReportGenerationTest.kt">
+        <error line="1" column="1" severity="error" message="File must end with a newline (\n)" source="final-newline" />
+        <error line="3" column="1" severity="error" message="Imports must be ordered in lexicographic order without any empty lines in-between" source="import-ordering" />
+        <error line="6" column="1" severity="error" message="Wildcard import" source="no-wildcard-imports" />
+        <error line="7" column="1" severity="error" message="Wildcard import" source="no-wildcard-imports" />
+        <error line="8" column="1" severity="error" message="Wildcard import" source="no-wildcard-imports" />
+    </file>
+    <file name="/home/vlb/food-diary/app/src/androidTest/java/com/fooddiary/integration/SymptomTrackingTest.kt">
+        <error line="1" column="1" severity="error" message="File must end with a newline (\n)" source="final-newline" />
+        <error line="3" column="1" severity="error" message="Imports must be ordered in lexicographic order without any empty lines in-between" source="import-ordering" />
+        <error line="6" column="1" severity="error" message="Wildcard import" source="no-wildcard-imports" />
+        <error line="7" column="1" severity="error" message="Wildcard import" source="no-wildcard-imports" />
+        <error line="8" column="1" severity="error" message="Wildcard import" source="no-wildcard-imports" />
+    </file>
+    <file name="/home/vlb/food-diary/app/src/androidTest/java/com/fooddiary/presentation/ui/BristolStoolChartTest.kt">
+        <error line="1" column="1" severity="error" message="File must end with a newline (\n)" source="final-newline" />
+        <error line="3" column="1" severity="error" message="Imports must be ordered in lexicographic order without any empty lines in-between" source="import-ordering" />
+        <error line="7" column="1" severity="error" message="Wildcard import" source="no-wildcard-imports" />
+        <error line="15" column="1" severity="error" message="Unused import" source="no-unused-imports" />
+    </file>
+</checkstyle>

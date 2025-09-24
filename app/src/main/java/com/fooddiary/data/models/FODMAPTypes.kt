@@ -3,7 +3,8 @@ package com.fooddiary.data.models
 enum class FODMAPLevel {
     LOW,
     MEDIUM,
-    HIGH;
+    HIGH,
+    ;
 
     val displayName: String
         get() = when (this) {
@@ -14,9 +15,9 @@ enum class FODMAPLevel {
 
     val colorCode: String
         get() = when (this) {
-            LOW -> "#4CAF50"  // Green
-            MEDIUM -> "#FF9800"  // Orange
-            HIGH -> "#F44336"  // Red
+            LOW -> "#4CAF50" // Green
+            MEDIUM -> "#FF9800" // Orange
+            HIGH -> "#F44336" // Red
         }
 }
 
@@ -30,7 +31,8 @@ enum class FoodCategory {
     NUTS_SEEDS,
     BEVERAGES,
     CONDIMENTS,
-    OTHER;
+    OTHER,
+    ;
 
     val displayName: String
         get() = when (this) {

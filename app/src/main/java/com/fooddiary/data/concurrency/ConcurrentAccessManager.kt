@@ -1,14 +1,14 @@
 package com.fooddiary.data.concurrency
 
+import java.util.concurrent.ConcurrentHashMap
+import java.util.concurrent.atomic.AtomicInteger
+import javax.inject.Inject
+import javax.inject.Singleton
 import kotlinx.coroutines.sync.Mutex
 import kotlinx.coroutines.sync.Semaphore
 import kotlinx.coroutines.sync.withLock
 import kotlinx.coroutines.sync.withPermit
 import kotlinx.coroutines.withTimeoutOrNull
-import java.util.concurrent.ConcurrentHashMap
-import java.util.concurrent.atomic.AtomicInteger
-import javax.inject.Inject
-import javax.inject.Singleton
 
 @Singleton
 class ConcurrentAccessManager @Inject constructor() {
@@ -34,7 +34,7 @@ class ConcurrentAccessManager @Inject constructor() {
     private val threadOperations = ConcurrentHashMap<Long, MutableSet<String>>()
 
     suspend fun <T> withGlobalLock(
-        operation: suspend () -> T
+        operation: suspend () -> T,
     ): T {
         return globalSemaphore.withPermit {
             activeOperations.incrementAndGet()
@@ -50,7 +50,7 @@ class ConcurrentAccessManager @Inject constructor() {
         entityType: String,
         entityId: String,
         timeoutMs: Long = DEFAULT_TIMEOUT_MS,
-        operation: suspend () -> T
+        operation: suspend () -> T,
     ): ConcurrentOperationResult<T> {
         val lockKey = "$entityType:$entityId"
         val mutex = entityMutexes.computeIfAbsent(lockKey) { Mutex() }
@@ -63,7 +63,7 @@ class ConcurrentAccessManager @Inject constructor() {
         if (detectPotentialDeadlock(lockKey, currentOperations)) {
             return ConcurrentOperationResult.DeadlockDetected(
                 message = "Potential deadlock detected for operation on $lockKey",
-                involvedEntities = currentOperations + lockKey
+                involvedEntities = currentOperations + lockKey,
             )
         }
 
@@ -99,7 +99,7 @@ class ConcurrentAccessManager @Inject constructor() {
         entityId: String,
         isWrite: Boolean = false,
         timeoutMs: Long = DEFAULT_TIMEOUT_MS,
-        operation: suspend () -> T
+        operation: suspend () -> T,
     ): ConcurrentOperationResult<T> {
         val lockKey = "$entityType:$entityId"
 
@@ -116,7 +116,7 @@ class ConcurrentAccessManager @Inject constructor() {
     suspend fun <T> withRetry(
         maxRetries: Int = MAX_RETRIES,
         backoffMs: Long = 100,
-        operation: suspend () -> ConcurrentOperationResult<T>
+        operation: suspend () -> ConcurrentOperationResult<T>,
     ): ConcurrentOperationResult<T> {
         var lastResult: ConcurrentOperationResult<T>? = null
         var currentBackoff = backoffMs
@@ -127,7 +127,8 @@ class ConcurrentAccessManager @Inject constructor() {
             when (result) {
                 is ConcurrentOperationResult.Success -> return result
                 is ConcurrentOperationResult.TimeoutExceeded,
-                is ConcurrentOperationResult.LockingFailed -> {
+                is ConcurrentOperationResult.LockingFailed,
+                -> {
                     if (attempt < maxRetries) {
                         kotlinx.coroutines.delay(currentBackoff)
                         currentBackoff = (currentBackoff * 1.5).toLong() // Exponential backoff
@@ -141,14 +142,14 @@ class ConcurrentAccessManager @Inject constructor() {
         }
 
         return lastResult ?: ConcurrentOperationResult.OperationFailed(
-            RuntimeException("Retry loop completed unexpectedly")
+            RuntimeException("Retry loop completed unexpectedly"),
         )
     }
 
     suspend fun <T> withBatchLock(
         entities: List<Pair<String, String>>, // List of (entityType, entityId)
         timeoutMs: Long = DEFAULT_TIMEOUT_MS,
-        operation: suspend () -> T
+        operation: suspend () -> T,
     ): ConcurrentOperationResult<T> {
         // Sort entities to prevent deadlocks due to different ordering
         val sortedEntities = entities.sortedBy { "${it.first}:${it.second}" }
@@ -162,7 +163,7 @@ class ConcurrentAccessManager @Inject constructor() {
             if (detectPotentialDeadlock(lockKey, currentOperations)) {
                 return ConcurrentOperationResult.DeadlockDetected(
                     message = "Potential deadlock detected in batch operation",
-                    involvedEntities = currentOperations + lockKeys.toSet()
+                    involvedEntities = currentOperations + lockKeys.toSet(),
                 )
             }
         }
@@ -195,7 +196,7 @@ class ConcurrentAccessManager @Inject constructor() {
     private suspend fun <T> acquireLocksRecursively(
         lockKeys: List<String>,
         index: Int,
-        operation: suspend () -> ConcurrentOperationResult<T>
+        operation: suspend () -> ConcurrentOperationResult<T>,
     ): ConcurrentOperationResult<T> {
         return if (index >= lockKeys.size) {
             operation()
@@ -211,7 +212,7 @@ class ConcurrentAccessManager @Inject constructor() {
 
     private fun detectPotentialDeadlock(
         requestedLock: String,
-        currentLocks: Set<String>
+        currentLocks: Set<String>,
     ): Boolean {
         // Simple deadlock detection: check if any current lock holder
         // is waiting for the requested lock
@@ -230,7 +231,7 @@ class ConcurrentAccessManager @Inject constructor() {
     private fun hasCircularDependency(
         target: String,
         currentPath: Set<String>,
-        visited: MutableSet<String>
+        visited: MutableSet<String>,
     ): Boolean {
         if (target in currentPath) return true
         if (target in visited) return false
@@ -268,7 +269,7 @@ class ConcurrentAccessManager @Inject constructor() {
             totalActiveOperations = activeOperations.get(),
             entityOperationCounts = entityCounts,
             activeMutexes = entityMutexes.size,
-            activeThreadOperations = threadOperations.size
+            activeThreadOperations = threadOperations.size,
         )
     }
 
@@ -276,7 +277,7 @@ class ConcurrentAccessManager @Inject constructor() {
     suspend fun <T> withBulkInsert(
         entityType: String,
         batchSize: Int = 50,
-        operation: suspend () -> T
+        operation: suspend () -> T,
     ): ConcurrentOperationResult<T> {
         val bulkLockKey = "$entityType:BULK_INSERT"
 
@@ -293,7 +294,7 @@ class ConcurrentAccessManager @Inject constructor() {
         entityType: String,
         entityId: String,
         priority: OperationPriority = OperationPriority.NORMAL,
-        operation: suspend () -> T
+        operation: suspend () -> T,
     ): ConcurrentOperationResult<T> {
         // For now, treat all priorities the same
         // In a more sophisticated implementation, we could have priority queues
@@ -351,42 +352,42 @@ sealed class ConcurrentOperationResult<out T> {
 
     data class DeadlockDetected(
         val message: String,
-        val involvedEntities: Set<String>
+        val involvedEntities: Set<String>,
     ) : ConcurrentOperationResult<Nothing>()
 }
 
 enum class OperationPriority {
     LOW,
     NORMAL,
-    HIGH
+    HIGH,
 }
 
 data class ConcurrentOperationStatistics(
     val totalActiveOperations: Int,
     val entityOperationCounts: Map<String, Int>,
     val activeMutexes: Int,
-    val activeThreadOperations: Int
+    val activeThreadOperations: Int,
 )
 
 // Extension functions for easier usage
 
 suspend inline fun <T> ConcurrentAccessManager.withFoodEntryLock(
     foodEntryId: String,
-    crossinline operation: suspend () -> T
+    crossinline operation: suspend () -> T,
 ): ConcurrentOperationResult<T> {
     return withEntityLock("FoodEntry", foodEntryId) { operation() }
 }
 
 suspend inline fun <T> ConcurrentAccessManager.withSymptomLock(
     symptomId: String,
-    crossinline operation: suspend () -> T
+    crossinline operation: suspend () -> T,
 ): ConcurrentOperationResult<T> {
     return withEntityLock("SymptomEvent", symptomId) { operation() }
 }
 
 suspend inline fun <T> ConcurrentAccessManager.withUserLock(
     userId: String,
-    crossinline operation: suspend () -> T
+    crossinline operation: suspend () -> T,
 ): ConcurrentOperationResult<T> {
     return withEntityLock("User", userId) { operation() }
 }

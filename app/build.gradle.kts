@@ -49,7 +49,7 @@ android {
             isShrinkResources = false
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
-                "proguard-rules.pro"
+                "proguard-rules.pro",
             )
             signingConfig = signingConfigs.getByName("debug")
         }
@@ -64,7 +64,7 @@ android {
         jvmTarget = "1.8"
         freeCompilerArgs = listOf(
             "-opt-in=kotlin.RequiresOptIn",
-            "-opt-in=kotlinx.coroutines.ExperimentalCoroutinesApi"
+            "-opt-in=kotlinx.coroutines.ExperimentalCoroutinesApi",
         )
     }
 
@@ -177,7 +177,6 @@ ktlint {
 
 // Detekt configuration
 detekt {
-    config = files("$projectDir/detekt.yml")
     buildUponDefaultConfig = true
     autoCorrect = true
 }

@@ -12,7 +12,7 @@ import java.util.*
 @Entity(tableName = "elimination_protocols")
 @TypeConverters(
     LocalDateConverter::class,
-    StringListConverter::class
+    StringListConverter::class,
 )
 data class EliminationProtocol(
     @PrimaryKey val id: String = UUID.randomUUID().toString(),
@@ -26,7 +26,7 @@ data class EliminationProtocol(
     val notes: String?,
     val isActive: Boolean = true,
     val createdAt: Long = System.currentTimeMillis(),
-    val modifiedAt: Long? = null
+    val modifiedAt: Long? = null,
 ) {
     companion object {
         fun create(
@@ -34,7 +34,7 @@ data class EliminationProtocol(
             startDate: LocalDate = LocalDate.now(),
             eliminatedFoods: List<String>,
             estimatedDurationWeeks: Int = 8,
-            notes: String? = null
+            notes: String? = null,
         ) = EliminationProtocol(
             name = name,
             startDate = startDate,
@@ -42,37 +42,37 @@ data class EliminationProtocol(
             currentPhase = EliminationPhase.BASELINE,
             eliminatedFoods = eliminatedFoods,
             phaseStartDate = startDate,
-            notes = notes
+            notes = notes,
         )
     }
 
     fun advanceToElimination(): EliminationProtocol = copy(
         currentPhase = EliminationPhase.ELIMINATION,
         phaseStartDate = LocalDate.now(),
-        modifiedAt = System.currentTimeMillis()
+        modifiedAt = System.currentTimeMillis(),
     )
 
     fun advanceToReintroduction(): EliminationProtocol = copy(
         currentPhase = EliminationPhase.REINTRODUCTION,
         phaseStartDate = LocalDate.now(),
-        modifiedAt = System.currentTimeMillis()
+        modifiedAt = System.currentTimeMillis(),
     )
 
     fun advanceToMaintenance(): EliminationProtocol = copy(
         currentPhase = EliminationPhase.MAINTENANCE,
         phaseStartDate = LocalDate.now(),
-        modifiedAt = System.currentTimeMillis()
+        modifiedAt = System.currentTimeMillis(),
     )
 
     fun addReintroducedFood(food: String): EliminationProtocol = copy(
         reintroducedFoods = reintroducedFoods + food,
-        modifiedAt = System.currentTimeMillis()
+        modifiedAt = System.currentTimeMillis(),
     )
 
     fun complete(): EliminationProtocol = copy(
         isActive = false,
         endDate = LocalDate.now(),
-        modifiedAt = System.currentTimeMillis()
+        modifiedAt = System.currentTimeMillis(),
     )
 
     val daysInCurrentPhase: Long

@@ -12,7 +12,7 @@ import java.util.*
 @Entity(tableName = "symptom_events")
 @TypeConverters(
     InstantConverter::class,
-    StringListConverter::class
+    StringListConverter::class,
 )
 data class SymptomEvent(
     @PrimaryKey val id: String = UUID.randomUUID().toString(),
@@ -29,7 +29,7 @@ data class SymptomEvent(
     val createdAt: Instant = Instant.now(),
     val modifiedAt: Instant?,
     val isDeleted: Boolean = false,
-    val deletedAt: Instant? = null
+    val deletedAt: Instant? = null,
 ) {
     init {
         require(severity in 1..10) {
@@ -58,7 +58,7 @@ data class SymptomEvent(
             bristolScale: Int? = null,
             suspectedTriggers: List<String>? = null,
             notes: String? = null,
-            photoPath: String? = null
+            photoPath: String? = null,
         ) = SymptomEvent(
             timestamp = timestamp,
             timezone = timezone,
@@ -70,14 +70,14 @@ data class SymptomEvent(
             suspectedTriggers = suspectedTriggers,
             notes = notes,
             photoPath = photoPath,
-            modifiedAt = null
+            modifiedAt = null,
         )
     }
 
     fun softDelete(): SymptomEvent = copy(
         isDeleted = true,
         deletedAt = Instant.now(),
-        modifiedAt = Instant.now()
+        modifiedAt = Instant.now(),
     )
 
     fun update(
@@ -88,7 +88,7 @@ data class SymptomEvent(
         bristolScale: Int? = null,
         suspectedTriggers: List<String>? = null,
         notes: String? = null,
-        photoPath: String? = null
+        photoPath: String? = null,
     ): SymptomEvent = copy(
         type = type ?: this.type,
         severity = severity ?: this.severity,
@@ -98,7 +98,7 @@ data class SymptomEvent(
         suspectedTriggers = suspectedTriggers ?: this.suspectedTriggers,
         notes = notes ?: this.notes,
         photoPath = photoPath ?: this.photoPath,
-        modifiedAt = Instant.now()
+        modifiedAt = Instant.now(),
     )
 
     val isOngoing: Boolean

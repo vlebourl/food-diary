@@ -21,7 +21,7 @@ data class EnvironmentalContext(
     val menstrualPhase: MenstrualPhase?, // Optional tracking (FR-039)
     val weather: String?,
     val location: String?,
-    val additionalNotes: String?
+    val additionalNotes: String?,
 ) {
     init {
         require(stressLevel in 1..10) {
@@ -52,7 +52,7 @@ data class EnvironmentalContext(
             menstrualPhase: MenstrualPhase? = null,
             weather: String? = null,
             location: String? = null,
-            additionalNotes: String? = null
+            additionalNotes: String? = null,
         ) = EnvironmentalContext(
             date = date,
             stressLevel = stressLevel,
@@ -64,7 +64,7 @@ data class EnvironmentalContext(
             menstrualPhase = menstrualPhase,
             weather = weather,
             location = location,
-            additionalNotes = additionalNotes
+            additionalNotes = additionalNotes,
         )
     }
 
@@ -78,7 +78,7 @@ data class EnvironmentalContext(
         menstrualPhase: MenstrualPhase? = null,
         weather: String? = null,
         location: String? = null,
-        additionalNotes: String? = null
+        additionalNotes: String? = null,
     ): EnvironmentalContext = copy(
         stressLevel = stressLevel ?: this.stressLevel,
         sleepHours = sleepHours ?: this.sleepHours,
@@ -89,6 +89,6 @@ data class EnvironmentalContext(
         menstrualPhase = menstrualPhase ?: this.menstrualPhase,
         weather = weather ?: this.weather,
         location = location ?: this.location,
-        additionalNotes = additionalNotes ?: this.additionalNotes
+        additionalNotes = additionalNotes ?: this.additionalNotes,
     )
 }

@@ -18,7 +18,7 @@ data class QuickEntryTemplate(
     val isActive: Boolean = true,
     val sortOrder: Int,
     val createdAt: Long = System.currentTimeMillis(),
-    val modifiedAt: Long? = null
+    val modifiedAt: Long? = null,
 ) {
     companion object {
         fun createFood(
@@ -30,7 +30,7 @@ data class QuickEntryTemplate(
             buttonIcon: String = "restaurant",
             sortOrder: Int = 0,
             ingredients: List<String> = emptyList(),
-            mealType: String = "snack"
+            mealType: String = "snack",
         ) = QuickEntryTemplate(
             name = name,
             entryType = "food",
@@ -39,11 +39,11 @@ data class QuickEntryTemplate(
                 "portions" to defaultPortion,
                 "portionUnit" to defaultUnit,
                 "ingredients" to ingredients.joinToString(","),
-                "mealType" to mealType
+                "mealType" to mealType,
             ),
             buttonColor = buttonColor,
             buttonIcon = buttonIcon,
-            sortOrder = sortOrder
+            sortOrder = sortOrder,
         )
 
         fun createBeverage(
@@ -54,7 +54,7 @@ data class QuickEntryTemplate(
             caffeineContent: String? = null,
             buttonColor: String = "#2196F3",
             buttonIcon: String = "local_drink",
-            sortOrder: Int = 0
+            sortOrder: Int = 0,
         ) = QuickEntryTemplate(
             name = name,
             entryType = "beverage",
@@ -66,7 +66,7 @@ data class QuickEntryTemplate(
             },
             buttonColor = buttonColor,
             buttonIcon = buttonIcon,
-            sortOrder = sortOrder
+            sortOrder = sortOrder,
         )
 
         fun createSymptom(
@@ -75,17 +75,17 @@ data class QuickEntryTemplate(
             defaultSeverity: String,
             buttonColor: String = "#FF5722",
             buttonIcon: String = "warning",
-            sortOrder: Int = 0
+            sortOrder: Int = 0,
         ) = QuickEntryTemplate(
             name = name,
             entryType = "symptom",
             defaultData = mapOf(
                 "type" to defaultSymptomType,
-                "severity" to defaultSeverity
+                "severity" to defaultSeverity,
             ),
             buttonColor = buttonColor,
             buttonIcon = buttonIcon,
-            sortOrder = sortOrder
+            sortOrder = sortOrder,
         )
     }
 
@@ -95,7 +95,7 @@ data class QuickEntryTemplate(
         buttonColor: String? = null,
         buttonIcon: String? = null,
         isActive: Boolean? = null,
-        sortOrder: Int? = null
+        sortOrder: Int? = null,
     ): QuickEntryTemplate = copy(
         name = name ?: this.name,
         defaultData = defaultData ?: this.defaultData,
@@ -103,16 +103,16 @@ data class QuickEntryTemplate(
         buttonIcon = buttonIcon ?: this.buttonIcon,
         isActive = isActive ?: this.isActive,
         sortOrder = sortOrder ?: this.sortOrder,
-        modifiedAt = System.currentTimeMillis()
+        modifiedAt = System.currentTimeMillis(),
     )
 
     fun deactivate(): QuickEntryTemplate = copy(
         isActive = false,
-        modifiedAt = System.currentTimeMillis()
+        modifiedAt = System.currentTimeMillis(),
     )
 
     fun reorder(newOrder: Int): QuickEntryTemplate = copy(
         sortOrder = newOrder,
-        modifiedAt = System.currentTimeMillis()
+        modifiedAt = System.currentTimeMillis(),
     )
 }

@@ -5,7 +5,6 @@ import androidx.room.PrimaryKey
 import androidx.room.TypeConverters
 import com.fooddiary.data.database.converters.InstantConverter
 import com.fooddiary.data.models.SymptomType
-import java.time.Instant
 import java.util.*
 
 @Entity(tableName = "trigger_patterns")
@@ -22,7 +21,7 @@ data class TriggerPattern(
     val pValue: Float? = null, // Statistical significance (spec requires <0.05)
     val standardDeviation: Float? = null,
     val minTimeOffset: Int? = null,
-    val maxTimeOffset: Int? = null
+    val maxTimeOffset: Int? = null,
 ) {
     init {
         require(correlationStrength in 0f..1f) {
@@ -55,7 +54,7 @@ data class TriggerPattern(
             pValue: Float? = null,
             standardDeviation: Float? = null,
             minTimeOffset: Int? = null,
-            maxTimeOffset: Int? = null
+            maxTimeOffset: Int? = null,
         ) = TriggerPattern(
             foodName = foodName,
             symptomType = symptomType,
@@ -67,7 +66,7 @@ data class TriggerPattern(
             pValue = pValue,
             standardDeviation = standardDeviation,
             minTimeOffset = minTimeOffset,
-            maxTimeOffset = maxTimeOffset
+            maxTimeOffset = maxTimeOffset,
         )
     }
 
@@ -80,9 +79,9 @@ data class TriggerPattern(
      */
     val isStatisticallySignificant: Boolean
         get() = occurrences >= 10 &&
-                correlationStrength >= 0.6f &&
-                confidence >= 0.95f &&
-                (pValue?.let { it < 0.05f } ?: false)
+            correlationStrength >= 0.6f &&
+            confidence >= 0.95f &&
+            (pValue?.let { it < 0.05f } ?: false)
 
     val isHighConfidence: Boolean
         get() = correlationStrength >= 0.7f && confidence >= 0.85f
@@ -98,7 +97,7 @@ data class TriggerPattern(
         pValue: Float? = null,
         standardDeviation: Float? = null,
         minTimeOffset: Int? = null,
-        maxTimeOffset: Int? = null
+        maxTimeOffset: Int? = null,
     ): TriggerPattern = copy(
         correlationStrength = correlationStrength ?: this.correlationStrength,
         averageTimeOffsetMinutes = averageTimeOffsetMinutes ?: this.averageTimeOffsetMinutes,
@@ -108,6 +107,6 @@ data class TriggerPattern(
         standardDeviation = standardDeviation ?: this.standardDeviation,
         minTimeOffset = minTimeOffset ?: this.minTimeOffset,
         maxTimeOffset = maxTimeOffset ?: this.maxTimeOffset,
-        lastCalculated = System.currentTimeMillis()
+        lastCalculated = System.currentTimeMillis(),
     )
 }

@@ -3,9 +3,9 @@ package com.fooddiary.data.database.entities
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import androidx.room.TypeConverters
+import com.fooddiary.data.database.converters.ConsumptionContextConverter
 import com.fooddiary.data.database.converters.InstantConverter
 import com.fooddiary.data.database.converters.StringListConverter
-import com.fooddiary.data.database.converters.ConsumptionContextConverter
 import com.fooddiary.data.models.*
 import java.time.Instant
 import java.util.*
@@ -14,7 +14,7 @@ import java.util.*
 @TypeConverters(
     InstantConverter::class,
     StringListConverter::class,
-    ConsumptionContextConverter::class
+    ConsumptionContextConverter::class,
 )
 data class FoodEntry(
     @PrimaryKey val id: String = UUID.randomUUID().toString(),
@@ -31,7 +31,7 @@ data class FoodEntry(
     val createdAt: Instant = Instant.now(),
     val modifiedAt: Instant?,
     val isDeleted: Boolean = false,
-    val deletedAt: Instant? = null
+    val deletedAt: Instant? = null,
 ) {
     companion object {
         fun create(
@@ -44,7 +44,7 @@ data class FoodEntry(
             timestamp: Instant = Instant.now(),
             timezone: String = "UTC",
             preparationMethod: String? = null,
-            notes: String? = null
+            notes: String? = null,
         ) = FoodEntry(
             timestamp = timestamp,
             timezone = timezone,
@@ -56,14 +56,14 @@ data class FoodEntry(
             mealType = mealType,
             context = context,
             notes = notes,
-            modifiedAt = null
+            modifiedAt = null,
         )
     }
 
     fun softDelete(): FoodEntry = copy(
         isDeleted = true,
         deletedAt = Instant.now(),
-        modifiedAt = Instant.now()
+        modifiedAt = Instant.now(),
     )
 
     fun update(
@@ -74,7 +74,7 @@ data class FoodEntry(
         preparationMethod: String? = null,
         mealType: MealType? = null,
         context: ConsumptionContext? = null,
-        notes: String? = null
+        notes: String? = null,
     ): FoodEntry = copy(
         name = name ?: this.name,
         ingredients = ingredients ?: this.ingredients,
@@ -84,6 +84,6 @@ data class FoodEntry(
         mealType = mealType ?: this.mealType,
         context = context ?: this.context,
         notes = notes ?: this.notes,
-        modifiedAt = Instant.now()
+        modifiedAt = Instant.now(),
     )
 }

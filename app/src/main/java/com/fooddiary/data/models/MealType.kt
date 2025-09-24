@@ -5,7 +5,7 @@ enum class MealType {
     LUNCH,
     DINNER,
     SNACK,
-    OTHER
+    OTHER,
 }
 
 enum class LocationType {
@@ -13,7 +13,7 @@ enum class LocationType {
     RESTAURANT,
     WORK,
     TRAVEL,
-    OTHER
+    OTHER,
 }
 
 enum class SocialContext {
@@ -21,17 +21,17 @@ enum class SocialContext {
     FAMILY,
     FRIENDS,
     BUSINESS,
-    OTHER
+    OTHER,
 }
 
 enum class EatingSpeed {
     RUSHED,
     NORMAL,
-    RELAXED
+    RELAXED,
 }
 
 data class ConsumptionContext(
     val location: LocationType,
     val social: SocialContext,
-    val speed: EatingSpeed
+    val speed: EatingSpeed,
 )

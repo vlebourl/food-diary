@@ -2,7 +2,8 @@ package com.fooddiary.data.models
 
 enum class ReportFormat {
     PDF,
-    JSON;
+    JSON,
+    ;
 
     val displayName: String
         get() = when (this) {
@@ -37,7 +38,8 @@ enum class ReportSection {
     RECOMMENDATIONS,
     DAILY_TIMELINE,
     WEEKLY_TRENDS,
-    CORRELATION_MATRIX;
+    CORRELATION_MATRIX,
+    ;
 
     val displayName: String
         get() = when (this) {
@@ -79,7 +81,8 @@ enum class ReportSection {
         get() = when (this) {
             EXECUTIVE_SUMMARY, PATIENT_SUMMARY, SYMPTOM_SUMMARY,
             TRIGGER_PATTERNS, STATISTICAL_ANALYSIS, FODMAP_ANALYSIS,
-            ELIMINATION_PROTOCOL, RECOMMENDATIONS -> true
+            ELIMINATION_PROTOCOL, RECOMMENDATIONS,
+            -> true
             else -> false
         }
 }

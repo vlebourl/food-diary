@@ -1,13 +1,6 @@
 package com.fooddiary
 
 import android.app.Application
-import androidx.hilt.work.HiltWorkerFactory
-import androidx.work.Configuration
-import dagger.hilt.EntryPoint
-import dagger.hilt.InstallIn
-import dagger.hilt.android.HiltAndroidApp
-import dagger.hilt.android.EntryPointAccessors
-import dagger.hilt.components.SingletonComponent
 
 // @HiltAndroidApp  // Temporarily disabled for KAPT issues
 class FoodDiaryApplication : Application() /* Configuration.Provider */ {
