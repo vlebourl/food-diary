@@ -6,8 +6,8 @@ import dagger.hilt.processor.internal.aggregateddeps.AggregatedDeps;
  * This class should only be referenced by generated code! This class aggregates information across multiple compilations.
  */
 @AggregatedDeps(
-    components = "dagger.hilt.components.SingletonComponent",
-    entryPoints = "com.fooddiary.FoodDiaryApplication.HiltWorkerFactoryEntryPoint"
+    components = "dagger.hilt.android.components.FragmentComponent",
+    entryPoints = "com.fooddiary.presentation.ui.settings.SettingsFragment_GeneratedInjector"
 )
-public class _com_fooddiary_FoodDiaryApplication_HiltWorkerFactoryEntryPoint {
+public class _com_fooddiary_presentation_ui_settings_SettingsFragment_GeneratedInjector {
 }
