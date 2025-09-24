@@ -2,6 +2,7 @@ package com.fooddiary.data.database.dao
 
 import androidx.room.*
 import com.fooddiary.data.database.entities.SymptomEvent
+import com.fooddiary.data.models.SymptomFrequency
 import com.fooddiary.data.models.SymptomType
 import kotlinx.coroutines.flow.Flow
 import java.time.Instant
@@ -69,7 +70,7 @@ interface SymptomEventDao {
         GROUP BY type
         ORDER BY count DESC
     """)
-    suspend fun getSymptomFrequency(): Map<SymptomType, Int>
+    suspend fun getSymptomFrequency(): List<SymptomFrequency>
 
     @Query("""
         SELECT * FROM symptom_events

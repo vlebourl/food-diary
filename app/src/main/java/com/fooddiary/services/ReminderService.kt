@@ -221,11 +221,12 @@ class SymptomReminderReceiver : BroadcastReceiver() {
     }
 }
 
-@HiltWorker
-class ReminderSetupWorker @AssistedInject constructor(
-    @Assisted context: Context,
-    @Assisted workerParams: WorkerParameters,
-    private val userPreferences: UserPreferences
+// @HiltWorker  // Temporarily disabled due to KAPT issues
+class ReminderSetupWorker constructor(
+    context: Context,
+    workerParams: WorkerParameters
+    // Temporarily disabled Hilt dependencies due to KAPT issues
+    // private val userPreferences: UserPreferences
 ) : CoroutineWorker(context, workerParams) {
 
     override suspend fun doWork(): Result {

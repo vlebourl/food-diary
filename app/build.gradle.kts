@@ -118,6 +118,8 @@ dependencies {
     // Dependency Injection - Hilt
     implementation("com.google.dagger:hilt-android:2.48.1")
     kapt("com.google.dagger:hilt-compiler:2.48.1")
+    implementation("androidx.hilt:hilt-work:1.1.0")
+    kapt("androidx.hilt:hilt-compiler:1.1.0")
 
     // Kotlin Coroutines
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.3")
@@ -132,8 +134,8 @@ dependencies {
     // PDF generation
     implementation("com.itextpdf:itext7-core:7.2.5")
 
-    // Voice-to-text (Speech Recognition)
-    implementation("androidx.speech:speech:1.0.0-alpha05")
+    // Voice-to-text (Speech Recognition) - Using standard Android API
+    // implementation("androidx.speech:speech:1.0.0-alpha05") // Not available, using system API
 
     // Preferences DataStore
     implementation("androidx.datastore:datastore-preferences:1.0.0")

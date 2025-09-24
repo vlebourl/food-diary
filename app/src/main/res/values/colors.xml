@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Material Design Colors for Health App -->
+    <color name="green_100">#C8E6C9</color>
+    <color name="green_500">#4CAF50</color>
+    <color name="green_900">#1B5E20</color>
+
+    <color name="blue_100">#BBDEFB</color>
+    <color name="blue_500">#2196F3</color>
+    <color name="blue_900">#0D47A1</color>
+
+    <color name="white">#FFFFFF</color>
+    <color name="black">#000000</color>
+
+    <!-- FODMAP Colors -->
+    <color name="low_fodmap">#4CAF50</color>
+    <color name="medium_fodmap">#FF9800</color>
+    <color name="high_fodmap">#F44336</color>
+
+    <!-- Bristol Scale Colors -->
+    <color name="bristol_1">#8D4004</color>
+    <color name="bristol_2">#B8571A</color>
+    <color name="bristol_3">#D4822A</color>
+    <color name="bristol_4">#E6A532</color>
+    <color name="bristol_5">#F5C542</color>
+    <color name="bristol_6">#F9D856</color>
+    <color name="bristol_7">#FCE96A</color>
+</resources>

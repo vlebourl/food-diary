@@ -12,12 +12,13 @@ import kotlinx.coroutines.withContext
 import java.time.LocalDate
 import java.util.concurrent.TimeUnit
 
-@HiltWorker
-class CorrelationWorker @AssistedInject constructor(
-    @Assisted context: Context,
-    @Assisted workerParams: WorkerParameters,
-    private val calculateCorrelationsUseCase: CalculateCorrelationsUseCase,
-    private val validateDataIntegrityUseCase: ValidateDataIntegrityUseCase
+// @HiltWorker  // Temporarily disabled due to KAPT issues
+class CorrelationWorker constructor(
+    context: Context,
+    workerParams: WorkerParameters
+    // Temporarily disabled Hilt dependencies due to KAPT issues
+    // private val calculateCorrelationsUseCase: CalculateCorrelationsUseCase,
+    // private val validateDataIntegrityUseCase: ValidateDataIntegrityUseCase
 ) : CoroutineWorker(context, workerParams) {
 
     override suspend fun doWork(): Result = withContext(Dispatchers.IO) {
@@ -145,11 +146,12 @@ class CorrelationWorker @AssistedInject constructor(
     }
 }
 
-@HiltWorker
-class DataCleanupWorker @AssistedInject constructor(
-    @Assisted context: Context,
-    @Assisted workerParams: WorkerParameters,
-    private val validateDataIntegrityUseCase: ValidateDataIntegrityUseCase
+// @HiltWorker  // Temporarily disabled due to KAPT issues
+class DataCleanupWorker constructor(
+    context: Context,
+    workerParams: WorkerParameters
+    // Temporarily disabled Hilt dependencies due to KAPT issues
+    // private val validateDataIntegrityUseCase: ValidateDataIntegrityUseCase
 ) : CoroutineWorker(context, workerParams) {
 
     override suspend fun doWork(): Result = withContext(Dispatchers.IO) {
