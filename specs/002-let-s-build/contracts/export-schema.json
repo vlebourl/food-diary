@@ -1,0 +1,283 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "IBS Food Diary Export Schema",
+  "type": "object",
+  "required": ["version", "exportDate", "patient"],
+  "properties": {
+    "version": {
+      "type": "string",
+      "pattern": "^\\d+\\.\\d+\\.\\d+$",
+      "description": "Schema version (semver)"
+    },
+    "exportDate": {
+      "type": "string",
+      "format": "date-time",
+      "description": "ISO 8601 timestamp of export"
+    },
+    "patient": {
+      "type": "object",
+      "required": ["entries", "symptoms"],
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Anonymous patient identifier"
+        },
+        "dateRange": {
+          "type": "object",
+          "properties": {
+            "start": {"type": "string", "format": "date"},
+            "end": {"type": "string", "format": "date"}
+          }
+        },
+        "entries": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/FoodBeverageEntry"
+          }
+        },
+        "symptoms": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/SymptomEvent"
+          }
+        },
+        "environmentalFactors": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/EnvironmentalContext"
+          }
+        },
+        "correlations": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Correlation"
+          }
+        },
+        "patterns": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/TriggerPattern"
+          }
+        },
+        "eliminationProtocols": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/EliminationProtocol"
+          }
+        },
+        "statistics": {
+          "$ref": "#/definitions/Statistics"
+        }
+      }
+    }
+  },
+  "definitions": {
+    "FoodBeverageEntry": {
+      "type": "object",
+      "required": ["id", "timestamp", "type", "name"],
+      "properties": {
+        "id": {"type": "string"},
+        "timestamp": {"type": "string", "format": "date-time"},
+        "timezone": {"type": "string"},
+        "type": {"enum": ["food", "beverage"]},
+        "name": {"type": "string"},
+        "ingredients": {
+          "type": "array",
+          "items": {"type": "string"}
+        },
+        "quantity": {"type": "number"},
+        "unit": {"type": "string"},
+        "mealType": {
+          "enum": ["breakfast", "lunch", "dinner", "snack", "other"]
+        },
+        "context": {
+          "type": "object",
+          "properties": {
+            "location": {"type": "string"},
+            "social": {"type": "string"},
+            "speed": {"type": "string"}
+          }
+        },
+        "caffeineContent": {"type": "number"},
+        "alcoholContent": {"type": "number"},
+        "fodmapRating": {
+          "type": "object",
+          "properties": {
+            "overall": {"enum": ["low", "medium", "high"]},
+            "details": {"type": "object"}
+          }
+        },
+        "notes": {"type": "string"}
+      }
+    },
+    "SymptomEvent": {
+      "type": "object",
+      "required": ["id", "timestamp", "type", "severity"],
+      "properties": {
+        "id": {"type": "string"},
+        "timestamp": {"type": "string", "format": "date-time"},
+        "timezone": {"type": "string"},
+        "type": {
+          "enum": ["bloating", "gas", "pain", "cramping", "diarrhea",
+                   "constipation", "nausea", "reflux", "heartburn",
+                   "fatigue", "headache", "other"]
+        },
+        "severity": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 10
+        },
+        "duration": {
+          "type": "string",
+          "description": "ISO 8601 duration"
+        },
+        "bristolScale": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 7
+        },
+        "location": {"type": "string"},
+        "suspectedTriggers": {
+          "type": "array",
+          "items": {"type": "string"}
+        },
+        "notes": {"type": "string"}
+      }
+    },
+    "EnvironmentalContext": {
+      "type": "object",
+      "required": ["date"],
+      "properties": {
+        "date": {"type": "string", "format": "date"},
+        "stressLevel": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 10
+        },
+        "sleepHours": {"type": "number"},
+        "sleepQuality": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 10
+        },
+        "exerciseMinutes": {"type": "integer"},
+        "exerciseType": {"type": "string"},
+        "exerciseIntensity": {
+          "enum": ["low", "moderate", "high"]
+        },
+        "menstrualPhase": {
+          "enum": ["menstrual", "follicular", "ovulation", "luteal"]
+        },
+        "weather": {"type": "string"},
+        "location": {"type": "string"}
+      }
+    },
+    "Correlation": {
+      "type": "object",
+      "required": ["foodId", "symptomId", "timeOffset", "confidence"],
+      "properties": {
+        "foodId": {"type": "string"},
+        "foodName": {"type": "string"},
+        "symptomId": {"type": "string"},
+        "symptomType": {"type": "string"},
+        "timeOffset": {
+          "type": "string",
+          "description": "ISO 8601 duration between consumption and symptom"
+        },
+        "confidence": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "occurrences": {"type": "integer"}
+      }
+    },
+    "TriggerPattern": {
+      "type": "object",
+      "required": ["foodName", "symptomType", "correlationStrength"],
+      "properties": {
+        "foodName": {"type": "string"},
+        "symptomType": {"type": "string"},
+        "correlationStrength": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "averageTimeOffset": {
+          "type": "string",
+          "description": "ISO 8601 duration"
+        },
+        "occurrences": {"type": "integer"},
+        "confidence": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        }
+      }
+    },
+    "EliminationProtocol": {
+      "type": "object",
+      "required": ["name", "startDate", "phase"],
+      "properties": {
+        "name": {"type": "string"},
+        "startDate": {"type": "string", "format": "date"},
+        "endDate": {"type": "string", "format": "date"},
+        "phase": {
+          "enum": ["baseline", "elimination", "reintroduction", "maintenance"]
+        },
+        "eliminatedFoods": {
+          "type": "array",
+          "items": {"type": "string"}
+        },
+        "reintroducedFoods": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "name": {"type": "string"},
+              "date": {"type": "string", "format": "date"},
+              "reaction": {"type": "string"},
+              "severity": {
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 10
+              }
+            }
+          }
+        }
+      }
+    },
+    "Statistics": {
+      "type": "object",
+      "properties": {
+        "totalEntries": {"type": "integer"},
+        "totalSymptoms": {"type": "integer"},
+        "averageDailyCaffeine": {"type": "number"},
+        "averageDailyHydration": {"type": "number"},
+        "mostFrequentFoods": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "name": {"type": "string"},
+              "count": {"type": "integer"}
+            }
+          }
+        },
+        "mostFrequentSymptoms": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "type": {"type": "string"},
+              "count": {"type": "integer"},
+              "averageSeverity": {"type": "number"}
+            }
+          }
+        },
+        "symptomFreeStreak": {"type": "integer"},
+        "longestSymptomFreeStreak": {"type": "integer"}
+      }
+    }
+  }
+}

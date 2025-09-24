@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Food Diary</string>
+
+    <!-- Navigation -->
+    <string name="title_timeline">Timeline</string>
+    <string name="title_entry">Entry</string>
+    <string name="title_analysis">Analysis</string>
+    <string name="title_reports">Reports</string>
+    <string name="title_settings">Settings</string>
+
+    <!-- Entry Types -->
+    <string name="title_food_entry">Food Entry</string>
+    <string name="title_symptom_entry">Symptom Entry</string>
+    <string name="title_beverage_entry">Beverage Entry</string>
+
+    <!-- Quick Entry -->
+    <string name="quick_add">Quick Add</string>
+    <string name="quick_add_entry">Quick add entry</string>
+
+    <!-- Food Entry Form -->
+    <string name="food_name">Food Name</string>
+    <string name="food_name_hint">Enter food name</string>
+    <string name="ingredients">Ingredients</string>
+    <string name="ingredients_hint">Add ingredients</string>
+    <string name="portions">Portion</string>
+    <string name="portions_hint">Amount</string>
+    <string name="portion_unit">Unit</string>
+    <string name="meal_type">Meal Type</string>
+    <string name="preparation_method">Preparation Method</string>
+    <string name="preparation_method_hint">How was it prepared?</string>
+    <string name="eating_context">Eating Context</string>
+    <string name="location">Location</string>
+    <string name="social_context">Social Context</string>
+    <string name="eating_speed">Eating Speed</string>
+    <string name="timestamp">Date &amp; Time</string>
+    <string name="notes">Notes</string>
+    <string name="notes_hint">Additional notes</string>
+
+    <!-- Meal Types -->
+    <string name="breakfast">Breakfast</string>
+    <string name="lunch">Lunch</string>
+    <string name="dinner">Dinner</string>
+    <string name="snack">Snack</string>
+    <string name="other">Other</string>
+
+    <!-- Location Types -->
+    <string name="home">Home</string>
+    <string name="restaurant">Restaurant</string>
+    <string name="work">Work</string>
+    <string name="travel">Travel</string>
+
+    <!-- Social Context -->
+    <string name="alone">Alone</string>
+    <string name="family">Family</string>
+    <string name="friends">Friends</string>
+    <string name="business">Business</string>
+
+    <!-- Eating Speed -->
+    <string name="rushed">Rushed</string>
+    <string name="normal">Normal</string>
+    <string name="relaxed">Relaxed</string>
+
+    <!-- Symptom Entry -->
+    <string name="symptom_type">Symptom Type</string>
+    <string name="severity">Severity</string>
+    <string name="severity_scale">Severity (1-10)</string>
+    <string name="duration">Duration</string>
+    <string name="hours">Hours</string>
+    <string name="minutes">Minutes</string>
+    <string name="body_location">Body Location</string>
+    <string name="body_location_hint">Where did you feel it?</string>
+    <string name="bristol_stool_scale">Bristol Stool Scale</string>
+    <string name="suspected_triggers">Suspected Triggers</string>
+    <string name="add_trigger">Add Trigger</string>
+    <string name="photo_attachment">Photo</string>
+    <string name="take_photo">Take Photo</string>
+    <string name="choose_photo">Choose Photo</string>
+
+    <!-- Symptom Types -->
+    <string name="bloating">Bloating</string>
+    <string name="gas">Gas</string>
+    <string name="abdominal_pain">Abdominal Pain</string>
+    <string name="cramping">Cramping</string>
+    <string name="diarrhea">Diarrhea</string>
+    <string name="constipation">Constipation</string>
+    <string name="nausea">Nausea</string>
+    <string name="acid_reflux">Acid Reflux</string>
+    <string name="heartburn">Heartburn</string>
+    <string name="fatigue">Fatigue</string>
+    <string name="headache">Headache</string>
+    <string name="skin_reaction">Skin Reaction</string>
+    <string name="joint_pain">Joint Pain</string>
+    <string name="bowel_movement">Bowel Movement</string>
+
+    <!-- Bristol Stool Chart -->
+    <string name="bristol_type_1">Type 1: Separate hard lumps</string>
+    <string name="bristol_type_2">Type 2: Sausage-shaped but lumpy</string>
+    <string name="bristol_type_3">Type 3: Like a sausage with cracks</string>
+    <string name="bristol_type_4">Type 4: Like a sausage, smooth and soft</string>
+    <string name="bristol_type_5">Type 5: Soft blobs with clear-cut edges</string>
+    <string name="bristol_type_6">Type 6: Fluffy pieces with ragged edges</string>
+    <string name="bristol_type_7">Type 7: Watery, no solid pieces</string>
+
+    <!-- FODMAP -->
+    <string name="fodmap_analysis">FODMAP Analysis</string>
+    <string name="low_fodmap">Low FODMAP</string>
+    <string name="medium_fodmap">Medium FODMAP</string>
+    <string name="high_fodmap">High FODMAP</string>
+    <string name="oligosaccharides">Oligosaccharides</string>
+    <string name="disaccharides">Disaccharides</string>
+    <string name="monosaccharides">Monosaccharides</string>
+    <string name="polyols">Polyols</string>
+
+    <!-- Actions -->
+    <string name="save">Save</string>
+    <string name="cancel">Cancel</string>
+    <string name="edit">Edit</string>
+    <string name="delete">Delete</string>
+    <string name="add">Add</string>
+    <string name="remove">Remove</string>
+    <string name="clear">Clear</string>
+    <string name="search">Search</string>
+    <string name="filter">Filter</string>
+    <string name="export">Export</string>
+    <string name="share">Share</string>
+
+    <!-- Messages -->
+    <string name="entry_saved">Entry saved successfully</string>
+    <string name="error_saving_entry">Error saving entry</string>
+    <string name="error_required_field">This field is required</string>
+    <string name="error_invalid_number">Please enter a valid number</string>
+    <string name="error_invalid_severity">Severity must be between 1 and 10</string>
+    <string name="error_invalid_bristol_scale">Bristol scale must be between 1 and 7</string>
+
+    <!-- Analysis -->
+    <string name="correlations">Correlations</string>
+    <string name="patterns">Patterns</string>
+    <string name="trends">Trends</string>
+    <string name="statistical_significance">Statistical Significance</string>
+    <string name="confidence_level">Confidence Level</string>
+    <string name="correlation_strength">Correlation Strength</string>
+    <string name="time_to_onset">Time to Onset</string>
+    <string name="occurrences">Occurrences</string>
+
+    <!-- Reports -->
+    <string name="generate_report">Generate Report</string>
+    <string name="report_format">Report Format</string>
+    <string name="pdf_format">PDF (Healthcare Provider)</string>
+    <string name="json_format">JSON (Data Export)</string>
+    <string name="date_range">Date Range</string>
+    <string name="report_sections">Report Sections</string>
+
+    <!-- Settings -->
+    <string name="quick_entry_settings">Quick Entry Settings</string>
+    <string name="add_quick_entry">Add Quick Entry</string>
+    <string name="notification_settings">Notification Settings</string>
+    <string name="data_settings">Data Settings</string>
+    <string name="backup_restore">Backup &amp; Restore</string>
+    <string name="privacy_settings">Privacy Settings</string>
+
+</resources>
