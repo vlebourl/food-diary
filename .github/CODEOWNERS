@@ -1,0 +1,84 @@
+# 👥 Code Ownership for IBS Food & Symptom Tracking App
+
+# Global ownership - all changes require review
+* @vlebourl
+
+# ============================================================================
+# MEDICAL & CLINICAL COMPONENTS - Require medical accuracy review
+# ============================================================================
+
+# Bristol Stool Chart implementation
+app/src/main/java/com/fooddiary/presentation/ui/custom/BristolStoolChartView.kt @vlebourl
+app/src/main/java/com/fooddiary/data/models/BristolStoolType.kt @vlebourl
+
+# FODMAP Analysis - Clinical accuracy critical
+app/src/main/java/com/fooddiary/domain/analysis/FODMAPAnalyzer.kt @vlebourl
+app/src/main/java/com/fooddiary/data/database/entities/FODMAPFood.kt @vlebourl
+app/src/main/java/com/fooddiary/data/models/FODMAPLevel.kt @vlebourl
+
+# Statistical Analysis - Medical correlation accuracy
+app/src/main/java/com/fooddiary/domain/analysis/CorrelationEngine.kt @vlebourl
+app/src/main/java/com/fooddiary/domain/analysis/StatisticalAnalyzer.kt @vlebourl
+
+# Symptom tracking - Medical data integrity
+app/src/main/java/com/fooddiary/data/database/entities/SymptomEvent.kt @vlebourl
+app/src/main/java/com/fooddiary/data/models/SymptomType.kt @vlebourl
+
+# ============================================================================
+# SECURITY & PRIVACY - Require security review
+# ============================================================================
+
+# Database encryption and security
+app/src/main/java/com/fooddiary/data/database/FoodDiaryDatabase.kt @vlebourl
+app/src/main/java/com/fooddiary/data/security/ @vlebourl
+
+# Data integrity and validation
+app/src/main/java/com/fooddiary/data/integrity/ @vlebourl
+app/src/main/java/com/fooddiary/domain/validation/ @vlebourl
+
+# Export functionality - PHI handling
+app/src/main/java/com/fooddiary/services/PDFExportService.kt @vlebourl
+app/src/main/java/com/fooddiary/services/DataExportService.kt @vlebourl
+
+# ============================================================================
+# CI/CD & BUILD CONFIGURATION - Require DevOps review
+# ============================================================================
+
+# GitHub Actions workflows
+.github/workflows/ @vlebourl
+
+# Build configuration
+app/build.gradle* @vlebourl
+build.gradle* @vlebourl
+gradle.properties @vlebourl
+gradle/wrapper/ @vlebourl
+
+# Dependency management
+**/dependencies.gradle @vlebourl
+
+# ============================================================================
+# DOCUMENTATION - Technical writing review
+# ============================================================================
+
+# Medical documentation
+docs/medical/ @vlebourl
+README.md @vlebourl
+CLAUDE.md @vlebourl
+
+# API documentation
+docs/api/ @vlebourl
+
+# ============================================================================
+# TESTING - Quality assurance review
+# ============================================================================
+
+# Medical component tests - Critical accuracy
+app/src/test/java/com/fooddiary/domain/analysis/FODMAPAnalyzerTest.kt @vlebourl
+app/src/test/java/com/fooddiary/domain/analysis/CorrelationEngineTest.kt @vlebourl
+
+# Integration tests
+app/src/androidTest/ @vlebourl
+
+# Test configurations
+app/src/test/resources/ @vlebourl
+app/src/androidTest/resources/ @vlebourl

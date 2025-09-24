@@ -1,0 +1,178 @@
+name: 💡 Feature Request
+description: Suggest a new feature or enhancement for the IBS Food & Symptom Tracking app
+title: "[FEATURE] "
+labels: ["enhancement", "needs-triage"]
+assignees:
+  - vlebourl
+
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for suggesting a new feature! Please provide detailed information about your request.
+
+        **Medical Accuracy Notice**: All suggested features must maintain medical accuracy and HIPAA-considerate privacy standards.
+
+  - type: dropdown
+    id: category
+    attributes:
+      label: Feature Category
+      description: What type of feature is this?
+      options:
+        - Food Tracking & Analysis
+        - Symptom Monitoring
+        - Medical Standards (Bristol Chart, FODMAP, etc.)
+        - Analytics & Correlations
+        - Data Export & Reporting
+        - User Interface & Experience
+        - Accessibility & Usability
+        - Performance & Optimization
+        - Privacy & Security
+        - Integration & APIs
+        - Other
+    validations:
+      required: true
+
+  - type: dropdown
+    id: medical-impact
+    attributes:
+      label: Medical Impact
+      description: Does this feature involve medical data or clinical accuracy?
+      options:
+        - 🏥 High - Affects medical accuracy, diagnosis, or clinical data
+        - 🩺 Medium - Enhances medical tracking or analysis
+        - 📊 Low - General app improvement with indirect medical benefit
+        - ❌ None - Non-medical feature
+    validations:
+      required: true
+
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem Statement
+      description: What problem does this feature solve?
+      placeholder: |
+        - What challenge are users currently facing?
+        - How does this impact IBS management or health tracking?
+        - What medical or clinical need does this address?
+    validations:
+      required: true
+
+  - type: textarea
+    id: solution
+    attributes:
+      label: Proposed Solution
+      description: Describe the feature you'd like to see
+      placeholder: |
+        - What should the feature do?
+        - How should it work?
+        - What would the user experience be like?
+    validations:
+      required: true
+
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternative Solutions
+      description: Have you considered any alternative approaches?
+      placeholder: |
+        - Other ways to solve this problem
+        - Existing workarounds users might be using
+        - Similar features in other health apps
+
+  - type: textarea
+    id: medical-requirements
+    attributes:
+      label: Medical Requirements (if applicable)
+      description: Any specific medical or clinical standards this feature must meet
+      placeholder: |
+        - Medical terminology or scales to use
+        - Clinical accuracy requirements
+        - Healthcare provider compatibility needs
+        - Regulatory considerations
+
+  - type: textarea
+    id: user-stories
+    attributes:
+      label: User Stories
+      description: Describe how different users would interact with this feature
+      placeholder: |
+        - As an IBS patient, I want to... so that I can...
+        - As a healthcare provider reviewing exports, I need... to...
+        - As someone with dietary restrictions, I would like... because...
+
+  - type: textarea
+    id: acceptance-criteria
+    attributes:
+      label: Acceptance Criteria
+      description: What conditions must be met for this feature to be considered complete?
+      placeholder: |
+        - [ ] Feature works on Android 7.0+ devices
+        - [ ] Maintains medical accuracy standards
+        - [ ] Preserves user privacy (local-only storage)
+        - [ ] Includes appropriate accessibility features
+        - [ ] Has comprehensive test coverage
+
+  - type: dropdown
+    id: priority
+    attributes:
+      label: Priority
+      description: How important is this feature?
+      options:
+        - 🔴 Critical - Essential for medical accuracy or user safety
+        - 🟡 High - Significantly improves IBS management
+        - 🟢 Medium - Nice to have enhancement
+        - 🔵 Low - Minor improvement or convenience feature
+    validations:
+      required: true
+
+  - type: textarea
+    id: mockups
+    attributes:
+      label: Mockups or Examples
+      description: Any visual examples, mockups, or references
+      placeholder: |
+        - Screenshots from other apps (with attribution)
+        - Hand-drawn mockups
+        - Medical chart examples
+        - Clinical workflow diagrams
+
+  - type: checkboxes
+    id: impact-considerations
+    attributes:
+      label: Impact Considerations
+      description: Please consider the following aspects
+      options:
+        - label: This feature maintains medical accuracy and clinical standards
+          required: false
+        - label: This feature preserves user privacy and data security
+          required: false
+        - label: This feature is accessible to users with disabilities
+          required: false
+        - label: This feature would benefit the broader IBS community
+          required: false
+
+  - type: textarea
+    id: additional-context
+    attributes:
+      label: Additional Context
+      description: Any other information about the feature request
+      placeholder: |
+        - Research or studies supporting this feature
+        - Similar features in medical literature
+        - Community feedback or requests
+        - Technical considerations
+
+  - type: checkboxes
+    id: checklist
+    attributes:
+      label: Pre-submission Checklist
+      options:
+        - label: I have searched existing issues to avoid duplicates
+          required: true
+        - label: This feature aligns with the app's medical accuracy goals
+          required: true
+        - label: This feature maintains user privacy and HIPAA-considerate design
+          required: true
+        - label: I understand this is a medical app and all features must meet clinical standards
+          required: true

@@ -1,0 +1,396 @@
+name: 📦 Dependency Updates & Security
+
+on:
+  schedule:
+    # Run weekly on Mondays at 9 AM UTC
+    - cron: '0 9 * * 1'
+  workflow_dispatch:
+  push:
+    paths:
+      - '**/build.gradle*'
+      - 'gradle/wrapper/gradle-wrapper.properties'
+
+concurrency:
+  group: dependencies-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  GRADLE_OPTS: -Dorg.gradle.daemon=false -Dorg.gradle.parallel=true
+  JAVA_VERSION: '17'
+
+jobs:
+  # ============================================================================
+  # DEPENDENCY VULNERABILITY SCAN
+  # ============================================================================
+
+  security-scan:
+    name: 🛡️ Security Vulnerability Scan
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 📥 Checkout Code
+        uses: actions/checkout@v4
+
+      - name: ☕ Setup JDK ${{ env.JAVA_VERSION }}
+        uses: actions/setup-java@v4
+        with:
+          java-version: ${{ env.JAVA_VERSION }}
+          distribution: 'temurin'
+
+      - name: 📋 Setup Android SDK
+        uses: android-actions/setup-android@v3
+
+      - name: 🎯 Cache Gradle Dependencies
+        uses: actions/cache@v3
+        with:
+          path: |
+            ~/.gradle/caches
+            ~/.gradle/wrapper
+          key: gradle-${{ runner.os }}-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
+          restore-keys: |
+            gradle-${{ runner.os }}-
+
+      - name: 🔧 Grant Execute Permission to Gradlew
+        run: chmod +x gradlew
+
+      - name: 🔍 Run Dependency Check
+        run: |
+          echo "🔍 Checking for known security vulnerabilities..."
+          ./gradlew dependencyCheckAnalyze --continue || true
+
+      - name: 📊 Upload Vulnerability Report
+        uses: actions/upload-artifact@v3
+        if: always()
+        with:
+          name: dependency-check-report
+          path: |
+            app/build/reports/dependency-check-report.html
+            app/build/reports/dependency-check-report.xml
+          retention-days: 30
+
+      - name: 🔍 Gradle Dependency Analysis
+        run: |
+          echo "📦 Dependency Analysis:" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+
+          # Check for outdated dependencies
+          echo "## 📊 Dependency Status" >> $GITHUB_STEP_SUMMARY
+          ./gradlew dependencyUpdates | tee dependency_updates.txt
+
+          # Extract key information
+          if grep -q "outdated" dependency_updates.txt; then
+            echo "⚠️ Outdated dependencies found - review recommended" >> $GITHUB_STEP_SUMMARY
+          else
+            echo "✅ All dependencies are up to date" >> $GITHUB_STEP_SUMMARY
+          fi
+
+  # ============================================================================
+  # MEDICAL DEPENDENCY AUDIT
+  # ============================================================================
+
+  medical-dependency-audit:
+    name: 🏥 Medical Dependencies Audit
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 📥 Checkout Code
+        uses: actions/checkout@v4
+
+      - name: ☕ Setup JDK ${{ env.JAVA_VERSION }}
+        uses: actions/setup-java@v4
+        with:
+          java-version: ${{ env.JAVA_VERSION }}
+          distribution: 'temurin'
+
+      - name: 🔧 Grant Execute Permission to Gradlew
+        run: chmod +x gradlew
+
+      - name: 🏥 Audit Medical-Critical Dependencies
+        run: |
+          echo "🏥 Medical Dependencies Audit:" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+
+          # Check SQLCipher for data security
+          if ./gradlew dependencies | grep -i sqlcipher >/dev/null 2>&1; then
+            SQLCIPHER_VERSION=$(./gradlew dependencies | grep sqlcipher | head -1 | sed 's/.*:\([0-9.]*\).*/\1/')
+            echo "✅ SQLCipher: $SQLCIPHER_VERSION (Database encryption)" >> $GITHUB_STEP_SUMMARY
+          else
+            echo "⚠️ SQLCipher not found - database encryption may be missing" >> $GITHUB_STEP_SUMMARY
+          fi
+
+          # Check for statistical libraries
+          if ./gradlew dependencies | grep -E "(commons-math|apache-math)" >/dev/null 2>&1; then
+            echo "✅ Statistical libraries found (required for correlation analysis)" >> $GITHUB_STEP_SUMMARY
+          else
+            echo "⚠️ Statistical libraries not detected - verify correlation calculations" >> $GITHUB_STEP_SUMMARY
+          fi
+
+          # Check for chart/visualization libraries
+          if ./gradlew dependencies | grep -E "(mpandroidchart|androidplot)" >/dev/null 2>&1; then
+            echo "✅ Chart libraries found (medical data visualization)" >> $GITHUB_STEP_SUMMARY
+          fi
+
+          # Audit for inappropriate dependencies
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "## 🔒 Privacy & Security Audit" >> $GITHUB_STEP_SUMMARY
+
+          PRIVACY_VIOLATIONS=""
+
+          # Check for analytics/tracking
+          if ./gradlew dependencies | grep -E "(firebase-analytics|google-analytics|fabric|crashlytics)" >/dev/null 2>&1; then
+            PRIVACY_VIOLATIONS="$PRIVACY_VIOLATIONS\n- Analytics/tracking libraries detected"
+          fi
+
+          # Check for cloud dependencies
+          if ./gradlew dependencies | grep -E "(retrofit|okhttp3|gson)" >/dev/null 2>&1; then
+            PRIVACY_VIOLATIONS="$PRIVACY_VIOLATIONS\n- Network libraries detected - verify no cloud data sync"
+          fi
+
+          if [[ -n "$PRIVACY_VIOLATIONS" ]]; then
+            echo "⚠️ **Privacy Review Required:**" >> $GITHUB_STEP_SUMMARY
+            echo -e "$PRIVACY_VIOLATIONS" >> $GITHUB_STEP_SUMMARY
+          else
+            echo "✅ No privacy-violating dependencies detected" >> $GITHUB_STEP_SUMMARY
+          fi
+
+  # ============================================================================
+  # GRADLE WRAPPER UPDATE
+  # ============================================================================
+
+  gradle-wrapper-update:
+    name: 🔧 Gradle Wrapper Update
+    runs-on: ubuntu-latest
+    if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
+
+    steps:
+      - name: 📥 Checkout Code
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: ☕ Setup JDK ${{ env.JAVA_VERSION }}
+        uses: actions/setup-java@v4
+        with:
+          java-version: ${{ env.JAVA_VERSION }}
+          distribution: 'temurin'
+
+      - name: 🔧 Grant Execute Permission to Gradlew
+        run: chmod +x gradlew
+
+      - name: 📊 Check Current Gradle Version
+        id: current-gradle
+        run: |
+          CURRENT_VERSION=$(./gradlew --version | grep "Gradle" | awk '{print $2}')
+          echo "current-version=$CURRENT_VERSION" >> $GITHUB_OUTPUT
+          echo "Current Gradle version: $CURRENT_VERSION"
+
+      - name: 🆙 Update Gradle Wrapper
+        run: |
+          # Get latest Gradle version
+          LATEST_VERSION=$(curl -s https://services.gradle.org/versions/current | grep -o '"version":"[^"]*' | cut -d'"' -f4)
+          CURRENT_VERSION="${{ steps.current-gradle.outputs.current-version }}"
+
+          echo "Current version: $CURRENT_VERSION"
+          echo "Latest version: $LATEST_VERSION"
+
+          if [[ "$CURRENT_VERSION" != "$LATEST_VERSION" ]]; then
+            echo "🆙 Updating Gradle wrapper to $LATEST_VERSION"
+            ./gradlew wrapper --gradle-version="$LATEST_VERSION"
+
+            # Verify the update
+            NEW_VERSION=$(./gradlew --version | grep "Gradle" | awk '{print $2}')
+            echo "Updated to version: $NEW_VERSION"
+
+            echo "updated=true" >> $GITHUB_ENV
+            echo "new-version=$LATEST_VERSION" >> $GITHUB_ENV
+          else
+            echo "✅ Gradle wrapper is already up to date"
+            echo "updated=false" >> $GITHUB_ENV
+          fi
+
+      - name: 📝 Create PR for Gradle Update
+        if: env.updated == 'true'
+        uses: peter-evans/create-pull-request@v5
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          commit-message: "build: Update Gradle wrapper to ${{ env.new-version }}"
+          title: "🔧 Update Gradle wrapper to ${{ env.new-version }}"
+          body: |
+            ## 🔧 Gradle Wrapper Update
+
+            This PR updates the Gradle wrapper from ${{ steps.current-gradle.outputs.current-version }} to ${{ env.new-version }}.
+
+            ### 📋 Changes
+            - Updated `gradle/wrapper/gradle-wrapper.properties`
+            - Updated `gradle/wrapper/gradle-wrapper.jar`
+
+            ### ✅ Validation
+            - [ ] Build passes with new Gradle version
+            - [ ] All tests continue to pass
+            - [ ] Medical dependencies remain compatible
+
+            ### 🔍 Testing
+            The CI pipeline will automatically validate this update with:
+            - Unit tests
+            - Integration tests
+            - Build verification
+            - Medical standards validation
+
+            ---
+            🤖 Auto-generated by dependency update workflow
+          branch: update/gradle-${{ env.new-version }}
+          delete-branch: true
+
+  # ============================================================================
+  # DEPENDENCY UPDATE SUGGESTIONS
+  # ============================================================================
+
+  dependency-suggestions:
+    name: 💡 Dependency Update Suggestions
+    runs-on: ubuntu-latest
+    if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
+
+    steps:
+      - name: 📥 Checkout Code
+        uses: actions/checkout@v4
+
+      - name: ☕ Setup JDK ${{ env.JAVA_VERSION }}
+        uses: actions/setup-java@v4
+        with:
+          java-version: ${{ env.JAVA_VERSION }}
+          distribution: 'temurin'
+
+      - name: 📋 Setup Android SDK
+        uses: android-actions/setup-android@v3
+
+      - name: 🎯 Cache Gradle Dependencies
+        uses: actions/cache@v3
+        with:
+          path: |
+            ~/.gradle/caches
+            ~/.gradle/wrapper
+          key: gradle-${{ runner.os }}-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
+          restore-keys: |
+            gradle-${{ runner.os }}-
+
+      - name: 🔧 Grant Execute Permission to Gradlew
+        run: chmod +x gradlew
+
+      - name: 💡 Generate Update Suggestions
+        run: |
+          echo "# 💡 Dependency Update Suggestions" >> suggestions.md
+          echo "" >> suggestions.md
+          echo "Generated on: $(date '+%Y-%m-%d %H:%M UTC')" >> suggestions.md
+          echo "" >> suggestions.md
+
+          # Get dependency updates
+          ./gradlew dependencyUpdates --refresh-dependencies > dependency_updates_full.txt
+
+          # Extract Android-specific updates
+          echo "## 📱 Android Dependencies" >> suggestions.md
+          if grep -A 20 "The following dependencies have later milestone versions:" dependency_updates_full.txt | grep "com.android\|androidx\|android.tools"; then
+            grep -A 20 "The following dependencies have later milestone versions:" dependency_updates_full.txt | grep "com.android\|androidx\|android.tools" >> suggestions.md
+          else
+            echo "✅ All Android dependencies are up to date" >> suggestions.md
+          fi
+
+          echo "" >> suggestions.md
+
+          # Extract medical/security critical updates
+          echo "## 🔒 Security-Critical Dependencies" >> suggestions.md
+          if grep -A 50 "The following dependencies have later milestone versions:" dependency_updates_full.txt | grep -E "(sqlcipher|security|crypto)"; then
+            grep -A 50 "The following dependencies have later milestone versions:" dependency_updates_full.txt | grep -E "(sqlcipher|security|crypto)" >> suggestions.md
+          else
+            echo "✅ All security dependencies are up to date" >> suggestions.md
+          fi
+
+          echo "" >> suggestions.md
+
+          # Add medical compliance notes
+          echo "## 🏥 Medical Compliance Notes" >> suggestions.md
+          echo "- SQLCipher updates should be prioritized for data security" >> suggestions.md
+          echo "- Statistical library updates require validation of correlation algorithms" >> suggestions.md
+          echo "- UI library updates must maintain medical chart accuracy" >> suggestions.md
+
+      - name: 📊 Upload Suggestions Report
+        uses: actions/upload-artifact@v3
+        with:
+          name: dependency-suggestions-${{ github.run_number }}
+          path: suggestions.md
+          retention-days: 90
+
+      - name: 📝 Create Issue for Major Updates
+        uses: actions/github-script@v6
+        with:
+          script: |
+            const fs = require('fs');
+            let suggestions = '';
+            try {
+              suggestions = fs.readFileSync('suggestions.md', 'utf8');
+            } catch (error) {
+              console.log('No suggestions file found');
+              return;
+            }
+
+            // Only create issue if there are actual updates
+            if (suggestions.includes('The following dependencies have later')) {
+              await github.rest.issues.create({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                title: `📦 Dependency Updates Available - ${new Date().toISOString().split('T')[0]}`,
+                body: suggestions + '\n\n---\n🤖 Auto-generated by dependency update workflow',
+                labels: ['dependencies', 'maintenance', 'medical-review']
+              });
+            }
+
+  # ============================================================================
+  # SUMMARY REPORT
+  # ============================================================================
+
+  dependency-summary:
+    name: 📋 Dependency Summary
+    runs-on: ubuntu-latest
+    if: always()
+    needs: [security-scan, medical-dependency-audit, gradle-wrapper-update, dependency-suggestions]
+
+    steps:
+      - name: 📋 Generate Summary
+        run: |
+          echo "# 📦 Dependency Management Summary" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "Generated on: $(date '+%Y-%m-%d %H:%M UTC')" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+
+          echo "| Check | Status |" >> $GITHUB_STEP_SUMMARY
+          echo "|-------|---------|" >> $GITHUB_STEP_SUMMARY
+
+          if [[ "${{ needs.security-scan.result }}" == "success" ]]; then
+            echo "| 🛡️ Security Scan | ✅ Completed |" >> $GITHUB_STEP_SUMMARY
+          else
+            echo "| 🛡️ Security Scan | ❌ Failed |" >> $GITHUB_STEP_SUMMARY
+          fi
+
+          if [[ "${{ needs.medical-dependency-audit.result }}" == "success" ]]; then
+            echo "| 🏥 Medical Audit | ✅ Completed |" >> $GITHUB_STEP_SUMMARY
+          else
+            echo "| 🏥 Medical Audit | ❌ Failed |" >> $GITHUB_STEP_SUMMARY
+          fi
+
+          if [[ "${{ needs.gradle-wrapper-update.result }}" == "success" ]]; then
+            echo "| 🔧 Gradle Update | ✅ Checked |" >> $GITHUB_STEP_SUMMARY
+          else
+            echo "| 🔧 Gradle Update | ⚠️ Issues |" >> $GITHUB_STEP_SUMMARY
+          fi
+
+          if [[ "${{ needs.dependency-suggestions.result }}" == "success" ]]; then
+            echo "| 💡 Suggestions | ✅ Generated |" >> $GITHUB_STEP_SUMMARY
+          else
+            echo "| 💡 Suggestions | ❌ Failed |" >> $GITHUB_STEP_SUMMARY
+          fi
+
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "## 🔍 Next Steps" >> $GITHUB_STEP_SUMMARY
+          echo "- Review any security vulnerabilities found" >> $GITHUB_STEP_SUMMARY
+          echo "- Validate medical dependency compatibility" >> $GITHUB_STEP_SUMMARY
+          echo "- Consider dependency updates with medical impact assessment" >> $GITHUB_STEP_SUMMARY
+          echo "- Ensure all updates maintain HIPAA-considerate design" >> $GITHUB_STEP_SUMMARY

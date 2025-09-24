@@ -1,0 +1,132 @@
+name: 🐛 Bug Report
+description: Report a bug or issue with the IBS Food & Symptom Tracking app
+title: "[BUG] "
+labels: ["bug", "needs-triage"]
+assignees:
+  - vlebourl
+
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to report a bug! Please provide as much detail as possible to help us diagnose and fix the issue.
+
+        **⚠️ Privacy Notice**: Do not include personal health information, actual food entries, or symptom data in this report. Use generic examples only.
+
+  - type: dropdown
+    id: component
+    attributes:
+      label: Component
+      description: Which part of the app is affected?
+      options:
+        - Food Entry & Tracking
+        - Symptom Logging
+        - FODMAP Analysis
+        - Bristol Stool Chart
+        - Analytics & Correlations
+        - Data Export
+        - Settings & Configuration
+        - Database & Storage
+        - UI/UX General
+        - Other
+    validations:
+      required: true
+
+  - type: dropdown
+    id: priority
+    attributes:
+      label: Priority
+      description: How critical is this issue?
+      options:
+        - 🔴 Critical - App crashes or data loss
+        - 🟡 High - Major feature broken
+        - 🟢 Medium - Minor feature issue
+        - 🔵 Low - Cosmetic or enhancement
+    validations:
+      required: true
+
+  - type: input
+    id: android-version
+    attributes:
+      label: Android Version
+      description: What version of Android are you running?
+      placeholder: "e.g., Android 12 (API 31)"
+    validations:
+      required: true
+
+  - type: input
+    id: app-version
+    attributes:
+      label: App Version
+      description: What version of the app are you using?
+      placeholder: "e.g., v1.2.3 or build from specific commit"
+    validations:
+      required: true
+
+  - type: textarea
+    id: description
+    attributes:
+      label: Bug Description
+      description: Describe what happened and what you expected to happen
+      placeholder: |
+        1. What were you trying to do?
+        2. What actually happened?
+        3. What did you expect to happen instead?
+    validations:
+      required: true
+
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to Reproduce
+      description: Detailed steps to reproduce the behavior
+      placeholder: |
+        1. Go to '...'
+        2. Click on '...'
+        3. Enter '...' (use generic examples)
+        4. See error
+    validations:
+      required: true
+
+  - type: textarea
+    id: medical-context
+    attributes:
+      label: Medical Context (if applicable)
+      description: Is this related to specific medical functionality?
+      placeholder: |
+        - Bristol Stool Chart: Does this affect the 7-point scale accuracy?
+        - FODMAP Analysis: Does this impact ingredient classification?
+        - Statistical Analysis: Does this affect correlation calculations?
+        - Data Integrity: Could this cause medical data loss or corruption?
+
+  - type: textarea
+    id: logs
+    attributes:
+      label: Error Logs (if available)
+      description: Any error messages or logcat output (remove personal data)
+      render: text
+
+  - type: textarea
+    id: additional
+    attributes:
+      label: Additional Context
+      description: Screenshots, device info, or other relevant details
+      placeholder: |
+        - Device model:
+        - Screen size/density:
+        - Any accessibility features in use:
+        - Network conditions:
+
+  - type: checkboxes
+    id: checklist
+    attributes:
+      label: Pre-submission Checklist
+      options:
+        - label: I have searched existing issues to avoid duplicates
+          required: true
+        - label: I have removed any personal health information from this report
+          required: true
+        - label: I can reproduce this issue consistently
+          required: true
+        - label: This affects the medical accuracy or data integrity of the app
+          required: false

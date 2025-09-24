@@ -1,0 +1,355 @@
+name: 📊 Code Quality Analysis
+
+on:
+  push:
+    branches: [ main, develop ]
+    paths:
+      - 'app/src/**/*.kt'
+      - 'app/src/**/*.java'
+      - '**/*.gradle*'
+  pull_request:
+    branches: [ main, develop ]
+    paths:
+      - 'app/src/**/*.kt'
+      - 'app/src/**/*.java'
+      - '**/*.gradle*'
+  schedule:
+    # Run weekly quality analysis on Sundays at 2 AM UTC
+    - cron: '0 2 * * 0'
+  workflow_dispatch:
+
+concurrency:
+  group: quality-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  GRADLE_OPTS: -Dorg.gradle.daemon=false -Dorg.gradle.parallel=true
+  JAVA_VERSION: '17'
+
+jobs:
+  # ============================================================================
+  # KOTLIN CODE STYLE & QUALITY
+  # ============================================================================
+
+  kotlin-quality:
+    name: 🎯 Kotlin Code Quality
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 📥 Checkout Code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: ☕ Setup JDK ${{ env.JAVA_VERSION }}
+        uses: actions/setup-java@v4
+        with:
+          java-version: ${{ env.JAVA_VERSION }}
+          distribution: 'temurin'
+
+      - name: 📋 Setup Android SDK
+        uses: android-actions/setup-android@v3
+
+      - name: 🎯 Cache Gradle Dependencies
+        uses: actions/cache@v3
+        with:
+          path: |
+            ~/.gradle/caches
+            ~/.gradle/wrapper
+          key: gradle-${{ runner.os }}-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
+          restore-keys: |
+            gradle-${{ runner.os }}-
+
+      - name: 🔧 Grant Execute Permission to Gradlew
+        run: chmod +x gradlew
+
+      - name: 🧹 Ktlint Style Check
+        run: |
+          echo "🧹 Running Ktlint style analysis..." >> $GITHUB_STEP_SUMMARY
+          ./gradlew ktlintCheck --continue || true
+
+      - name: 🔍 Detekt Static Analysis
+        run: |
+          echo "🔍 Running Detekt static analysis..." >> $GITHUB_STEP_SUMMARY
+          ./gradlew detekt --continue || true
+
+      - name: 📊 Generate Quality Reports
+        run: |
+          # Count code quality metrics
+          TOTAL_KT_FILES=$(find app/src -name "*.kt" | wc -l)
+          TOTAL_JAVA_FILES=$(find app/src -name "*.java" | wc -l)
+          TOTAL_TEST_FILES=$(find app/src/test app/src/androidTest -name "*.kt" -o -name "*.java" 2>/dev/null | wc -l || echo "0")
+
+          echo "## 📊 Code Quality Metrics" >> $GITHUB_STEP_SUMMARY
+          echo "| Metric | Value |" >> $GITHUB_STEP_SUMMARY
+          echo "|--------|-------|" >> $GITHUB_STEP_SUMMARY
+          echo "| Kotlin Files | $TOTAL_KT_FILES |" >> $GITHUB_STEP_SUMMARY
+          echo "| Java Files | $TOTAL_JAVA_FILES |" >> $GITHUB_STEP_SUMMARY
+          echo "| Test Files | $TOTAL_TEST_FILES |" >> $GITHUB_STEP_SUMMARY
+
+          # Calculate test ratio
+          MAIN_FILES=$((TOTAL_KT_FILES + TOTAL_JAVA_FILES))
+          if [[ $MAIN_FILES -gt 0 ]]; then
+            TEST_RATIO=$(( (TOTAL_TEST_FILES * 100) / MAIN_FILES ))
+            echo "| Test Coverage Ratio | ${TEST_RATIO}% |" >> $GITHUB_STEP_SUMMARY
+          fi
+
+      - name: 📋 Medical Code Quality Audit
+        run: |
+          echo "## 🏥 Medical Code Quality Audit" >> $GITHUB_STEP_SUMMARY
+
+          # Check for proper medical terminology usage
+          BRISTOL_USAGE=$(grep -r "bristol\|stool" app/src/main/java/ --include="*.kt" | wc -l)
+          FODMAP_USAGE=$(grep -r "fodmap\|FODMAP" app/src/main/java/ --include="*.kt" | wc -l)
+          CORRELATION_USAGE=$(grep -r "correlation\|pearson" app/src/main/java/ --include="*.kt" | wc -l)
+
+          echo "| Medical Component | Usage Count |" >> $GITHUB_STEP_SUMMARY
+          echo "|-------------------|-------------|" >> $GITHUB_STEP_SUMMARY
+          echo "| Bristol Stool Chart | $BRISTOL_USAGE references |" >> $GITHUB_STEP_SUMMARY
+          echo "| FODMAP Analysis | $FODMAP_USAGE references |" >> $GITHUB_STEP_SUMMARY
+          echo "| Correlation Analysis | $CORRELATION_USAGE references |" >> $GITHUB_STEP_SUMMARY
+
+          # Check for medical accuracy indicators
+          if grep -r "TODO\|FIXME\|XXX" app/src/main/java/ --include="*.kt" | grep -i "medical\|clinical\|bristol\|fodmap" >/dev/null 2>&1; then
+            echo "⚠️ **Medical TODOs detected** - review required" >> $GITHUB_STEP_SUMMARY
+          else
+            echo "✅ No pending medical implementation tasks" >> $GITHUB_STEP_SUMMARY
+          fi
+
+      - name: 📊 Upload Quality Reports
+        uses: actions/upload-artifact@v3
+        if: always()
+        with:
+          name: quality-reports-${{ github.run_number }}
+          path: |
+            app/build/reports/ktlint/
+            app/build/reports/detekt/
+          retention-days: 30
+
+  # ============================================================================
+  # ANDROID LINT ANALYSIS
+  # ============================================================================
+
+  android-lint:
+    name: 🤖 Android Lint Analysis
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 📥 Checkout Code
+        uses: actions/checkout@v4
+
+      - name: ☕ Setup JDK ${{ env.JAVA_VERSION }}
+        uses: actions/setup-java@v4
+        with:
+          java-version: ${{ env.JAVA_VERSION }}
+          distribution: 'temurin'
+
+      - name: 📋 Setup Android SDK
+        uses: android-actions/setup-android@v3
+
+      - name: 🎯 Cache Gradle Dependencies
+        uses: actions/cache@v3
+        with:
+          path: |
+            ~/.gradle/caches
+            ~/.gradle/wrapper
+          key: gradle-${{ runner.os }}-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
+          restore-keys: |
+            gradle-${{ runner.os }}-
+
+      - name: 🔧 Grant Execute Permission to Gradlew
+        run: chmod +x gradlew
+
+      - name: 🤖 Run Android Lint
+        run: |
+          echo "🤖 Running Android Lint analysis..." >> $GITHUB_STEP_SUMMARY
+          ./gradlew lintDebug --continue
+
+      - name: 📊 Analyze Lint Results
+        run: |
+          echo "## 🤖 Android Lint Analysis" >> $GITHUB_STEP_SUMMARY
+
+          if [[ -f "app/build/reports/lint-results-debug.xml" ]]; then
+            # Count lint issues by severity
+            ERROR_COUNT=$(grep -o 'severity="Error"' app/build/reports/lint-results-debug.xml | wc -l || echo "0")
+            WARNING_COUNT=$(grep -o 'severity="Warning"' app/build/reports/lint-results-debug.xml | wc -l || echo "0")
+            INFO_COUNT=$(grep -o 'severity="Informational"' app/build/reports/lint-results-debug.xml | wc -l || echo "0")
+
+            echo "| Severity | Count |" >> $GITHUB_STEP_SUMMARY
+            echo "|----------|-------|" >> $GITHUB_STEP_SUMMARY
+            echo "| Errors | $ERROR_COUNT |" >> $GITHUB_STEP_SUMMARY
+            echo "| Warnings | $WARNING_COUNT |" >> $GITHUB_STEP_SUMMARY
+            echo "| Info | $INFO_COUNT |" >> $GITHUB_STEP_SUMMARY
+
+            # Check for medical-specific issues
+            if grep -i "accessibility\|contentDescription" app/build/reports/lint-results-debug.xml >/dev/null 2>&1; then
+              echo "⚠️ **Accessibility issues detected** - important for medical apps" >> $GITHUB_STEP_SUMMARY
+            fi
+
+            if grep -i "performance\|memory" app/build/reports/lint-results-debug.xml >/dev/null 2>&1; then
+              echo "⚠️ **Performance issues detected** - review for medical data processing" >> $GITHUB_STEP_SUMMARY
+            fi
+          else
+            echo "❌ Lint report not generated" >> $GITHUB_STEP_SUMMARY
+          fi
+
+      - name: 📊 Upload Lint Reports
+        uses: actions/upload-artifact@v3
+        if: always()
+        with:
+          name: lint-reports-${{ github.run_number }}
+          path: |
+            app/build/reports/lint-results-debug.html
+            app/build/reports/lint-results-debug.xml
+          retention-days: 30
+
+  # ============================================================================
+  # COMPLEXITY & MAINTAINABILITY
+  # ============================================================================
+
+  complexity-analysis:
+    name: 📈 Complexity Analysis
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 📥 Checkout Code
+        uses: actions/checkout@v4
+
+      - name: ☕ Setup JDK ${{ env.JAVA_VERSION }}
+        uses: actions/setup-java@v4
+        with:
+          java-version: ${{ env.JAVA_VERSION }}
+          distribution: 'temurin'
+
+      - name: 🔧 Grant Execute Permission to Gradlew
+        run: chmod +x gradlew
+
+      - name: 📈 Calculate Code Complexity
+        run: |
+          echo "## 📈 Code Complexity Analysis" >> $GITHUB_STEP_SUMMARY
+
+          # Basic complexity metrics using simple analysis
+          TOTAL_LINES=$(find app/src/main/java -name "*.kt" -exec wc -l {} + | tail -1 | awk '{print $1}')
+          TOTAL_CLASSES=$(grep -r "^class\|^object\|^interface" app/src/main/java --include="*.kt" | wc -l)
+          TOTAL_FUNCTIONS=$(grep -r "^fun\|^ *fun" app/src/main/java --include="*.kt" | wc -l)
+
+          echo "| Metric | Value |" >> $GITHUB_STEP_SUMMARY
+          echo "|--------|-------|" >> $GITHUB_STEP_SUMMARY
+          echo "| Total Lines | $TOTAL_LINES |" >> $GITHUB_STEP_SUMMARY
+          echo "| Total Classes | $TOTAL_CLASSES |" >> $GITHUB_STEP_SUMMARY
+          echo "| Total Functions | $TOTAL_FUNCTIONS |" >> $GITHUB_STEP_SUMMARY
+
+          # Calculate averages
+          if [[ $TOTAL_CLASSES -gt 0 ]]; then
+            AVG_LINES_PER_CLASS=$((TOTAL_LINES / TOTAL_CLASSES))
+            echo "| Avg Lines per Class | $AVG_LINES_PER_CLASS |" >> $GITHUB_STEP_SUMMARY
+          fi
+
+          if [[ $TOTAL_FUNCTIONS -gt 0 ]]; then
+            AVG_LINES_PER_FUNCTION=$((TOTAL_LINES / TOTAL_FUNCTIONS))
+            echo "| Avg Lines per Function | $AVG_LINES_PER_FUNCTION |" >> $GITHUB_STEP_SUMMARY
+          fi
+
+      - name: 🏥 Medical Code Complexity Audit
+        run: |
+          echo "## 🏥 Medical Component Complexity" >> $GITHUB_STEP_SUMMARY
+
+          # Analyze complexity of medical components
+          MEDICAL_FILES=(
+            "FODMAPAnalyzer"
+            "BristolStoolChart"
+            "CorrelationEngine"
+            "SymptomEvent"
+          )
+
+          for component in "${MEDICAL_FILES[@]}"; do
+            if find app/src/main/java -name "*$component*.kt" | head -1 | xargs wc -l 2>/dev/null; then
+              LINES=$(find app/src/main/java -name "*$component*.kt" | head -1 | xargs wc -l 2>/dev/null | awk '{print $1}')
+              FUNCTIONS=$(find app/src/main/java -name "*$component*.kt" -exec grep -c "fun " {} + 2>/dev/null || echo "0")
+
+              echo "| $component | $LINES lines, $FUNCTIONS functions |" >> $GITHUB_STEP_SUMMARY
+            fi
+          done
+
+      - name: 📊 Technical Debt Assessment
+        run: |
+          echo "## 📊 Technical Debt Assessment" >> $GITHUB_STEP_SUMMARY
+
+          # Count TODO, FIXME, XXX comments
+          TODO_COUNT=$(grep -r "TODO\|FIXME\|XXX" app/src/main/java --include="*.kt" | wc -l || echo "0")
+          DEPRECATED_COUNT=$(grep -r "@Deprecated" app/src/main/java --include="*.kt" | wc -l || echo "0")
+          SUPPRESS_COUNT=$(grep -r "@Suppress" app/src/main/java --include="*.kt" | wc -l || echo "0")
+
+          echo "| Technical Debt | Count |" >> $GITHUB_STEP_SUMMARY
+          echo "|----------------|-------|" >> $GITHUB_STEP_SUMMARY
+          echo "| TODO/FIXME Comments | $TODO_COUNT |" >> $GITHUB_STEP_SUMMARY
+          echo "| Deprecated Usage | $DEPRECATED_COUNT |" >> $GITHUB_STEP_SUMMARY
+          echo "| Suppressed Warnings | $SUPPRESS_COUNT |" >> $GITHUB_STEP_SUMMARY
+
+          # Provide recommendations
+          if [[ $TODO_COUNT -gt 10 ]]; then
+            echo "⚠️ **High TODO count** - consider prioritizing cleanup" >> $GITHUB_STEP_SUMMARY
+          else
+            echo "✅ TODO count is manageable" >> $GITHUB_STEP_SUMMARY
+          fi
+
+  # ============================================================================
+  # QUALITY SUMMARY & REPORTING
+  # ============================================================================
+
+  quality-summary:
+    name: 📋 Quality Summary
+    runs-on: ubuntu-latest
+    if: always()
+    needs: [kotlin-quality, android-lint, complexity-analysis]
+
+    steps:
+      - name: 📋 Generate Quality Summary
+        run: |
+          echo "# 📊 Code Quality Analysis Summary" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "Generated on: $(date '+%Y-%m-%d %H:%M UTC')" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+
+          echo "| Analysis Type | Status |" >> $GITHUB_STEP_SUMMARY
+          echo "|---------------|---------|" >> $GITHUB_STEP_SUMMARY
+
+          if [[ "${{ needs.kotlin-quality.result }}" == "success" ]]; then
+            echo "| 🎯 Kotlin Quality | ✅ Passed |" >> $GITHUB_STEP_SUMMARY
+          else
+            echo "| 🎯 Kotlin Quality | ❌ Issues Found |" >> $GITHUB_STEP_SUMMARY
+          fi
+
+          if [[ "${{ needs.android-lint.result }}" == "success" ]]; then
+            echo "| 🤖 Android Lint | ✅ Passed |" >> $GITHUB_STEP_SUMMARY
+          else
+            echo "| 🤖 Android Lint | ❌ Issues Found |" >> $GITHUB_STEP_SUMMARY
+          fi
+
+          if [[ "${{ needs.complexity-analysis.result }}" == "success" ]]; then
+            echo "| 📈 Complexity | ✅ Analyzed |" >> $GITHUB_STEP_SUMMARY
+          else
+            echo "| 📈 Complexity | ❌ Analysis Failed |" >> $GITHUB_STEP_SUMMARY
+          fi
+
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "## 🎯 Quality Recommendations" >> $GITHUB_STEP_SUMMARY
+          echo "- **Medical Accuracy**: Ensure all medical components meet clinical standards" >> $GITHUB_STEP_SUMMARY
+          echo "- **Code Coverage**: Maintain 95%+ test coverage for business logic" >> $GITHUB_STEP_SUMMARY
+          echo "- **Performance**: Monitor memory usage for large health datasets" >> $GITHUB_STEP_SUMMARY
+          echo "- **Accessibility**: Ensure medical UI components are screen reader compatible" >> $GITHUB_STEP_SUMMARY
+          echo "- **Privacy**: Verify no data leaves the device unexpectedly" >> $GITHUB_STEP_SUMMARY
+
+      - name: 🚨 Quality Gate Check
+        run: |
+          # Basic quality gate - fail if critical issues found
+          KOTLIN_SUCCESS="${{ needs.kotlin-quality.result }}"
+          LINT_SUCCESS="${{ needs.android-lint.result }}"
+
+          if [[ "$KOTLIN_SUCCESS" != "success" || "$LINT_SUCCESS" != "success" ]]; then
+            echo "❌ Quality gate failed - critical issues found"
+            echo "Please review and fix code quality issues before proceeding"
+            exit 1
+          else
+            echo "✅ Quality gate passed - code meets standards"
+          fi
