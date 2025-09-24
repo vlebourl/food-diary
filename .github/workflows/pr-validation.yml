@@ -221,6 +221,7 @@ jobs:
   instrumented-tests:
     name: 🤖 Instrumented Tests
     runs-on: ubuntu-latest
+    timeout-minutes: 45
     if: github.event.pull_request.draft == false
 
     strategy:
@@ -275,7 +276,7 @@ jobs:
           target: ${{ matrix.target }}
           arch: x86_64
           force-avd-creation: false
-          emulator-options: -no-window -gpu swiftshader_indirect -noaudio -no-boot-anim -camera-back none -no-metrics
+          emulator-options: -no-window -gpu swiftshader_indirect -noaudio -no-boot-anim -camera-back none -no-metrics -memory 2048 -partition-size 2048
           disable-animations: true
           disable-linux-hw-accel: true
           emulator-boot-timeout: 900
@@ -288,7 +289,7 @@ jobs:
           target: ${{ matrix.target }}
           arch: x86_64
           force-avd-creation: false
-          emulator-options: -no-snapshot-save -no-window -gpu swiftshader_indirect -noaudio -no-boot-anim -camera-back none -no-metrics
+          emulator-options: -no-snapshot-save -no-window -gpu swiftshader_indirect -noaudio -no-boot-anim -camera-back none -no-metrics -memory 2048 -partition-size 2048
           disable-animations: true
           disable-linux-hw-accel: true
           emulator-boot-timeout: 900
