@@ -177,7 +177,8 @@ public final class QuickEntryTemplateDao_Impl implements QuickEntryTemplateDao {
   }
 
   @Override
-  public Object insert(final QuickEntryTemplate template, final Continuation<? super Long> arg1) {
+  public Object insert(final QuickEntryTemplate template,
+      final Continuation<? super Long> $completion) {
     return CoroutinesRoom.execute(__db, true, new Callable<Long>() {
       @Override
       @NonNull
@@ -191,11 +192,12 @@ public final class QuickEntryTemplateDao_Impl implements QuickEntryTemplateDao {
           __db.endTransaction();
         }
       }
-    }, arg1);
+    }, $completion);
   }
 
   @Override
-  public Object update(final QuickEntryTemplate template, final Continuation<? super Unit> arg1) {
+  public Object update(final QuickEntryTemplate template,
+      final Continuation<? super Unit> $completion) {
     return CoroutinesRoom.execute(__db, true, new Callable<Unit>() {
       @Override
       @NonNull
@@ -209,17 +211,17 @@ public final class QuickEntryTemplateDao_Impl implements QuickEntryTemplateDao {
           __db.endTransaction();
         }
       }
-    }, arg1);
+    }, $completion);
   }
 
   @Override
   public Object reorder(final List<QuickEntryTemplate> templates,
-      final Continuation<? super Unit> arg1) {
-    return RoomDatabaseKt.withTransaction(__db, (__cont) -> QuickEntryTemplateDao.DefaultImpls.reorder(QuickEntryTemplateDao_Impl.this, templates, __cont), arg1);
+      final Continuation<? super Unit> $completion) {
+    return RoomDatabaseKt.withTransaction(__db, (__cont) -> QuickEntryTemplateDao.DefaultImpls.reorder(QuickEntryTemplateDao_Impl.this, templates, __cont), $completion);
   }
 
   @Override
-  public Object delete(final String id, final Continuation<? super Unit> arg1) {
+  public Object delete(final String id, final Continuation<? super Unit> $completion) {
     return CoroutinesRoom.execute(__db, true, new Callable<Unit>() {
       @Override
       @NonNull
@@ -244,11 +246,11 @@ public final class QuickEntryTemplateDao_Impl implements QuickEntryTemplateDao {
           __preparedStmtOfDelete.release(_stmt);
         }
       }
-    }, arg1);
+    }, $completion);
   }
 
   @Override
-  public Object deleteAll(final Continuation<? super Unit> arg0) {
+  public Object deleteAll(final Continuation<? super Unit> $completion) {
     return CoroutinesRoom.execute(__db, true, new Callable<Unit>() {
       @Override
       @NonNull
@@ -267,11 +269,12 @@ public final class QuickEntryTemplateDao_Impl implements QuickEntryTemplateDao {
           __preparedStmtOfDeleteAll.release(_stmt);
         }
       }
-    }, arg0);
+    }, $completion);
   }
 
   @Override
-  public Object getById(final String id, final Continuation<? super QuickEntryTemplate> arg1) {
+  public Object getById(final String id,
+      final Continuation<? super QuickEntryTemplate> $completion) {
     final String _sql = "SELECT * FROM quick_entry_templates WHERE id = ?";
     final RoomSQLiteQuery _statement = RoomSQLiteQuery.acquire(_sql, 1);
     int _argIndex = 1;
@@ -361,7 +364,7 @@ public final class QuickEntryTemplateDao_Impl implements QuickEntryTemplateDao {
           _statement.release();
         }
       }
-    }, arg1);
+    }, $completion);
   }
 
   @Override
@@ -644,7 +647,7 @@ public final class QuickEntryTemplateDao_Impl implements QuickEntryTemplateDao {
   }
 
   @Override
-  public Object getActiveCount(final Continuation<? super Integer> arg0) {
+  public Object getActiveCount(final Continuation<? super Integer> $completion) {
     final String _sql = "SELECT COUNT(*) FROM quick_entry_templates WHERE isActive = 1";
     final RoomSQLiteQuery _statement = RoomSQLiteQuery.acquire(_sql, 0);
     final CancellationSignal _cancellationSignal = DBUtil.createCancellationSignal();
@@ -672,11 +675,11 @@ public final class QuickEntryTemplateDao_Impl implements QuickEntryTemplateDao {
           _statement.release();
         }
       }
-    }, arg0);
+    }, $completion);
   }
 
   @Override
-  public Object getMaxSortOrder(final Continuation<? super Integer> arg0) {
+  public Object getMaxSortOrder(final Continuation<? super Integer> $completion) {
     final String _sql = "SELECT MAX(sortOrder) FROM quick_entry_templates WHERE isActive = 1";
     final RoomSQLiteQuery _statement = RoomSQLiteQuery.acquire(_sql, 0);
     final CancellationSignal _cancellationSignal = DBUtil.createCancellationSignal();
@@ -704,7 +707,7 @@ public final class QuickEntryTemplateDao_Impl implements QuickEntryTemplateDao {
           _statement.release();
         }
       }
-    }, arg0);
+    }, $completion);
   }
 
   @NonNull

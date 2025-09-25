@@ -1,5 +1,49 @@
 [
     {
+        "merged": "com.fooddiary.app-merged_res-60:/drawable_ic_timeline.xml.flat",
+        "source": "com.fooddiary.app-main-62:/drawable/ic_timeline.xml"
+    },
+    {
+        "merged": "com.fooddiary.app-merged_res-60:/layout_fragment_beverage_entry.xml.flat",
+        "source": "com.fooddiary.app-main-62:/layout/fragment_beverage_entry.xml"
+    },
+    {
+        "merged": "com.fooddiary.app-merged_res-60:/layout_view_timezone_aware_time_picker.xml.flat",
+        "source": "com.fooddiary.app-main-62:/layout/view_timezone_aware_time_picker.xml"
+    },
+    {
+        "merged": "com.fooddiary.app-merged_res-60:/xml_backup_rules.xml.flat",
+        "source": "com.fooddiary.app-main-62:/xml/backup_rules.xml"
+    },
+    {
+        "merged": "com.fooddiary.app-merged_res-60:/layout_fragment_settings.xml.flat",
+        "source": "com.fooddiary.app-main-62:/layout/fragment_settings.xml"
+    },
+    {
+        "merged": "com.fooddiary.app-merged_res-60:/layout_activity_main.xml.flat",
+        "source": "com.fooddiary.app-main-62:/layout/activity_main.xml"
+    },
+    {
+        "merged": "com.fooddiary.app-merged_res-60:/navigation_mobile_navigation.xml.flat",
+        "source": "com.fooddiary.app-main-62:/navigation/mobile_navigation.xml"
+    },
+    {
+        "merged": "com.fooddiary.app-merged_res-60:/menu_bottom_nav_menu.xml.flat",
+        "source": "com.fooddiary.app-main-62:/menu/bottom_nav_menu.xml"
+    },
+    {
+        "merged": "com.fooddiary.app-merged_res-60:/drawable_ic_add_circle.xml.flat",
+        "source": "com.fooddiary.app-main-62:/drawable/ic_add_circle.xml"
+    },
+    {
+        "merged": "com.fooddiary.app-merged_res-60:/layout_fragment_analytics.xml.flat",
+        "source": "com.fooddiary.app-main-62:/layout/fragment_analytics.xml"
+    },
+    {
+        "merged": "com.fooddiary.app-merged_res-60:/layout_fragment_symptom_entry.xml.flat",
+        "source": "com.fooddiary.app-main-62:/layout/fragment_symptom_entry.xml"
+    },
+    {
         "merged": "com.fooddiary.app-merged_res-60:/drawable_ic_access_time.xml.flat",
         "source": "com.fooddiary.app-main-62:/drawable/ic_access_time.xml"
     },
@@ -12,14 +56,6 @@
         "source": "com.fooddiary.app-main-62:/drawable/ic_analytics.xml"
     },
     {
-        "merged": "com.fooddiary.app-merged_res-60:/drawable_ic_timeline.xml.flat",
-        "source": "com.fooddiary.app-main-62:/drawable/ic_timeline.xml"
-    },
-    {
-        "merged": "com.fooddiary.app-merged_res-60:/layout_view_timezone_aware_time_picker.xml.flat",
-        "source": "com.fooddiary.app-main-62:/layout/view_timezone_aware_time_picker.xml"
-    },
-    {
         "merged": "com.fooddiary.app-merged_res-60:/layout_fragment_food_entry.xml.flat",
         "source": "com.fooddiary.app-main-62:/layout/fragment_food_entry.xml"
     },
@@ -28,40 +64,32 @@
         "source": "com.fooddiary.app-main-62:/drawable/ic_schedule.xml"
     },
     {
-        "merged": "com.fooddiary.app-merged_res-60:/xml_backup_rules.xml.flat",
-        "source": "com.fooddiary.app-main-62:/xml/backup_rules.xml"
+        "merged": "com.fooddiary.app-merged_res-60:/layout_fragment_timeline.xml.flat",
+        "source": "com.fooddiary.app-main-62:/layout/fragment_timeline.xml"
     },
     {
         "merged": "com.fooddiary.app-merged_res-60:/drawable_ic_launcher_foreground.xml.flat",
         "source": "com.fooddiary.app-main-62:/drawable/ic_launcher_foreground.xml"
     },
     {
-        "merged": "com.fooddiary.app-merged_res-60:/layout_activity_main.xml.flat",
-        "source": "com.fooddiary.app-main-62:/layout/activity_main.xml"
-    },
-    {
         "merged": "com.fooddiary.app-merged_res-60:/drawable_ic_add.xml.flat",
         "source": "com.fooddiary.app-main-62:/drawable/ic_add.xml"
     },
     {
-        "merged": "com.fooddiary.app-merged_res-60:/navigation_mobile_navigation.xml.flat",
-        "source": "com.fooddiary.app-main-62:/navigation/mobile_navigation.xml"
-    },
-    {
-        "merged": "com.fooddiary.app-merged_res-60:/menu_bottom_nav_menu.xml.flat",
-        "source": "com.fooddiary.app-main-62:/menu/bottom_nav_menu.xml"
+        "merged": "com.fooddiary.app-merged_res-60:/layout_fragment_reports.xml.flat",
+        "source": "com.fooddiary.app-main-62:/layout/fragment_reports.xml"
     },
     {
         "merged": "com.fooddiary.app-merged_res-60:/drawable_splash_background.xml.flat",
         "source": "com.fooddiary.app-main-62:/drawable/splash_background.xml"
     },
     {
-        "merged": "com.fooddiary.app-merged_res-60:/drawable_ic_add_circle.xml.flat",
-        "source": "com.fooddiary.app-main-62:/drawable/ic_add_circle.xml"
-    },
-    {
         "merged": "com.fooddiary.app-merged_res-60:/drawable_app_icon.png.flat",
         "source": "com.fooddiary.app-main-62:/drawable/app_icon.png"
+    },
+    {
+        "merged": "com.fooddiary.app-merged_res-60:/layout_fragment_entry.xml.flat",
+        "source": "com.fooddiary.app-main-62:/layout/fragment_entry.xml"
     },
     {
         "merged": "com.fooddiary.app-merged_res-60:/xml_data_extraction_rules.xml.flat",

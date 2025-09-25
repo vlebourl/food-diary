@@ -239,7 +239,7 @@ public final class BeverageEntryDao_Impl implements BeverageEntryDao {
   }
 
   @Override
-  public Object insert(final BeverageEntry entry, final Continuation<? super Long> arg1) {
+  public Object insert(final BeverageEntry entry, final Continuation<? super Long> $completion) {
     return CoroutinesRoom.execute(__db, true, new Callable<Long>() {
       @Override
       @NonNull
@@ -253,11 +253,11 @@ public final class BeverageEntryDao_Impl implements BeverageEntryDao {
           __db.endTransaction();
         }
       }
-    }, arg1);
+    }, $completion);
   }
 
   @Override
-  public Object update(final BeverageEntry entry, final Continuation<? super Unit> arg1) {
+  public Object update(final BeverageEntry entry, final Continuation<? super Unit> $completion) {
     return CoroutinesRoom.execute(__db, true, new Callable<Unit>() {
       @Override
       @NonNull
@@ -271,12 +271,12 @@ public final class BeverageEntryDao_Impl implements BeverageEntryDao {
           __db.endTransaction();
         }
       }
-    }, arg1);
+    }, $completion);
   }
 
   @Override
   public Object softDelete(final String id, final Instant deletedAt, final Instant modifiedAt,
-      final Continuation<? super Unit> arg3) {
+      final Continuation<? super Unit> $completion) {
     return CoroutinesRoom.execute(__db, true, new Callable<Unit>() {
       @Override
       @NonNull
@@ -315,11 +315,11 @@ public final class BeverageEntryDao_Impl implements BeverageEntryDao {
           __preparedStmtOfSoftDelete.release(_stmt);
         }
       }
-    }, arg3);
+    }, $completion);
   }
 
   @Override
-  public Object hardDelete(final String id, final Continuation<? super Unit> arg1) {
+  public Object hardDelete(final String id, final Continuation<? super Unit> $completion) {
     return CoroutinesRoom.execute(__db, true, new Callable<Unit>() {
       @Override
       @NonNull
@@ -344,11 +344,11 @@ public final class BeverageEntryDao_Impl implements BeverageEntryDao {
           __preparedStmtOfHardDelete.release(_stmt);
         }
       }
-    }, arg1);
+    }, $completion);
   }
 
   @Override
-  public Object deleteAll(final Continuation<? super Unit> arg0) {
+  public Object deleteAll(final Continuation<? super Unit> $completion) {
     return CoroutinesRoom.execute(__db, true, new Callable<Unit>() {
       @Override
       @NonNull
@@ -367,11 +367,11 @@ public final class BeverageEntryDao_Impl implements BeverageEntryDao {
           __preparedStmtOfDeleteAll.release(_stmt);
         }
       }
-    }, arg0);
+    }, $completion);
   }
 
   @Override
-  public Object getById(final String id, final Continuation<? super BeverageEntry> arg1) {
+  public Object getById(final String id, final Continuation<? super BeverageEntry> $completion) {
     final String _sql = "SELECT * FROM beverage_entries WHERE id = ? AND isDeleted = 0";
     final RoomSQLiteQuery _statement = RoomSQLiteQuery.acquire(_sql, 1);
     int _argIndex = 1;
@@ -499,7 +499,7 @@ public final class BeverageEntryDao_Impl implements BeverageEntryDao {
           _statement.release();
         }
       }
-    }, arg1);
+    }, $completion);
   }
 
   @Override
@@ -1144,7 +1144,7 @@ public final class BeverageEntryDao_Impl implements BeverageEntryDao {
   }
 
   @Override
-  public Object getCount(final Continuation<? super Integer> arg0) {
+  public Object getCount(final Continuation<? super Integer> $completion) {
     final String _sql = "SELECT COUNT(*) FROM beverage_entries WHERE isDeleted = 0";
     final RoomSQLiteQuery _statement = RoomSQLiteQuery.acquire(_sql, 0);
     final CancellationSignal _cancellationSignal = DBUtil.createCancellationSignal();
@@ -1172,7 +1172,7 @@ public final class BeverageEntryDao_Impl implements BeverageEntryDao {
           _statement.release();
         }
       }
-    }, arg0);
+    }, $completion);
   }
 
   @NonNull

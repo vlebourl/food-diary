@@ -125,7 +125,7 @@ public final class EnvironmentalContextDao_Impl implements EnvironmentalContextD
 
   @Override
   public Object insertOrUpdate(final EnvironmentalContext context,
-      final Continuation<? super Unit> arg1) {
+      final Continuation<? super Unit> $completion) {
     return CoroutinesRoom.execute(__db, true, new Callable<Unit>() {
       @Override
       @NonNull
@@ -139,11 +139,11 @@ public final class EnvironmentalContextDao_Impl implements EnvironmentalContextD
           __db.endTransaction();
         }
       }
-    }, arg1);
+    }, $completion);
   }
 
   @Override
-  public Object delete(final LocalDate date, final Continuation<? super Unit> arg1) {
+  public Object delete(final LocalDate date, final Continuation<? super Unit> $completion) {
     return CoroutinesRoom.execute(__db, true, new Callable<Unit>() {
       @Override
       @NonNull
@@ -169,11 +169,11 @@ public final class EnvironmentalContextDao_Impl implements EnvironmentalContextD
           __preparedStmtOfDelete.release(_stmt);
         }
       }
-    }, arg1);
+    }, $completion);
   }
 
   @Override
-  public Object deleteAll(final Continuation<? super Unit> arg0) {
+  public Object deleteAll(final Continuation<? super Unit> $completion) {
     return CoroutinesRoom.execute(__db, true, new Callable<Unit>() {
       @Override
       @NonNull
@@ -192,12 +192,12 @@ public final class EnvironmentalContextDao_Impl implements EnvironmentalContextD
           __preparedStmtOfDeleteAll.release(_stmt);
         }
       }
-    }, arg0);
+    }, $completion);
   }
 
   @Override
   public Object getByDate(final LocalDate date,
-      final Continuation<? super EnvironmentalContext> arg1) {
+      final Continuation<? super EnvironmentalContext> $completion) {
     final String _sql = "SELECT * FROM environmental_contexts WHERE date = ?";
     final RoomSQLiteQuery _statement = RoomSQLiteQuery.acquire(_sql, 1);
     int _argIndex = 1;
@@ -293,7 +293,7 @@ public final class EnvironmentalContextDao_Impl implements EnvironmentalContextD
           _statement.release();
         }
       }
-    }, arg1);
+    }, $completion);
   }
 
   @Override
@@ -668,7 +668,7 @@ public final class EnvironmentalContextDao_Impl implements EnvironmentalContextD
   }
 
   @Override
-  public Object getCount(final Continuation<? super Integer> arg0) {
+  public Object getCount(final Continuation<? super Integer> $completion) {
     final String _sql = "SELECT COUNT(*) FROM environmental_contexts";
     final RoomSQLiteQuery _statement = RoomSQLiteQuery.acquire(_sql, 0);
     final CancellationSignal _cancellationSignal = DBUtil.createCancellationSignal();
@@ -696,7 +696,7 @@ public final class EnvironmentalContextDao_Impl implements EnvironmentalContextD
           _statement.release();
         }
       }
-    }, arg0);
+    }, $completion);
   }
 
   @NonNull

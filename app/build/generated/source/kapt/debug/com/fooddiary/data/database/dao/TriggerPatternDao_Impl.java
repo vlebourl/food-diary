@@ -166,7 +166,7 @@ public final class TriggerPatternDao_Impl implements TriggerPatternDao {
   }
 
   @Override
-  public Object insert(final TriggerPattern pattern, final Continuation<? super Unit> arg1) {
+  public Object insert(final TriggerPattern pattern, final Continuation<? super Unit> $completion) {
     return CoroutinesRoom.execute(__db, true, new Callable<Unit>() {
       @Override
       @NonNull
@@ -180,11 +180,11 @@ public final class TriggerPatternDao_Impl implements TriggerPatternDao {
           __db.endTransaction();
         }
       }
-    }, arg1);
+    }, $completion);
   }
 
   @Override
-  public Object update(final TriggerPattern pattern, final Continuation<? super Unit> arg1) {
+  public Object update(final TriggerPattern pattern, final Continuation<? super Unit> $completion) {
     return CoroutinesRoom.execute(__db, true, new Callable<Unit>() {
       @Override
       @NonNull
@@ -198,11 +198,11 @@ public final class TriggerPatternDao_Impl implements TriggerPatternDao {
           __db.endTransaction();
         }
       }
-    }, arg1);
+    }, $completion);
   }
 
   @Override
-  public Object delete(final String id, final Continuation<? super Unit> arg1) {
+  public Object delete(final String id, final Continuation<? super Unit> $completion) {
     return CoroutinesRoom.execute(__db, true, new Callable<Unit>() {
       @Override
       @NonNull
@@ -227,11 +227,11 @@ public final class TriggerPatternDao_Impl implements TriggerPatternDao {
           __preparedStmtOfDelete.release(_stmt);
         }
       }
-    }, arg1);
+    }, $completion);
   }
 
   @Override
-  public Object deleteAll(final Continuation<? super Unit> arg0) {
+  public Object deleteAll(final Continuation<? super Unit> $completion) {
     return CoroutinesRoom.execute(__db, true, new Callable<Unit>() {
       @Override
       @NonNull
@@ -250,7 +250,7 @@ public final class TriggerPatternDao_Impl implements TriggerPatternDao {
           __preparedStmtOfDeleteAll.release(_stmt);
         }
       }
-    }, arg0);
+    }, $completion);
   }
 
   @Override
@@ -716,7 +716,7 @@ public final class TriggerPatternDao_Impl implements TriggerPatternDao {
   }
 
   @Override
-  public Object getById(final String id, final Continuation<? super TriggerPattern> arg1) {
+  public Object getById(final String id, final Continuation<? super TriggerPattern> $completion) {
     final String _sql = "SELECT * FROM trigger_patterns WHERE id = ?";
     final RoomSQLiteQuery _statement = RoomSQLiteQuery.acquire(_sql, 1);
     int _argIndex = 1;
@@ -804,11 +804,11 @@ public final class TriggerPatternDao_Impl implements TriggerPatternDao {
           _statement.release();
         }
       }
-    }, arg1);
+    }, $completion);
   }
 
   @Override
-  public Object getCount(final Continuation<? super Integer> arg0) {
+  public Object getCount(final Continuation<? super Integer> $completion) {
     final String _sql = "SELECT COUNT(*) FROM trigger_patterns";
     final RoomSQLiteQuery _statement = RoomSQLiteQuery.acquire(_sql, 0);
     final CancellationSignal _cancellationSignal = DBUtil.createCancellationSignal();
@@ -836,11 +836,11 @@ public final class TriggerPatternDao_Impl implements TriggerPatternDao {
           _statement.release();
         }
       }
-    }, arg0);
+    }, $completion);
   }
 
   @Override
-  public Object getSignificantCount(final Continuation<? super Integer> arg0) {
+  public Object getSignificantCount(final Continuation<? super Integer> $completion) {
     final String _sql = "\n"
             + "        SELECT COUNT(*) FROM trigger_patterns\n"
             + "        WHERE correlationStrength >= 0.6\n"
@@ -873,7 +873,7 @@ public final class TriggerPatternDao_Impl implements TriggerPatternDao {
           _statement.release();
         }
       }
-    }, arg0);
+    }, $completion);
   }
 
   @NonNull

@@ -209,7 +209,8 @@ public final class EliminationProtocolDao_Impl implements EliminationProtocolDao
   }
 
   @Override
-  public Object insert(final EliminationProtocol protocol, final Continuation<? super Long> arg1) {
+  public Object insert(final EliminationProtocol protocol,
+      final Continuation<? super Long> $completion) {
     return CoroutinesRoom.execute(__db, true, new Callable<Long>() {
       @Override
       @NonNull
@@ -223,11 +224,12 @@ public final class EliminationProtocolDao_Impl implements EliminationProtocolDao
           __db.endTransaction();
         }
       }
-    }, arg1);
+    }, $completion);
   }
 
   @Override
-  public Object update(final EliminationProtocol protocol, final Continuation<? super Unit> arg1) {
+  public Object update(final EliminationProtocol protocol,
+      final Continuation<? super Unit> $completion) {
     return CoroutinesRoom.execute(__db, true, new Callable<Unit>() {
       @Override
       @NonNull
@@ -241,11 +243,11 @@ public final class EliminationProtocolDao_Impl implements EliminationProtocolDao
           __db.endTransaction();
         }
       }
-    }, arg1);
+    }, $completion);
   }
 
   @Override
-  public Object delete(final String id, final Continuation<? super Unit> arg1) {
+  public Object delete(final String id, final Continuation<? super Unit> $completion) {
     return CoroutinesRoom.execute(__db, true, new Callable<Unit>() {
       @Override
       @NonNull
@@ -270,11 +272,11 @@ public final class EliminationProtocolDao_Impl implements EliminationProtocolDao
           __preparedStmtOfDelete.release(_stmt);
         }
       }
-    }, arg1);
+    }, $completion);
   }
 
   @Override
-  public Object deleteAll(final Continuation<? super Unit> arg0) {
+  public Object deleteAll(final Continuation<? super Unit> $completion) {
     return CoroutinesRoom.execute(__db, true, new Callable<Unit>() {
       @Override
       @NonNull
@@ -293,11 +295,12 @@ public final class EliminationProtocolDao_Impl implements EliminationProtocolDao
           __preparedStmtOfDeleteAll.release(_stmt);
         }
       }
-    }, arg0);
+    }, $completion);
   }
 
   @Override
-  public Object getById(final String id, final Continuation<? super EliminationProtocol> arg1) {
+  public Object getById(final String id,
+      final Continuation<? super EliminationProtocol> $completion) {
     final String _sql = "SELECT * FROM elimination_protocols WHERE id = ?";
     final RoomSQLiteQuery _statement = RoomSQLiteQuery.acquire(_sql, 1);
     int _argIndex = 1;
@@ -409,11 +412,11 @@ public final class EliminationProtocolDao_Impl implements EliminationProtocolDao
           _statement.release();
         }
       }
-    }, arg1);
+    }, $completion);
   }
 
   @Override
-  public Object getActive(final Continuation<? super EliminationProtocol> arg0) {
+  public Object getActive(final Continuation<? super EliminationProtocol> $completion) {
     final String _sql = "SELECT * FROM elimination_protocols WHERE isActive = 1 LIMIT 1";
     final RoomSQLiteQuery _statement = RoomSQLiteQuery.acquire(_sql, 0);
     final CancellationSignal _cancellationSignal = DBUtil.createCancellationSignal();
@@ -519,7 +522,7 @@ public final class EliminationProtocolDao_Impl implements EliminationProtocolDao
           _statement.release();
         }
       }
-    }, arg0);
+    }, $completion);
   }
 
   @Override
@@ -864,7 +867,7 @@ public final class EliminationProtocolDao_Impl implements EliminationProtocolDao
   }
 
   @Override
-  public Object getCount(final Continuation<? super Integer> arg0) {
+  public Object getCount(final Continuation<? super Integer> $completion) {
     final String _sql = "SELECT COUNT(*) FROM elimination_protocols";
     final RoomSQLiteQuery _statement = RoomSQLiteQuery.acquire(_sql, 0);
     final CancellationSignal _cancellationSignal = DBUtil.createCancellationSignal();
@@ -892,11 +895,11 @@ public final class EliminationProtocolDao_Impl implements EliminationProtocolDao
           _statement.release();
         }
       }
-    }, arg0);
+    }, $completion);
   }
 
   @Override
-  public Object getActiveCount(final Continuation<? super Integer> arg0) {
+  public Object getActiveCount(final Continuation<? super Integer> $completion) {
     final String _sql = "SELECT COUNT(*) FROM elimination_protocols WHERE isActive = 1";
     final RoomSQLiteQuery _statement = RoomSQLiteQuery.acquire(_sql, 0);
     final CancellationSignal _cancellationSignal = DBUtil.createCancellationSignal();
@@ -924,7 +927,7 @@ public final class EliminationProtocolDao_Impl implements EliminationProtocolDao
           _statement.release();
         }
       }
-    }, arg0);
+    }, $completion);
   }
 
   @NonNull

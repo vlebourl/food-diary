@@ -1082,6 +1082,14 @@
       jars="/home/vlb/.gradle/caches/modules-2/files-2.1/org.bouncycastle/bcprov-jdk15on/1.70/4636a0d01f74acaf28082fb62b317f1080118371/bcprov-jdk15on-1.70.jar"
       resolved="org.bouncycastle:bcprov-jdk15on:1.70"/>
   <library
+      name="com.google.code.gson:gson:2.10.1@jar"
+      jars="/home/vlb/.gradle/caches/modules-2/files-2.1/com.google.code.gson/gson/2.10.1/b3add478d4382b78ea20b1671390a858002feb6c/gson-2.10.1.jar"
+      resolved="com.google.code.gson:gson:2.10.1"/>
+  <library
+      name="org.apache.commons:commons-lang3:3.14.0@jar"
+      jars="/home/vlb/.gradle/caches/modules-2/files-2.1/org.apache.commons/commons-lang3/3.14.0/1ed471194b02f2c6cb734a0cd6f6f107c673afae/commons-lang3-3.14.0.jar"
+      resolved="org.apache.commons:commons-lang3:3.14.0"/>
+  <library
       name="androidx.emoji2:emoji2-views-helper:1.2.0@aar"
       jars="/home/vlb/.gradle/caches/transforms-3/14367049401ed57afb94d9953899f7eb/transformed/emoji2-views-helper-1.2.0/jars/classes.jar"
       resolved="androidx.emoji2:emoji2-views-helper:1.2.0"

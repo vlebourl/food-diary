@@ -1078,6 +1078,14 @@
       jars="/home/vlb/.gradle/caches/modules-2/files-2.1/org.bouncycastle/bcprov-jdk15on/1.70/4636a0d01f74acaf28082fb62b317f1080118371/bcprov-jdk15on-1.70.jar"
       resolved="org.bouncycastle:bcprov-jdk15on:1.70"/>
   <library
+      name="com.google.code.gson:gson:2.10.1@jar"
+      jars="/home/vlb/.gradle/caches/modules-2/files-2.1/com.google.code.gson/gson/2.10.1/b3add478d4382b78ea20b1671390a858002feb6c/gson-2.10.1.jar"
+      resolved="com.google.code.gson:gson:2.10.1"/>
+  <library
+      name="org.apache.commons:commons-lang3:3.14.0@jar"
+      jars="/home/vlb/.gradle/caches/modules-2/files-2.1/org.apache.commons/commons-lang3/3.14.0/1ed471194b02f2c6cb734a0cd6f6f107c673afae/commons-lang3-3.14.0.jar"
+      resolved="org.apache.commons:commons-lang3:3.14.0"/>
+  <library
       name="androidx.emoji2:emoji2-views-helper:1.2.0@aar"
       jars="/home/vlb/.gradle/caches/transforms-3/14367049401ed57afb94d9953899f7eb/transformed/emoji2-views-helper-1.2.0/jars/classes.jar"
       resolved="androidx.emoji2:emoji2-views-helper:1.2.0"
@@ -1393,6 +1401,10 @@
       jars="/home/vlb/.gradle/caches/modules-2/files-2.1/org.bouncycastle/bcprov-jdk18on/1.76/3a785d0b41806865ad7e311162bfa3fa60b3965b/bcprov-jdk18on-1.76.jar"
       resolved="org.bouncycastle:bcprov-jdk18on:1.76"/>
   <library
+      name="org.json:json:20231013@jar"
+      jars="/home/vlb/.gradle/caches/modules-2/files-2.1/org.json/json/20231013/e22e0c040fe16f04ffdb85d851d77b07fc05ea52/json-20231013.jar"
+      resolved="org.json:json:20231013"/>
+  <library
       name="org.objenesis:objenesis:3.3@jar"
       jars="/home/vlb/.gradle/caches/modules-2/files-2.1/org.objenesis/objenesis/3.3/1049c09f1de4331e8193e579448d0916d75b7631/objenesis-3.3.jar"
       resolved="org.objenesis:objenesis:3.3"/>
@@ -1417,10 +1429,6 @@
       name="com.google.errorprone:error_prone_annotation:2.19.1@jar"
       jars="/home/vlb/.gradle/caches/modules-2/files-2.1/com.google.errorprone/error_prone_annotation/2.19.1/17821e9d8b169d7ebf12e6885599c4e6fb33a316/error_prone_annotation-2.19.1.jar"
       resolved="com.google.errorprone:error_prone_annotation:2.19.1"/>
-  <library
-      name="com.google.code.gson:gson:2.9.0@jar"
-      jars="/home/vlb/.gradle/caches/modules-2/files-2.1/com.google.code.gson/gson/2.9.0/8a1167e089096758b49f9b34066ef98b2f4b37aa/gson-2.9.0.jar"
-      resolved="com.google.code.gson:gson:2.9.0"/>
   <library
       name="org.robolectric:nativeruntime-dist-compat:1.0.2@jar"
       jars="/home/vlb/.gradle/caches/modules-2/files-2.1/org.robolectric/nativeruntime-dist-compat/1.0.2/ae882755c9236301221e18c6d493981257289307/nativeruntime-dist-compat-1.0.2.jar"

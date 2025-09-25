@@ -177,9 +177,9 @@ document.getElementById(id).style.display = 'none';
 <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
   <header class="mdl-layout__header">
     <div class="mdl-layout__header-row">
-      <span class="mdl-layout-title">Lint Report: 163 warnings</span>
+      <span class="mdl-layout-title">Lint Report: 164 warnings</span>
       <div class="mdl-layout-spacer"></div>
-      <nav class="mdl-navigation mdl-layout--large-screen-only">Check performed at Wed Sep 24 20:31:30 CEST 2025 by AGP (8.2.0)</nav>
+      <nav class="mdl-navigation mdl-layout--large-screen-only">Check performed at Thu Sep 25 16:07:40 CEST 2025 by AGP (8.2.0)</nav>
     </div>
   </header>
   <div class="mdl-layout__drawer">
@@ -187,7 +187,7 @@ document.getElementById(id).style.display = 'none';
     <nav class="mdl-navigation">
       <a class="mdl-navigation__link" href="#overview"><i class="material-icons">dashboard</i>Overview</a>
       <a class="mdl-navigation__link" href="#FragmentTagUsage"><i class="material-icons warning-icon">warning</i>Use FragmentContainerView instead of the &lt;fragment> tag (1)</a>
-      <a class="mdl-navigation__link" href="#GradleDependency"><i class="material-icons warning-icon">warning</i>Obsolete Gradle Dependency (31)</a>
+      <a class="mdl-navigation__link" href="#GradleDependency"><i class="material-icons warning-icon">warning</i>Obsolete Gradle Dependency (32)</a>
       <a class="mdl-navigation__link" href="#TrustAllX509TrustManager"><i class="material-icons warning-icon">warning</i>Insecure TLS/SSL trust manager (3)</a>
       <a class="mdl-navigation__link" href="#VectorPath"><i class="material-icons warning-icon">warning</i>Long vector paths (1)</a>
       <a class="mdl-navigation__link" href="#KaptUsageInsteadOfKsp"><i class="material-icons warning-icon">warning</i>Kapt usage should be replaced with KSP (1)</a>
@@ -217,7 +217,7 @@ document.getElementById(id).style.display = 'none';
 <td class="countColumn">1</td><td class="issueColumn"><i class="material-icons warning-icon">warning</i>
 <a href="#FragmentTagUsage">FragmentTagUsage</a>: Use FragmentContainerView instead of the &lt;fragment> tag</td></tr>
 <tr>
-<td class="countColumn">31</td><td class="issueColumn"><i class="material-icons warning-icon">warning</i>
+<td class="countColumn">32</td><td class="issueColumn"><i class="material-icons warning-icon">warning</i>
 <a href="#GradleDependency">GradleDependency</a>: Obsolete Gradle Dependency</td></tr>
 <tr><td class="countColumn"></td><td class="categoryColumn"><a href="#Security">Security</a>
 </td></tr>
@@ -386,7 +386,7 @@ Dismiss</button>            </div>
 <span class="lineno"> 100 </span>    // Navigation Component
 </pre>
 
-<button class="mdl-button mdl-js-button mdl-button--primary" id="GradleDependencyDivLink" onclick="reveal('GradleDependencyDiv');" />+ 26 More Occurrences...</button>
+<button class="mdl-button mdl-js-button mdl-button--primary" id="GradleDependencyDivLink" onclick="reveal('GradleDependencyDiv');" />+ 27 More Occurrences...</button>
 <div id="GradleDependencyDiv" style="display: none">
 <span class="location"><a href="../../build.gradle.kts">../../build.gradle.kts</a>:98</span>: <span class="message">A newer version of androidx.constraintlayout:constraintlayout than 2.1.4 is available: 2.2.1</span><br /><pre class="errorlines">
 <span class="lineno">  95 </span>
@@ -552,98 +552,107 @@ Dismiss</button>            </div>
 <span class="lineno"> 143 </span>    // WorkManager for background tasks
 <span class="caretline"><span class="lineno"> 144 </span>    implementation("<span class="warning">androidx.work:work-runtime-ktx:2.9.0</span>")&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
 <span class="lineno"> 145 </span>
-<span class="lineno"> 146 </span>    // Testing Dependencies
-<span class="lineno"> 147 </span>    testImplementation("junit:junit:4.13.2")
+<span class="lineno"> 146 </span>    // Verification Testing Dependencies
+<span class="lineno"> 147 </span>    implementation("com.google.code.gson:gson:2.10.1") // JSON parsing for test results
 </pre>
 
-<span class="location"><a href="../../build.gradle.kts">../../build.gradle.kts</a>:151</span>: <span class="message">A newer version of androidx.room:room-testing than 2.6.1 is available: 2.8.1</span><br /><pre class="errorlines">
-<span class="lineno"> 148 </span>    testImplementation("org.mockito:mockito-core:5.8.0")
-<span class="lineno"> 149 </span>    testImplementation("org.mockito.kotlin:mockito-kotlin:5.2.1")
-<span class="lineno"> 150 </span>    testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.7.3")
-<span class="caretline"><span class="lineno"> 151 </span>    testImplementation("<span class="warning">androidx.room:room-testing:2.6.1</span>")&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno"> 152 </span>    testImplementation("androidx.arch.core:core-testing:2.2.0")
-<span class="lineno"> 153 </span>    testImplementation("org.robolectric:robolectric:4.11.1")
-<span class="lineno"> 154 </span>    testImplementation("androidx.test:core:1.5.0")
+<span class="location"><a href="../../build.gradle.kts">../../build.gradle.kts</a>:155</span>: <span class="message">A newer version of androidx.room:room-testing than 2.6.1 is available: 2.8.1</span><br /><pre class="errorlines">
+<span class="lineno"> 152 </span>    testImplementation("org.mockito:mockito-core:5.8.0")
+<span class="lineno"> 153 </span>    testImplementation("org.mockito.kotlin:mockito-kotlin:5.2.1")
+<span class="lineno"> 154 </span>    testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.7.3")
+<span class="caretline"><span class="lineno"> 155 </span>    testImplementation("<span class="warning">androidx.room:room-testing:2.6.1</span>")&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno"> 156 </span>    testImplementation("androidx.arch.core:core-testing:2.2.0")
+<span class="lineno"> 157 </span>    testImplementation("org.robolectric:robolectric:4.11.1")
+<span class="lineno"> 158 </span>    testImplementation("androidx.test:core:1.5.0")
 </pre>
 
-<span class="location"><a href="../../build.gradle.kts">../../build.gradle.kts</a>:154</span>: <span class="message">A newer version of androidx.test:core than 1.5.0 is available: 1.7.0</span><br /><pre class="errorlines">
-<span class="lineno"> 151 </span>    testImplementation("androidx.room:room-testing:2.6.1")
-<span class="lineno"> 152 </span>    testImplementation("androidx.arch.core:core-testing:2.2.0")
-<span class="lineno"> 153 </span>    testImplementation("org.robolectric:robolectric:4.11.1")
-<span class="caretline"><span class="lineno"> 154 </span>    testImplementation("<span class="warning">androidx.test:core:1.5.0</span>")&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno"> 155 </span>    testImplementation("androidx.test.ext:junit:1.1.5")
-<span class="lineno"> 156 </span>
-<span class="lineno"> 157 </span>    // Instrumented Testing
+<span class="location"><a href="../../build.gradle.kts">../../build.gradle.kts</a>:158</span>: <span class="message">A newer version of androidx.test:core than 1.5.0 is available: 1.7.0</span><br /><pre class="errorlines">
+<span class="lineno"> 155 </span>    testImplementation("androidx.room:room-testing:2.6.1")
+<span class="lineno"> 156 </span>    testImplementation("androidx.arch.core:core-testing:2.2.0")
+<span class="lineno"> 157 </span>    testImplementation("org.robolectric:robolectric:4.11.1")
+<span class="caretline"><span class="lineno"> 158 </span>    testImplementation("<span class="warning">androidx.test:core:1.5.0</span>")&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno"> 159 </span>    testImplementation("androidx.test.ext:junit:1.1.5")
+<span class="lineno"> 160 </span>
+<span class="lineno"> 161 </span>    // Instrumented Testing
 </pre>
 
-<span class="location"><a href="../../build.gradle.kts">../../build.gradle.kts</a>:155</span>: <span class="message">A newer version of androidx.test.ext:junit than 1.1.5 is available: 1.3.0</span><br /><pre class="errorlines">
-<span class="lineno"> 152 </span>    testImplementation("androidx.arch.core:core-testing:2.2.0")
-<span class="lineno"> 153 </span>    testImplementation("org.robolectric:robolectric:4.11.1")
-<span class="lineno"> 154 </span>    testImplementation("androidx.test:core:1.5.0")
-<span class="caretline"><span class="lineno"> 155 </span>    testImplementation("<span class="warning">androidx.test.ext:junit:1.1.5</span>")&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno"> 156 </span>
-<span class="lineno"> 157 </span>    // Instrumented Testing
-<span class="lineno"> 158 </span>    androidTestImplementation("androidx.test.ext:junit:1.1.5")
+<span class="location"><a href="../../build.gradle.kts">../../build.gradle.kts</a>:159</span>: <span class="message">A newer version of androidx.test.ext:junit than 1.1.5 is available: 1.3.0</span><br /><pre class="errorlines">
+<span class="lineno"> 156 </span>    testImplementation("androidx.arch.core:core-testing:2.2.0")
+<span class="lineno"> 157 </span>    testImplementation("org.robolectric:robolectric:4.11.1")
+<span class="lineno"> 158 </span>    testImplementation("androidx.test:core:1.5.0")
+<span class="caretline"><span class="lineno"> 159 </span>    testImplementation("<span class="warning">androidx.test.ext:junit:1.1.5</span>")&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno"> 160 </span>
+<span class="lineno"> 161 </span>    // Instrumented Testing
+<span class="lineno"> 162 </span>    androidTestImplementation("androidx.test.ext:junit:1.1.5")
 </pre>
 
-<span class="location"><a href="../../build.gradle.kts">../../build.gradle.kts</a>:158</span>: <span class="message">A newer version of androidx.test.ext:junit than 1.1.5 is available: 1.3.0</span><br /><pre class="errorlines">
-<span class="lineno"> 155 </span>    testImplementation("androidx.test.ext:junit:1.1.5")
-<span class="lineno"> 156 </span>
-<span class="lineno"> 157 </span>    // Instrumented Testing
-<span class="caretline"><span class="lineno"> 158 </span>    androidTestImplementation("<span class="warning">androidx.test.ext:junit:1.1.5</span>")&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno"> 159 </span>    androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
-<span class="lineno"> 160 </span>    androidTestImplementation("androidx.test.espresso:espresso-contrib:3.5.1")
-<span class="lineno"> 161 </span>    androidTestImplementation("androidx.test:runner:1.5.2")
+<span class="location"><a href="../../build.gradle.kts">../../build.gradle.kts</a>:162</span>: <span class="message">A newer version of androidx.test.ext:junit than 1.1.5 is available: 1.3.0</span><br /><pre class="errorlines">
+<span class="lineno"> 159 </span>    testImplementation("androidx.test.ext:junit:1.1.5")
+<span class="lineno"> 160 </span>
+<span class="lineno"> 161 </span>    // Instrumented Testing
+<span class="caretline"><span class="lineno"> 162 </span>    androidTestImplementation("<span class="warning">androidx.test.ext:junit:1.1.5</span>")&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno"> 163 </span>    androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
+<span class="lineno"> 164 </span>    androidTestImplementation("androidx.test.espresso:espresso-contrib:3.5.1")
+<span class="lineno"> 165 </span>    androidTestImplementation("androidx.test:runner:1.5.2")
 </pre>
 
-<span class="location"><a href="../../build.gradle.kts">../../build.gradle.kts</a>:159</span>: <span class="message">A newer version of androidx.test.espresso:espresso-core than 3.5.1 is available: 3.7.0</span><br /><pre class="errorlines">
-<span class="lineno"> 156 </span>
-<span class="lineno"> 157 </span>    // Instrumented Testing
-<span class="lineno"> 158 </span>    androidTestImplementation("androidx.test.ext:junit:1.1.5")
-<span class="caretline"><span class="lineno"> 159 </span>    androidTestImplementation("<span class="warning">androidx.test.espresso:espresso-core:3.5.1</span>")&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno"> 160 </span>    androidTestImplementation("androidx.test.espresso:espresso-contrib:3.5.1")
-<span class="lineno"> 161 </span>    androidTestImplementation("androidx.test:runner:1.5.2")
-<span class="lineno"> 162 </span>    androidTestImplementation("androidx.test:rules:1.5.0")
+<span class="location"><a href="../../build.gradle.kts">../../build.gradle.kts</a>:163</span>: <span class="message">A newer version of androidx.test.espresso:espresso-core than 3.5.1 is available: 3.7.0</span><br /><pre class="errorlines">
+<span class="lineno"> 160 </span>
+<span class="lineno"> 161 </span>    // Instrumented Testing
+<span class="lineno"> 162 </span>    androidTestImplementation("androidx.test.ext:junit:1.1.5")
+<span class="caretline"><span class="lineno"> 163 </span>    androidTestImplementation("<span class="warning">androidx.test.espresso:espresso-core:3.5.1</span>")&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno"> 164 </span>    androidTestImplementation("androidx.test.espresso:espresso-contrib:3.5.1")
+<span class="lineno"> 165 </span>    androidTestImplementation("androidx.test:runner:1.5.2")
+<span class="lineno"> 166 </span>    androidTestImplementation("androidx.test:rules:1.5.0")
 </pre>
 
-<span class="location"><a href="../../build.gradle.kts">../../build.gradle.kts</a>:160</span>: <span class="message">A newer version of androidx.test.espresso:espresso-contrib than 3.5.1 is available: 3.7.0</span><br /><pre class="errorlines">
-<span class="lineno"> 157 </span>    // Instrumented Testing
-<span class="lineno"> 158 </span>    androidTestImplementation("androidx.test.ext:junit:1.1.5")
-<span class="lineno"> 159 </span>    androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
-<span class="caretline"><span class="lineno"> 160 </span>    androidTestImplementation("<span class="warning">androidx.test.espresso:espresso-contrib:3.5.1</span>")&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno"> 161 </span>    androidTestImplementation("androidx.test:runner:1.5.2")
-<span class="lineno"> 162 </span>    androidTestImplementation("androidx.test:rules:1.5.0")
-<span class="lineno"> 163 </span>    androidTestImplementation("androidx.room:room-testing:2.6.1")
+<span class="location"><a href="../../build.gradle.kts">../../build.gradle.kts</a>:164</span>: <span class="message">A newer version of androidx.test.espresso:espresso-contrib than 3.5.1 is available: 3.7.0</span><br /><pre class="errorlines">
+<span class="lineno"> 161 </span>    // Instrumented Testing
+<span class="lineno"> 162 </span>    androidTestImplementation("androidx.test.ext:junit:1.1.5")
+<span class="lineno"> 163 </span>    androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
+<span class="caretline"><span class="lineno"> 164 </span>    androidTestImplementation("<span class="warning">androidx.test.espresso:espresso-contrib:3.5.1</span>")&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno"> 165 </span>    androidTestImplementation("androidx.test:runner:1.5.2")
+<span class="lineno"> 166 </span>    androidTestImplementation("androidx.test:rules:1.5.0")
+<span class="lineno"> 167 </span>    androidTestImplementation("androidx.room:room-testing:2.6.1")
 </pre>
 
-<span class="location"><a href="../../build.gradle.kts">../../build.gradle.kts</a>:161</span>: <span class="message">A newer version of androidx.test:runner than 1.5.2 is available: 1.7.0</span><br /><pre class="errorlines">
-<span class="lineno"> 158 </span>    androidTestImplementation("androidx.test.ext:junit:1.1.5")
-<span class="lineno"> 159 </span>    androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
-<span class="lineno"> 160 </span>    androidTestImplementation("androidx.test.espresso:espresso-contrib:3.5.1")
-<span class="caretline"><span class="lineno"> 161 </span>    androidTestImplementation("<span class="warning">androidx.test:runner:1.5.2</span>")&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno"> 162 </span>    androidTestImplementation("androidx.test:rules:1.5.0")
-<span class="lineno"> 163 </span>    androidTestImplementation("androidx.room:room-testing:2.6.1")
-<span class="lineno"> 164 </span>    androidTestImplementation("com.google.dagger:hilt-android-testing:2.48.1")
+<span class="location"><a href="../../build.gradle.kts">../../build.gradle.kts</a>:165</span>: <span class="message">A newer version of androidx.test:runner than 1.5.2 is available: 1.7.0</span><br /><pre class="errorlines">
+<span class="lineno"> 162 </span>    androidTestImplementation("androidx.test.ext:junit:1.1.5")
+<span class="lineno"> 163 </span>    androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
+<span class="lineno"> 164 </span>    androidTestImplementation("androidx.test.espresso:espresso-contrib:3.5.1")
+<span class="caretline"><span class="lineno"> 165 </span>    androidTestImplementation("<span class="warning">androidx.test:runner:1.5.2</span>")&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno"> 166 </span>    androidTestImplementation("androidx.test:rules:1.5.0")
+<span class="lineno"> 167 </span>    androidTestImplementation("androidx.room:room-testing:2.6.1")
+<span class="lineno"> 168 </span>    androidTestImplementation("com.google.dagger:hilt-android-testing:2.48.1")
 </pre>
 
-<span class="location"><a href="../../build.gradle.kts">../../build.gradle.kts</a>:162</span>: <span class="message">A newer version of androidx.test:rules than 1.5.0 is available: 1.7.0</span><br /><pre class="errorlines">
-<span class="lineno"> 159 </span>    androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
-<span class="lineno"> 160 </span>    androidTestImplementation("androidx.test.espresso:espresso-contrib:3.5.1")
-<span class="lineno"> 161 </span>    androidTestImplementation("androidx.test:runner:1.5.2")
-<span class="caretline"><span class="lineno"> 162 </span>    androidTestImplementation("<span class="warning">androidx.test:rules:1.5.0</span>")&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno"> 163 </span>    androidTestImplementation("androidx.room:room-testing:2.6.1")
-<span class="lineno"> 164 </span>    androidTestImplementation("com.google.dagger:hilt-android-testing:2.48.1")
-<span class="lineno"> 165 </span>    kaptAndroidTest("com.google.dagger:hilt-compiler:2.48.1")
+<span class="location"><a href="../../build.gradle.kts">../../build.gradle.kts</a>:166</span>: <span class="message">A newer version of androidx.test:rules than 1.5.0 is available: 1.7.0</span><br /><pre class="errorlines">
+<span class="lineno"> 163 </span>    androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
+<span class="lineno"> 164 </span>    androidTestImplementation("androidx.test.espresso:espresso-contrib:3.5.1")
+<span class="lineno"> 165 </span>    androidTestImplementation("androidx.test:runner:1.5.2")
+<span class="caretline"><span class="lineno"> 166 </span>    androidTestImplementation("<span class="warning">androidx.test:rules:1.5.0</span>")&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno"> 167 </span>    androidTestImplementation("androidx.room:room-testing:2.6.1")
+<span class="lineno"> 168 </span>    androidTestImplementation("com.google.dagger:hilt-android-testing:2.48.1")
+<span class="lineno"> 169 </span>    kaptAndroidTest("com.google.dagger:hilt-compiler:2.48.1")
 </pre>
 
-<span class="location"><a href="../../build.gradle.kts">../../build.gradle.kts</a>:163</span>: <span class="message">A newer version of androidx.room:room-testing than 2.6.1 is available: 2.8.1</span><br /><pre class="errorlines">
-<span class="lineno"> 160 </span>    androidTestImplementation("androidx.test.espresso:espresso-contrib:3.5.1")
-<span class="lineno"> 161 </span>    androidTestImplementation("androidx.test:runner:1.5.2")
-<span class="lineno"> 162 </span>    androidTestImplementation("androidx.test:rules:1.5.0")
-<span class="caretline"><span class="lineno"> 163 </span>    androidTestImplementation("<span class="warning">androidx.room:room-testing:2.6.1</span>")&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno"> 164 </span>    androidTestImplementation("com.google.dagger:hilt-android-testing:2.48.1")
-<span class="lineno"> 165 </span>    kaptAndroidTest("com.google.dagger:hilt-compiler:2.48.1")
-<span class="lineno"> 166 </span>}
+<span class="location"><a href="../../build.gradle.kts">../../build.gradle.kts</a>:167</span>: <span class="message">A newer version of androidx.room:room-testing than 2.6.1 is available: 2.8.1</span><br /><pre class="errorlines">
+<span class="lineno"> 164 </span>    androidTestImplementation("androidx.test.espresso:espresso-contrib:3.5.1")
+<span class="lineno"> 165 </span>    androidTestImplementation("androidx.test:runner:1.5.2")
+<span class="lineno"> 166 </span>    androidTestImplementation("androidx.test:rules:1.5.0")
+<span class="caretline"><span class="lineno"> 167 </span>    androidTestImplementation("<span class="warning">androidx.room:room-testing:2.6.1</span>")&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno"> 168 </span>    androidTestImplementation("com.google.dagger:hilt-android-testing:2.48.1")
+<span class="lineno"> 169 </span>    kaptAndroidTest("com.google.dagger:hilt-compiler:2.48.1")
+</pre>
+
+<span class="location"><a href="../../build.gradle.kts">../../build.gradle.kts</a>:173</span>: <span class="message">A newer version of androidx.test.uiautomator:uiautomator than 2.2.0 is available: 2.3.0</span><br /><pre class="errorlines">
+<span class="lineno"> 170 </span>
+<span class="lineno"> 171 </span>    // Verification-specific test dependencies
+<span class="lineno"> 172 </span>    testImplementation("org.json:json:20231013") // JSON assertions for contract tests
+<span class="caretline"><span class="lineno"> 173 </span>    androidTestImplementation("<span class="warning">androidx.test.uiautomator:uiautomator:2.2.0</span>") // UI automation for verification</span>
+<span class="lineno"> 174 </span>}
+<span class="lineno"> 175 </span>
+<span class="lineno"> 176 </span>// Ktlint configuration
 </pre>
 
 </div>
