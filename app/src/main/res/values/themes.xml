@@ -13,7 +13,7 @@
         <item name="colorSecondaryContainer">@color/blue_100</item>
         <item name="colorOnSecondaryContainer">@color/blue_900</item>
 
-        <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
+        <item name="android:statusBarColor">?attr/colorPrimary</item>
         <item name="android:navigationBarColor">?attr/colorSurface</item>
     </style>
 
