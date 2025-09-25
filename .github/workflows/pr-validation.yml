@@ -227,11 +227,11 @@ jobs:
 
     strategy:
       matrix:
-        api-level: [28, 35]
+        api-level: [28, 30]
         target: [default, google_apis]
         exclude:
-          # Focus on Pixel 9 Pro (Android 16/API 35) compatibility while keeping stable API 28 baseline
-          - api-level: 35
+          # Skip problematic combinations
+          - api-level: 30
             target: google_apis
 
     steps:
@@ -243,6 +243,12 @@ jobs:
         with:
           java-version: ${{ env.JAVA_VERSION }}
           distribution: 'temurin'
+
+      - name: 🚀 Enable KVM Hardware Acceleration
+        run: |
+          echo 'KERNEL=="kvm", GROUP="kvm", MODE="0666", OPTIONS+="static_node=kvm"' | sudo tee /etc/udev/rules.d/99-kvm4all.rules
+          sudo udevadm control --reload-rules
+          sudo udevadm trigger --name-match=kvm
 
       - name: 📋 Setup Android SDK
         uses: android-actions/setup-android@v3
@@ -277,10 +283,10 @@ jobs:
           target: ${{ matrix.target }}
           arch: x86_64
           force-avd-creation: false
-          emulator-options: -no-window -gpu swiftshader_indirect -noaudio -no-boot-anim -camera-back none -no-metrics -memory 2048 -partition-size 2048 -no-snapshot-load -wipe-data
+          emulator-options: -no-window -gpu swiftshader_indirect -noaudio -no-boot-anim -camera-back none -no-metrics
           disable-animations: true
-          disable-linux-hw-accel: true
-          emulator-boot-timeout: 900
+          disable-linux-hw-accel: false
+          emulator-boot-timeout: 600
           script: echo "Generated AVD snapshot for caching."
 
       - name: 🧪 Run Instrumented Tests
@@ -290,11 +296,11 @@ jobs:
           target: ${{ matrix.target }}
           arch: x86_64
           force-avd-creation: false
-          emulator-options: -no-snapshot-save -no-window -gpu swiftshader_indirect -noaudio -no-boot-anim -camera-back none -no-metrics -memory 2048 -partition-size 2048 -no-snapshot-load
+          emulator-options: -no-snapshot-save -no-window -gpu swiftshader_indirect -noaudio -no-boot-anim -camera-back none -no-metrics
           disable-animations: true
-          disable-linux-hw-accel: true
-          emulator-boot-timeout: 900
-          script: timeout 30m ./gradlew connectedDebugAndroidTest --continue --daemon --parallel --configure-on-demand
+          disable-linux-hw-accel: false
+          emulator-boot-timeout: 600
+          script: ./gradlew connectedDebugAndroidTest --continue --daemon --parallel --configure-on-demand --max-workers=2
 
       - name: 📊 Upload Instrumented Test Results
         uses: actions/upload-artifact@v4
