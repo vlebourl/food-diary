@@ -436,6 +436,8 @@ jobs:
     runs-on: ubuntu-latest
     needs: [pre-release-validation, build-release, generate-release-notes]
     if: github.event_name != 'workflow_dispatch' || github.event.inputs.version_name != ''
+    permissions:
+      contents: write
 
     steps:
       - name: 📥 Download All Artifacts
