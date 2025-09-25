@@ -5,11 +5,11 @@ import com.fooddiary.data.models.ConsumptionContext
 import com.fooddiary.data.models.EatingSpeed
 import com.fooddiary.data.models.LocationType
 import com.fooddiary.data.models.SocialContext
-import kotlinx.serialization.encodeToString
-import kotlinx.serialization.decodeFromString
-import kotlinx.serialization.json.Json
 import java.time.Instant
 import java.time.LocalDate
+import kotlinx.serialization.decodeFromString
+import kotlinx.serialization.encodeToString
+import kotlinx.serialization.json.Json
 
 class InstantConverter {
     @TypeConverter
@@ -77,9 +77,11 @@ class ConsumptionContextConverter {
                 ConsumptionContext(
                     location = LocationType.valueOf(parts[0]),
                     social = SocialContext.valueOf(parts[1]),
-                    speed = EatingSpeed.valueOf(parts[2])
+                    speed = EatingSpeed.valueOf(parts[2]),
                 )
-            } else null
+            } else {
+                null
+            }
         }
     }
 }

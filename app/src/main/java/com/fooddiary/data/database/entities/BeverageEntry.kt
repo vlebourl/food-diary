@@ -26,7 +26,7 @@ data class BeverageEntry(
     val createdAt: Instant = Instant.now(),
     val modifiedAt: Instant?,
     val isDeleted: Boolean = false,
-    val deletedAt: Instant? = null
+    val deletedAt: Instant? = null,
 ) {
     companion object {
         fun create(
@@ -40,7 +40,7 @@ data class BeverageEntry(
             alcoholContent: Float? = null,
             carbonation: Boolean = false,
             temperature: Temperature = Temperature.ROOM_TEMPERATURE,
-            notes: String? = null
+            notes: String? = null,
         ) = BeverageEntry(
             timestamp = timestamp,
             timezone = timezone,
@@ -52,14 +52,15 @@ data class BeverageEntry(
             alcoholContent = alcoholContent,
             carbonation = carbonation,
             temperature = temperature,
-            notes = notes
+            notes = notes,
+            modifiedAt = null,
         )
     }
 
     fun softDelete(): BeverageEntry = copy(
         isDeleted = true,
         deletedAt = Instant.now(),
-        modifiedAt = Instant.now()
+        modifiedAt = Instant.now(),
     )
 
     fun update(
@@ -71,7 +72,7 @@ data class BeverageEntry(
         alcoholContent: Float? = null,
         carbonation: Boolean? = null,
         temperature: Temperature? = null,
-        notes: String? = null
+        notes: String? = null,
     ): BeverageEntry = copy(
         name = name ?: this.name,
         type = type ?: this.type,
@@ -82,6 +83,6 @@ data class BeverageEntry(
         carbonation = carbonation ?: this.carbonation,
         temperature = temperature ?: this.temperature,
         notes = notes ?: this.notes,
-        modifiedAt = Instant.now()
+        modifiedAt = Instant.now(),
     )
 }

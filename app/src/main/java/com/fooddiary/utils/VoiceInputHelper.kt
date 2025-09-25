@@ -9,16 +9,16 @@ import android.speech.RecognitionListener
 import android.speech.RecognizerIntent
 import android.speech.SpeechRecognizer
 import androidx.core.content.ContextCompat
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.asStateFlow
 import java.util.*
 import javax.inject.Inject
 import javax.inject.Singleton
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.asStateFlow
 
 @Singleton
 class VoiceInputHelper @Inject constructor(
-    private val context: Context
+    private val context: Context,
 ) {
 
     private var speechRecognizer: SpeechRecognizer? = null
@@ -37,25 +37,25 @@ class VoiceInputHelper @Inject constructor(
     fun hasAudioPermission(): Boolean {
         return ContextCompat.checkSelfPermission(
             context,
-            Manifest.permission.RECORD_AUDIO
+            Manifest.permission.RECORD_AUDIO,
         ) == PackageManager.PERMISSION_GRANTED
     }
 
     fun startListening(
         language: String = "en-US",
         prompt: String = "Speak now...",
-        maxResults: Int = 5
+        maxResults: Int = 5,
     ) {
         if (!isVoiceRecognitionAvailable()) {
             _voiceInputState.value = _voiceInputState.value.copy(
-                error = "Voice recognition not available on this device"
+                error = "Voice recognition not available on this device",
             )
             return
         }
 
         if (!hasAudioPermission()) {
             _voiceInputState.value = _voiceInputState.value.copy(
-                error = "Audio permission required for voice input"
+                error = "Audio permission required for voice input",
             )
             return
         }
@@ -81,15 +81,14 @@ class VoiceInputHelper @Inject constructor(
             _voiceInputState.value = VoiceInputState(
                 isListening = true,
                 isProcessing = false,
-                error = null
+                error = null,
             )
 
             speechRecognizer?.startListening(intent)
             isListening = true
-
         } catch (e: Exception) {
             _voiceInputState.value = _voiceInputState.value.copy(
-                error = "Failed to start voice recognition: ${e.message}"
+                error = "Failed to start voice recognition: ${e.message}",
             )
         }
     }
@@ -103,11 +102,11 @@ class VoiceInputHelper @Inject constructor(
 
             _voiceInputState.value = _voiceInputState.value.copy(
                 isListening = false,
-                isProcessing = false
+                isProcessing = false,
             )
         } catch (e: Exception) {
             _voiceInputState.value = _voiceInputState.value.copy(
-                error = "Failed to stop voice recognition: ${e.message}"
+                error = "Failed to stop voice recognition: ${e.message}",
             )
         }
     }
@@ -126,20 +125,20 @@ class VoiceInputHelper @Inject constructor(
                 _voiceInputState.value = _voiceInputState.value.copy(
                     isListening = true,
                     isProcessing = false,
-                    error = null
+                    error = null,
                 )
             }
 
             override fun onBeginningOfSpeech() {
                 _voiceInputState.value = _voiceInputState.value.copy(
-                    isProcessing = true
+                    isProcessing = true,
                 )
             }
 
             override fun onRmsChanged(rmsdB: Float) {
                 // Update volume levels for UI feedback
                 _voiceInputState.value = _voiceInputState.value.copy(
-                    volumeLevel = rmsdB
+                    volumeLevel = rmsdB,
                 )
             }
 
@@ -150,7 +149,7 @@ class VoiceInputHelper @Inject constructor(
             override fun onEndOfSpeech() {
                 _voiceInputState.value = _voiceInputState.value.copy(
                     isListening = false,
-                    isProcessing = true
+                    isProcessing = true,
                 )
             }
 
@@ -171,7 +170,7 @@ class VoiceInputHelper @Inject constructor(
                 _voiceInputState.value = VoiceInputState(
                     isListening = false,
                     isProcessing = false,
-                    error = errorMessage
+                    error = errorMessage,
                 )
 
                 isListening = false
@@ -191,13 +190,13 @@ class VoiceInputHelper @Inject constructor(
                         isProcessing = false,
                         error = null,
                         confidence = bestConfidence,
-                        allResults = matches
+                        allResults = matches,
                     )
                 } else {
                     _voiceInputState.value = VoiceInputState(
                         isListening = false,
                         isProcessing = false,
-                        error = "No speech recognized"
+                        error = "No speech recognized",
                     )
                 }
 
@@ -221,21 +220,21 @@ class VoiceInputHelper @Inject constructor(
     fun startFoodEntryListening() {
         startListening(
             prompt = "Tell me what you ate. For example: 'I had a turkey sandwich with lettuce and tomato'",
-            maxResults = 3
+            maxResults = 3,
         )
     }
 
     fun startSymptomEntryListening() {
         startListening(
             prompt = "Describe your symptoms. For example: 'I have stomach pain, severity 6 out of 10'",
-            maxResults = 3
+            maxResults = 3,
         )
     }
 
     fun startQuickLogListening() {
         startListening(
             prompt = "Quick log: What did you eat and how do you feel?",
-            maxResults = 1
+            maxResults = 1,
         )
     }
 
@@ -294,7 +293,7 @@ class VoiceInputHelper @Inject constructor(
             portionUnit = portionUnit,
             mealType = mealType,
             ingredients = extractIngredients(text),
-            originalText = text
+            originalText = text,
         )
     }
 
@@ -336,7 +335,7 @@ class VoiceInputHelper @Inject constructor(
             severity = severity.coerceIn(1, 10),
             duration = durationMinutes,
             notes = text,
-            originalText = text
+            originalText = text,
         )
     }
 
@@ -390,7 +389,7 @@ data class VoiceInputState(
     val error: String? = null,
     val volumeLevel: Float = 0f,
     val confidence: Float = 0f,
-    val allResults: List<String> = emptyList()
+    val allResults: List<String> = emptyList(),
 )
 
 data class ParsedFoodEntry(
@@ -399,7 +398,7 @@ data class ParsedFoodEntry(
     val portionUnit: String,
     val mealType: String,
     val ingredients: List<String>,
-    val originalText: String
+    val originalText: String,
 )
 
 data class ParsedSymptomEntry(
@@ -407,5 +406,5 @@ data class ParsedSymptomEntry(
     val severity: Int,
     val duration: Int?,
     val notes: String,
-    val originalText: String
+    val originalText: String,
 )

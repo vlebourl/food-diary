@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<checkstyle version="8.0">
+    <file name="/home/vlb/food-diary/app/src/test/java/com/fooddiary/data/repository/BeverageEntryRepositoryTest.kt">
+        <error line="4" column="28" severity="error" message="Wildcard import" source="no-wildcard-imports" />
+    </file>
+    <file name="/home/vlb/food-diary/app/src/test/java/com/fooddiary/data/repository/EnvironmentalContextRepositoryTest.kt">
+        <error line="4" column="28" severity="error" message="Wildcard import" source="no-wildcard-imports" />
+    </file>
+    <file name="/home/vlb/food-diary/app/src/test/java/com/fooddiary/data/repository/FoodEntryRepositoryTest.kt">
+        <error line="4" column="28" severity="error" message="Wildcard import" source="no-wildcard-imports" />
+    </file>
+    <file name="/home/vlb/food-diary/app/src/test/java/com/fooddiary/data/repository/QuickEntryTemplateRepositoryTest.kt">
+        <error line="4" column="1" severity="error" message="Wildcard import" source="no-wildcard-imports" />
+    </file>
+    <file name="/home/vlb/food-diary/app/src/test/java/com/fooddiary/data/repository/SymptomEventRepositoryTest.kt">
+        <error line="5" column="28" severity="error" message="Wildcard import" source="no-wildcard-imports" />
+    </file>
+    <file name="/home/vlb/food-diary/app/src/test/java/com/fooddiary/data/repository/TriggerPatternRepositoryTest.kt">
+        <error line="5" column="1" severity="error" message="Wildcard import" source="no-wildcard-imports" />
+    </file>
+    <file name="/home/vlb/food-diary/app/src/test/java/com/fooddiary/domain/analysis/CorrelationEngineTest.kt">
+        <error line="7" column="23" severity="error" message="Wildcard import" source="no-wildcard-imports" />
+    </file>
+    <file name="/home/vlb/food-diary/app/src/test/java/com/fooddiary/domain/analysis/FODMAPAnalyzerTest.kt">
+        <error line="10" column="26" severity="error" message="Wildcard import" source="no-wildcard-imports" />
+    </file>
+    <file name="/home/vlb/food-diary/app/src/test/java/com/fooddiary/domain/usecase/AddFoodEntryUseCaseTest.kt">
+        <error line="12" column="26" severity="error" message="Wildcard import" source="no-wildcard-imports" />
+    </file>
+    <file name="/home/vlb/food-diary/app/src/test/java/com/fooddiary/domain/usecase/AddSymptomEventUseCaseTest.kt">
+        <error line="11" column="26" severity="error" message="Wildcard import" source="no-wildcard-imports" />
+    </file>
+    <file name="/home/vlb/food-diary/app/src/test/java/com/fooddiary/domain/usecase/CalculateCorrelationsUseCaseTest.kt">
+        <error line="17" column="27" severity="error" message="Wildcard import" source="no-wildcard-imports" />
+        <error line="135" column="36" severity="error" message="Exceeded max line length (120)" source="max-line-length" />
+        <error line="288" column="11" severity="error" message="Exceeded max line length (120)" source="max-line-length" />
+        <error line="343" column="26" severity="error" message="Exceeded max line length (120)" source="max-line-length" />
+    </file>
+    <file name="/home/vlb/food-diary/app/src/test/java/com/fooddiary/presentation/viewmodel/FoodEntryViewModelTest.kt">
+        <error line="5" column="1" severity="error" message="Wildcard import" source="no-wildcard-imports" />
+        <error line="9" column="1" severity="error" message="Wildcard import" source="no-wildcard-imports" />
+        <error line="12" column="26" severity="error" message="Wildcard import" source="no-wildcard-imports" />
+        <error line="13" column="26" severity="error" message="Wildcard import" source="no-wildcard-imports" />
+        <error line="14" column="26" severity="error" message="Wildcard import" source="no-wildcard-imports" />
+    </file>
+</checkstyle>

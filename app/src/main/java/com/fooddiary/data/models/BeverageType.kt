@@ -10,14 +10,14 @@ enum class BeverageType {
     MILK,
     SPORTS_DRINK,
     ENERGY_DRINK,
-    OTHER
+    OTHER,
 }
 
 enum class VolumeUnit {
     ML,
     L,
     OZ,
-    CUP
+    CUP,
 }
 
 enum class Temperature {
@@ -25,5 +25,5 @@ enum class Temperature {
     COLD,
     ROOM_TEMPERATURE,
     WARM,
-    HOT
+    HOT,
 }

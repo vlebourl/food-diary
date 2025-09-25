@@ -1,0 +1,51 @@
+[90m/home/vlb/food-diary/app/src/androidTest/java/com/fooddiary/data/database/[0mEncryptionTest.kt[90m:[0m1[90m:1:[0m File must end with a newline (\n) [90m(final-newline)[0m
+[90m/home/vlb/food-diary/app/src/androidTest/java/com/fooddiary/data/database/[0mEncryptionTest.kt[90m:[0m3[90m:1:[0m Imports must be ordered in lexicographic order without any empty lines in-between [90m(import-ordering)[0m
+[90m/home/vlb/food-diary/app/src/androidTest/java/com/fooddiary/data/database/[0mEncryptionTest.kt[90m:[0m12[90m:1:[0m Unused import [90m(no-unused-imports)[0m
+[90m/home/vlb/food-diary/app/src/androidTest/java/com/fooddiary/data/database/[0mEncryptionTest.kt[90m:[0m13[90m:1:[0m Wildcard import [90m(no-wildcard-imports)[0m
+[90m/home/vlb/food-diary/app/src/androidTest/java/com/fooddiary/data/database/[0mEncryptionTest.kt[90m:[0m45[90m:23:[0m Missing trailing comma before ")" [90m(trailing-comma-on-call-site)[0m
+[90m/home/vlb/food-diary/app/src/androidTest/java/com/fooddiary/data/database/[0mEncryptionTest.kt[90m:[0m76[90m:23:[0m Missing trailing comma before ")" [90m(trailing-comma-on-call-site)[0m
+[90m/home/vlb/food-diary/app/src/androidTest/java/com/fooddiary/data/database/[0mEncryptionTest.kt[90m:[0m85[90m:92:[0m Missing trailing comma before ")" [90m(trailing-comma-on-call-site)[0m
+[90m/home/vlb/food-diary/app/src/androidTest/java/com/fooddiary/data/database/[0mEncryptionTest.kt[90m:[0m88[90m:74:[0m Missing trailing comma before ")" [90m(trailing-comma-on-call-site)[0m
+[90m/home/vlb/food-diary/app/src/androidTest/java/com/fooddiary/data/database/[0mEncryptionTest.kt[90m:[0m102[90m:55:[0m Missing trailing comma before ")" [90m(trailing-comma-on-call-site)[0m
+[90m/home/vlb/food-diary/app/src/androidTest/java/com/fooddiary/data/database/[0mEncryptionTest.kt[90m:[0m118[90m:23:[0m Missing trailing comma before ")" [90m(trailing-comma-on-call-site)[0m
+[90m/home/vlb/food-diary/app/src/androidTest/java/com/fooddiary/data/database/[0mEncryptionTest.kt[90m:[0m138[90m:23:[0m Missing trailing comma before ")" [90m(trailing-comma-on-call-site)[0m
+[90m/home/vlb/food-diary/app/src/androidTest/java/com/fooddiary/data/database/[0mEncryptionTest.kt[90m:[0m161[90m:23:[0m Missing trailing comma before ")" [90m(trailing-comma-on-call-site)[0m
+[90m/home/vlb/food-diary/app/src/androidTest/java/com/fooddiary/data/database/[0mEncryptionTest.kt[90m:[0m197[90m:28:[0m Missing trailing comma before ")" [90m(trailing-comma-on-call-site)[0m
+[90m/home/vlb/food-diary/app/src/androidTest/java/com/fooddiary/data/database/[0mMigrationTest.kt[90m:[0m1[90m:1:[0m File must end with a newline (\n) [90m(final-newline)[0m
+[90m/home/vlb/food-diary/app/src/androidTest/java/com/fooddiary/data/database/[0mMigrationTest.kt[90m:[0m3[90m:1:[0m Imports must be ordered in lexicographic order without any empty lines in-between [90m(import-ordering)[0m
+[90m/home/vlb/food-diary/app/src/androidTest/java/com/fooddiary/data/database/[0mMigrationTest.kt[90m:[0m3[90m:1:[0m Unused import [90m(no-unused-imports)[0m
+[90m/home/vlb/food-diary/app/src/androidTest/java/com/fooddiary/data/database/[0mMigrationTest.kt[90m:[0m11[90m:1:[0m Wildcard import [90m(no-wildcard-imports)[0m
+[90m/home/vlb/food-diary/app/src/androidTest/java/com/fooddiary/data/database/[0mMigrationTest.kt[90m:[0m21[90m:38:[0m Missing trailing comma before ")" [90m(trailing-comma-on-call-site)[0m
+[90m/home/vlb/food-diary/app/src/androidTest/java/com/fooddiary/data/database/[0mMigrationTest.kt[90m:[0m62[90m:30:[0m Missing trailing comma before ")" [90m(trailing-comma-on-call-site)[0m
+[90m/home/vlb/food-diary/app/src/androidTest/java/com/fooddiary/data/database/[0mMigrationTest.kt[90m:[0m86[90m:48:[0m Missing trailing comma before ")" [90m(trailing-comma-on-call-site)[0m
+[90m/home/vlb/food-diary/app/src/androidTest/java/com/fooddiary/data/database/[0mMigrationTest.kt[90m:[0m91[90m:90:[0m Missing trailing comma before ")" [90m(trailing-comma-on-call-site)[0m
+[90m/home/vlb/food-diary/app/src/androidTest/java/com/fooddiary/integration/[0mEliminationProtocolTest.kt[90m:[0m1[90m:1:[0m File must end with a newline (\n) [90m(final-newline)[0m
+[90m/home/vlb/food-diary/app/src/androidTest/java/com/fooddiary/integration/[0mEliminationProtocolTest.kt[90m:[0m3[90m:1:[0m Imports must be ordered in lexicographic order without any empty lines in-between [90m(import-ordering)[0m
+[90m/home/vlb/food-diary/app/src/androidTest/java/com/fooddiary/integration/[0mEliminationProtocolTest.kt[90m:[0m6[90m:1:[0m Wildcard import [90m(no-wildcard-imports)[0m
+[90m/home/vlb/food-diary/app/src/androidTest/java/com/fooddiary/integration/[0mEliminationProtocolTest.kt[90m:[0m7[90m:1:[0m Wildcard import [90m(no-wildcard-imports)[0m
+[90m/home/vlb/food-diary/app/src/androidTest/java/com/fooddiary/integration/[0mEliminationProtocolTest.kt[90m:[0m8[90m:1:[0m Wildcard import [90m(no-wildcard-imports)[0m
+[90m/home/vlb/food-diary/app/src/androidTest/java/com/fooddiary/integration/[0mPatternAnalysisTest.kt[90m:[0m1[90m:1:[0m File must end with a newline (\n) [90m(final-newline)[0m
+[90m/home/vlb/food-diary/app/src/androidTest/java/com/fooddiary/integration/[0mPatternAnalysisTest.kt[90m:[0m3[90m:1:[0m Imports must be ordered in lexicographic order without any empty lines in-between [90m(import-ordering)[0m
+[90m/home/vlb/food-diary/app/src/androidTest/java/com/fooddiary/integration/[0mPatternAnalysisTest.kt[90m:[0m6[90m:1:[0m Wildcard import [90m(no-wildcard-imports)[0m
+[90m/home/vlb/food-diary/app/src/androidTest/java/com/fooddiary/integration/[0mPatternAnalysisTest.kt[90m:[0m7[90m:1:[0m Wildcard import [90m(no-wildcard-imports)[0m
+[90m/home/vlb/food-diary/app/src/androidTest/java/com/fooddiary/integration/[0mPatternAnalysisTest.kt[90m:[0m8[90m:1:[0m Wildcard import [90m(no-wildcard-imports)[0m
+[90m/home/vlb/food-diary/app/src/androidTest/java/com/fooddiary/integration/[0mQuickAddFlowTest.kt[90m:[0m1[90m:1:[0m File must end with a newline (\n) [90m(final-newline)[0m
+[90m/home/vlb/food-diary/app/src/androidTest/java/com/fooddiary/integration/[0mQuickAddFlowTest.kt[90m:[0m3[90m:1:[0m Imports must be ordered in lexicographic order without any empty lines in-between [90m(import-ordering)[0m
+[90m/home/vlb/food-diary/app/src/androidTest/java/com/fooddiary/integration/[0mQuickAddFlowTest.kt[90m:[0m6[90m:1:[0m Wildcard import [90m(no-wildcard-imports)[0m
+[90m/home/vlb/food-diary/app/src/androidTest/java/com/fooddiary/integration/[0mQuickAddFlowTest.kt[90m:[0m7[90m:1:[0m Wildcard import [90m(no-wildcard-imports)[0m
+[90m/home/vlb/food-diary/app/src/androidTest/java/com/fooddiary/integration/[0mQuickAddFlowTest.kt[90m:[0m8[90m:1:[0m Wildcard import [90m(no-wildcard-imports)[0m
+[90m/home/vlb/food-diary/app/src/androidTest/java/com/fooddiary/integration/[0mQuickAddFlowTest.kt[90m:[0m17[90m:1:[0m Wildcard import [90m(no-wildcard-imports)[0m
+[90m/home/vlb/food-diary/app/src/androidTest/java/com/fooddiary/integration/[0mReportGenerationTest.kt[90m:[0m1[90m:1:[0m File must end with a newline (\n) [90m(final-newline)[0m
+[90m/home/vlb/food-diary/app/src/androidTest/java/com/fooddiary/integration/[0mReportGenerationTest.kt[90m:[0m3[90m:1:[0m Imports must be ordered in lexicographic order without any empty lines in-between [90m(import-ordering)[0m
+[90m/home/vlb/food-diary/app/src/androidTest/java/com/fooddiary/integration/[0mReportGenerationTest.kt[90m:[0m6[90m:1:[0m Wildcard import [90m(no-wildcard-imports)[0m
+[90m/home/vlb/food-diary/app/src/androidTest/java/com/fooddiary/integration/[0mReportGenerationTest.kt[90m:[0m7[90m:1:[0m Wildcard import [90m(no-wildcard-imports)[0m
+[90m/home/vlb/food-diary/app/src/androidTest/java/com/fooddiary/integration/[0mReportGenerationTest.kt[90m:[0m8[90m:1:[0m Wildcard import [90m(no-wildcard-imports)[0m
+[90m/home/vlb/food-diary/app/src/androidTest/java/com/fooddiary/integration/[0mSymptomTrackingTest.kt[90m:[0m1[90m:1:[0m File must end with a newline (\n) [90m(final-newline)[0m
+[90m/home/vlb/food-diary/app/src/androidTest/java/com/fooddiary/integration/[0mSymptomTrackingTest.kt[90m:[0m3[90m:1:[0m Imports must be ordered in lexicographic order without any empty lines in-between [90m(import-ordering)[0m
+[90m/home/vlb/food-diary/app/src/androidTest/java/com/fooddiary/integration/[0mSymptomTrackingTest.kt[90m:[0m6[90m:1:[0m Wildcard import [90m(no-wildcard-imports)[0m
+[90m/home/vlb/food-diary/app/src/androidTest/java/com/fooddiary/integration/[0mSymptomTrackingTest.kt[90m:[0m7[90m:1:[0m Wildcard import [90m(no-wildcard-imports)[0m
+[90m/home/vlb/food-diary/app/src/androidTest/java/com/fooddiary/integration/[0mSymptomTrackingTest.kt[90m:[0m8[90m:1:[0m Wildcard import [90m(no-wildcard-imports)[0m
+[90m/home/vlb/food-diary/app/src/androidTest/java/com/fooddiary/presentation/ui/[0mBristolStoolChartTest.kt[90m:[0m1[90m:1:[0m File must end with a newline (\n) [90m(final-newline)[0m
+[90m/home/vlb/food-diary/app/src/androidTest/java/com/fooddiary/presentation/ui/[0mBristolStoolChartTest.kt[90m:[0m3[90m:1:[0m Imports must be ordered in lexicographic order without any empty lines in-between [90m(import-ordering)[0m
+[90m/home/vlb/food-diary/app/src/androidTest/java/com/fooddiary/presentation/ui/[0mBristolStoolChartTest.kt[90m:[0m7[90m:1:[0m Wildcard import [90m(no-wildcard-imports)[0m
+[90m/home/vlb/food-diary/app/src/androidTest/java/com/fooddiary/presentation/ui/[0mBristolStoolChartTest.kt[90m:[0m15[90m:1:[0m Unused import [90m(no-unused-imports)[0m

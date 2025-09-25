@@ -161,17 +161,17 @@
 - [x] T085 [P] Optimal eating window and eating speed correlation analysis in app/src/main/java/com/fooddiary/domain/analysis/EatingWindowAnalyzer.kt
 
 ### Edge Case & Error Handling
-- [ ] T086 [P] Timezone conflict resolution for cross-timezone entries in app/src/main/java/com/fooddiary/utils/TimezoneHandler.kt
-- [ ] T087 [P] Data corruption detection and recovery in app/src/main/java/com/fooddiary/data/integrity/DataIntegrityChecker.kt
-- [ ] T088 [P] Concurrent access handling for multi-entry scenarios in app/src/main/java/com/fooddiary/data/concurrency/ConcurrencyManager.kt
+- [x] T086 [P] Timezone conflict resolution for cross-timezone entries in app/src/main/java/com/fooddiary/utils/TimezoneHandler.kt
+- [x] T087 [P] Data corruption detection and recovery in app/src/main/java/com/fooddiary/data/integrity/DataIntegrityChecker.kt
+- [x] T088 [P] Concurrent access handling for multi-entry scenarios in app/src/main/java/com/fooddiary/data/concurrency/ConcurrentAccessManager.kt
 
 ## Phase 3.6: Polish & Validation
 
 ### Unit Tests for Business Logic
 - [x] T089 [P] CorrelationEngine unit tests in app/src/test/java/com/fooddiary/domain/analysis/CorrelationEngineTest.kt
-- [ ] T090 [P] FODMAPAnalyzer unit tests in app/src/test/java/com/fooddiary/domain/analysis/FODMAPAnalyzerTest.kt
-- [ ] T091 [P] UseCase unit tests in app/src/test/java/com/fooddiary/domain/usecase/UseCaseTests.kt
-- [ ] T092 [P] ViewModel unit tests in app/src/test/java/com/fooddiary/presentation/viewmodel/ViewModelTests.kt
+- [x] T090 [P] FODMAPAnalyzer unit tests in app/src/test/java/com/fooddiary/domain/analysis/FODMAPAnalyzerTest.kt
+- [x] T091 [P] UseCase unit tests in app/src/test/java/com/fooddiary/domain/usecase/UseCaseTests.kt
+- [x] T092 [P] ViewModel unit tests in app/src/test/java/com/fooddiary/presentation/viewmodel/ViewModelTests.kt
 
 ### UI Tests
 - [ ] T093 [P] Food entry UI tests in app/src/androidTest/java/com/fooddiary/presentation/ui/FoodEntryUITest.kt

@@ -13,7 +13,7 @@ import java.util.*
 @Entity(tableName = "medical_reports")
 @TypeConverters(
     LocalDateConverter::class,
-    StringListConverter::class
+    StringListConverter::class,
 )
 data class MedicalReport(
     @PrimaryKey val id: String = UUID.randomUUID().toString(),
@@ -27,7 +27,7 @@ data class MedicalReport(
     val generatedAt: Long = System.currentTimeMillis(),
     val isShared: Boolean = false,
     val shareHistory: List<String> = emptyList(), // Timestamps of shares as strings
-    val notes: String?
+    val notes: String?,
 ) {
     companion object {
         fun create(
@@ -36,25 +36,27 @@ data class MedicalReport(
             endDate: LocalDate,
             format: ReportFormat,
             sections: List<ReportSection>,
-            notes: String? = null
+            notes: String? = null,
         ) = MedicalReport(
             title = title,
             startDate = startDate,
             endDate = endDate,
             format = format,
             sections = sections.map { it.name },
-            notes = notes
+            filePath = null,
+            fileSize = null,
+            notes = notes,
         )
     }
 
     fun markAsGenerated(filePath: String, fileSize: Long): MedicalReport = copy(
         filePath = filePath,
-        fileSize = fileSize
+        fileSize = fileSize,
     )
 
     fun markAsShared(): MedicalReport = copy(
         isShared = true,
-        shareHistory = shareHistory + System.currentTimeMillis().toString()
+        shareHistory = shareHistory + System.currentTimeMillis().toString(),
     )
 
     val isGenerated: Boolean

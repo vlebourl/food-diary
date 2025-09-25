@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<checkstyle version="8.0">
+    <file name="/home/vlb/food-diary/app/src/androidTest/java/com/fooddiary/data/database/EncryptionTest.kt">
+        <error line="7" column="1" severity="error" message="Wildcard import" source="no-wildcard-imports" />
+    </file>
+    <file name="/home/vlb/food-diary/app/src/androidTest/java/com/fooddiary/data/database/MigrationTest.kt">
+        <error line="7" column="2" severity="error" message="Wildcard import" source="no-wildcard-imports" />
+    </file>
+    <file name="/home/vlb/food-diary/app/src/androidTest/java/com/fooddiary/integration/EliminationProtocolTest.kt">
+        <error line="3" column="47" severity="error" message="Wildcard import" source="no-wildcard-imports" />
+        <error line="4" column="40" severity="error" message="Wildcard import" source="no-wildcard-imports" />
+        <error line="5" column="44" severity="error" message="Wildcard import" source="no-wildcard-imports" />
+    </file>
+    <file name="/home/vlb/food-diary/app/src/androidTest/java/com/fooddiary/integration/PatternAnalysisTest.kt">
+        <error line="3" column="47" severity="error" message="Wildcard import" source="no-wildcard-imports" />
+        <error line="4" column="40" severity="error" message="Wildcard import" source="no-wildcard-imports" />
+        <error line="5" column="44" severity="error" message="Wildcard import" source="no-wildcard-imports" />
+    </file>
+    <file name="/home/vlb/food-diary/app/src/androidTest/java/com/fooddiary/integration/QuickAddFlowTest.kt">
+        <error line="3" column="47" severity="error" message="Wildcard import" source="no-wildcard-imports" />
+        <error line="4" column="40" severity="error" message="Wildcard import" source="no-wildcard-imports" />
+        <error line="5" column="44" severity="error" message="Wildcard import" source="no-wildcard-imports" />
+        <error line="13" column="1" severity="error" message="Wildcard import" source="no-wildcard-imports" />
+    </file>
+    <file name="/home/vlb/food-diary/app/src/androidTest/java/com/fooddiary/integration/ReportGenerationTest.kt">
+        <error line="3" column="47" severity="error" message="Wildcard import" source="no-wildcard-imports" />
+        <error line="4" column="40" severity="error" message="Wildcard import" source="no-wildcard-imports" />
+        <error line="5" column="44" severity="error" message="Wildcard import" source="no-wildcard-imports" />
+    </file>
+    <file name="/home/vlb/food-diary/app/src/androidTest/java/com/fooddiary/integration/SymptomTrackingTest.kt">
+        <error line="3" column="47" severity="error" message="Wildcard import" source="no-wildcard-imports" />
+        <error line="4" column="40" severity="error" message="Wildcard import" source="no-wildcard-imports" />
+        <error line="5" column="44" severity="error" message="Wildcard import" source="no-wildcard-imports" />
+    </file>
+    <file name="/home/vlb/food-diary/app/src/androidTest/java/com/fooddiary/presentation/ui/BristolStoolChartTest.kt">
+        <error line="6" column="11" severity="error" message="Wildcard import" source="no-wildcard-imports" />
+    </file>
+</checkstyle>

@@ -23,17 +23,21 @@ interface TriggerPatternDao {
     @Query("SELECT * FROM trigger_patterns WHERE foodName = :foodName ORDER BY correlationStrength DESC")
     fun getByFood(foodName: String): Flow<List<TriggerPattern>>
 
-    @Query("SELECT * FROM trigger_patterns WHERE correlationStrength >= :minConfidence ORDER BY correlationStrength DESC")
+    @Query(
+        "SELECT * FROM trigger_patterns WHERE correlationStrength >= :minConfidence ORDER BY correlationStrength DESC",
+    )
     fun getHighConfidence(minConfidence: Float = 0.7f): Flow<List<TriggerPattern>>
 
-    @Query("""
+    @Query(
+        """
         SELECT * FROM trigger_patterns
         WHERE occurrences >= 10
         AND correlationStrength >= 0.6
         AND confidence >= 0.95
         AND pValue < 0.05
         ORDER BY correlationStrength DESC
-    """)
+    """,
+    )
     fun getStatisticallySignificant(): Flow<List<TriggerPattern>>
 
     @Query("SELECT * FROM trigger_patterns WHERE id = :id")
@@ -48,11 +52,13 @@ interface TriggerPatternDao {
     @Query("SELECT COUNT(*) FROM trigger_patterns")
     suspend fun getCount(): Int
 
-    @Query("""
+    @Query(
+        """
         SELECT COUNT(*) FROM trigger_patterns
         WHERE correlationStrength >= 0.6
         AND confidence >= 0.95
         AND occurrences >= 10
-    """)
+    """,
+    )
     suspend fun getSignificantCount(): Int
 }

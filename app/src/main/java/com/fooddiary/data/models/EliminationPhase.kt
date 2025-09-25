@@ -4,7 +4,8 @@ enum class EliminationPhase {
     BASELINE,
     ELIMINATION,
     REINTRODUCTION,
-    MAINTENANCE;
+    MAINTENANCE,
+    ;
 
     val displayName: String
         get() = when (this) {

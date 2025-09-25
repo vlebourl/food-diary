@@ -1,7 +1,6 @@
 package com.fooddiary.data.database
 
 import androidx.room.Database
-import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
 import com.fooddiary.data.database.converters.*
@@ -17,17 +16,17 @@ import com.fooddiary.data.database.entities.*
         QuickEntryTemplate::class,
         EliminationProtocol::class,
         TriggerPattern::class,
-        MedicalReport::class
+        MedicalReport::class,
     ],
     version = 1,
-    exportSchema = true
+    exportSchema = true,
 )
 @TypeConverters(
     InstantConverter::class,
     LocalDateConverter::class,
     StringListConverter::class,
     StringMapConverter::class,
-    ConsumptionContextConverter::class
+    ConsumptionContextConverter::class,
 )
 abstract class FoodDiaryDatabase : RoomDatabase() {
 

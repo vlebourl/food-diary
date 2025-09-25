@@ -15,7 +15,8 @@ enum class SymptomType {
     SKIN_REACTION,
     JOINT_PAIN,
     BOWEL_MOVEMENT,
-    OTHER;
+    OTHER,
+    ;
 
     val displayName: String
         get() = when (this) {

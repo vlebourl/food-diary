@@ -2,8 +2,8 @@ package com.fooddiary.data.database.dao
 
 import androidx.room.*
 import com.fooddiary.data.database.entities.BeverageEntry
-import kotlinx.coroutines.flow.Flow
 import java.time.Instant
+import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface BeverageEntryDao {
@@ -20,24 +20,29 @@ interface BeverageEntryDao {
     @Query("SELECT * FROM beverage_entries WHERE isDeleted = 0 ORDER BY timestamp DESC")
     fun getAll(): Flow<List<BeverageEntry>>
 
-    @Query("""
+    @Query(
+        """
         SELECT * FROM beverage_entries
         WHERE DATE(timestamp, 'unixepoch') BETWEEN :startDate AND :endDate
         AND isDeleted = 0
         ORDER BY timestamp DESC
-    """)
+    """,
+    )
     fun getAllByDateRange(startDate: String, endDate: String): Flow<List<BeverageEntry>>
 
-    @Query("""
+    @Query(
+        """
         SELECT COALESCE(SUM(caffeineContent * volume / 1000.0), 0) as totalCaffeine
         FROM beverage_entries
         WHERE DATE(timestamp, 'unixepoch') = :date
         AND caffeineContent IS NOT NULL
         AND isDeleted = 0
-    """)
+    """,
+    )
     fun getCaffeineIntake(date: String): Flow<Float>
 
-    @Query("""
+    @Query(
+        """
         SELECT COALESCE(SUM(CASE
             WHEN volumeUnit = 'L' THEN volume * 1000
             WHEN volumeUnit = 'OZ' THEN volume * 29.5735
@@ -47,30 +52,37 @@ interface BeverageEntryDao {
         FROM beverage_entries
         WHERE DATE(timestamp, 'unixepoch') = :date
         AND isDeleted = 0
-    """)
+    """,
+    )
     fun getHydration(date: String): Flow<Float>
 
-    @Query("""
+    @Query(
+        """
         SELECT * FROM beverage_entries
         WHERE caffeineContent > 0
         AND isDeleted = 0
         ORDER BY timestamp DESC
-    """)
+    """,
+    )
     fun getCaffeinatedBeverages(): Flow<List<BeverageEntry>>
 
-    @Query("""
+    @Query(
+        """
         SELECT * FROM beverage_entries
         WHERE alcoholContent > 0
         AND isDeleted = 0
         ORDER BY timestamp DESC
-    """)
+    """,
+    )
     fun getAlcoholicBeverages(): Flow<List<BeverageEntry>>
 
-    @Query("""
+    @Query(
+        """
         UPDATE beverage_entries
         SET isDeleted = 1, deletedAt = :deletedAt, modifiedAt = :modifiedAt
         WHERE id = :id
-    """)
+    """,
+    )
     suspend fun softDelete(id: String, deletedAt: Instant, modifiedAt: Instant)
 
     @Query("DELETE FROM beverage_entries WHERE id = :id")

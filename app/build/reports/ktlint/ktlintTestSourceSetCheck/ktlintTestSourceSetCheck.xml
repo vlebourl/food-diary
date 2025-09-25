@@ -1,0 +1,406 @@
+<?xml version="1.0" encoding="utf-8"?>
+<checkstyle version="8.0">
+    <file name="/home/vlb/food-diary/app/src/test/java/com/fooddiary/data/repository/BeverageEntryRepositoryTest.kt">
+        <error line="1" column="1" severity="error" message="File must end with a newline (\n)" source="final-newline" />
+        <error line="3" column="1" severity="error" message="Imports must be ordered in lexicographic order without any empty lines in-between" source="import-ordering" />
+        <error line="12" column="1" severity="error" message="Wildcard import" source="no-wildcard-imports" />
+        <error line="95" column="37" severity="error" message="Missing trailing comma before &quot;)&quot;" source="trailing-comma-on-call-site" />
+    </file>
+    <file name="/home/vlb/food-diary/app/src/test/java/com/fooddiary/data/repository/EnvironmentalContextRepositoryTest.kt">
+        <error line="1" column="1" severity="error" message="File must end with a newline (\n)" source="final-newline" />
+        <error line="3" column="1" severity="error" message="Imports must be ordered in lexicographic order without any empty lines in-between" source="import-ordering" />
+        <error line="12" column="1" severity="error" message="Wildcard import" source="no-wildcard-imports" />
+        <error line="98" column="30" severity="error" message="Missing trailing comma before &quot;)&quot;" source="trailing-comma-on-call-site" />
+    </file>
+    <file name="/home/vlb/food-diary/app/src/test/java/com/fooddiary/data/repository/FoodEntryRepositoryTest.kt">
+        <error line="1" column="1" severity="error" message="File must end with a newline (\n)" source="final-newline" />
+        <error line="3" column="1" severity="error" message="Imports must be ordered in lexicographic order without any empty lines in-between" source="import-ordering" />
+        <error line="12" column="1" severity="error" message="Wildcard import" source="no-wildcard-imports" />
+        <error line="112" column="33" severity="error" message="Missing trailing comma before &quot;)&quot;" source="trailing-comma-on-call-site" />
+    </file>
+    <file name="/home/vlb/food-diary/app/src/test/java/com/fooddiary/data/repository/QuickEntryTemplateRepositoryTest.kt">
+        <error line="1" column="1" severity="error" message="File must end with a newline (\n)" source="final-newline" />
+        <error line="3" column="1" severity="error" message="Imports must be ordered in lexicographic order without any empty lines in-between" source="import-ordering" />
+        <error line="11" column="1" severity="error" message="Wildcard import" source="no-wildcard-imports" />
+        <error line="59" column="73" severity="error" message="Missing trailing comma before &quot;)&quot;" source="trailing-comma-on-call-site" />
+        <error line="105" column="42" severity="error" message="Missing trailing comma before &quot;)&quot;" source="trailing-comma-on-call-site" />
+        <error line="110" column="26" severity="error" message="Missing trailing comma before &quot;)&quot;" source="trailing-comma-on-call-site" />
+    </file>
+    <file name="/home/vlb/food-diary/app/src/test/java/com/fooddiary/data/repository/SymptomEventRepositoryTest.kt">
+        <error line="1" column="1" severity="error" message="File must end with a newline (\n)" source="final-newline" />
+        <error line="3" column="1" severity="error" message="Imports must be ordered in lexicographic order without any empty lines in-between" source="import-ordering" />
+        <error line="13" column="1" severity="error" message="Wildcard import" source="no-wildcard-imports" />
+        <error line="120" column="52" severity="error" message="Missing trailing comma before &quot;)&quot;" source="trailing-comma-on-call-site" />
+    </file>
+    <file name="/home/vlb/food-diary/app/src/test/java/com/fooddiary/data/repository/TriggerPatternRepositoryTest.kt">
+        <error line="1" column="1" severity="error" message="File must end with a newline (\n)" source="final-newline" />
+        <error line="3" column="1" severity="error" message="Imports must be ordered in lexicographic order without any empty lines in-between" source="import-ordering" />
+        <error line="12" column="1" severity="error" message="Wildcard import" source="no-wildcard-imports" />
+        <error line="107" column="29" severity="error" message="Missing trailing comma before &quot;)&quot;" source="trailing-comma-on-call-site" />
+        <error line="125" column="56" severity="error" message="Missing trailing comma before &quot;)&quot;" source="trailing-comma-on-call-site" />
+    </file>
+    <file name="/home/vlb/food-diary/app/src/test/java/com/fooddiary/domain/analysis/CorrelationEngineTest.kt">
+        <error line="1" column="1" severity="error" message="File must end with a newline (\n)" source="final-newline" />
+        <error line="3" column="1" severity="error" message="Imports must be ordered in lexicographic order without any empty lines in-between" source="import-ordering" />
+        <error line="10" column="1" severity="error" message="Unused import" source="no-unused-imports" />
+        <error line="16" column="1" severity="error" message="Wildcard import" source="no-wildcard-imports" />
+        <error line="39" column="30" severity="error" message="Argument should be on a separate line (unless all arguments can fit a single line)" source="argument-list-wrapping" />
+        <error line="39" column="45" severity="error" message="Argument should be on a separate line (unless all arguments can fit a single line)" source="argument-list-wrapping" />
+        <error line="39" column="54" severity="error" message="Argument should be on a separate line (unless all arguments can fit a single line)" source="argument-list-wrapping" />
+        <error line="39" column="80" severity="error" message="Missing trailing comma before &quot;)&quot;" source="trailing-comma-on-call-site" />
+        <error line="52" column="30" severity="error" message="Argument should be on a separate line (unless all arguments can fit a single line)" source="argument-list-wrapping" />
+        <error line="52" column="45" severity="error" message="Argument should be on a separate line (unless all arguments can fit a single line)" source="argument-list-wrapping" />
+        <error line="52" column="54" severity="error" message="Argument should be on a separate line (unless all arguments can fit a single line)" source="argument-list-wrapping" />
+        <error line="52" column="80" severity="error" message="Missing trailing comma before &quot;)&quot;" source="trailing-comma-on-call-site" />
+        <error line="76" column="30" severity="error" message="Argument should be on a separate line (unless all arguments can fit a single line)" source="argument-list-wrapping" />
+        <error line="76" column="45" severity="error" message="Argument should be on a separate line (unless all arguments can fit a single line)" source="argument-list-wrapping" />
+        <error line="76" column="54" severity="error" message="Argument should be on a separate line (unless all arguments can fit a single line)" source="argument-list-wrapping" />
+        <error line="76" column="80" severity="error" message="Missing trailing comma before &quot;)&quot;" source="trailing-comma-on-call-site" />
+        <error line="93" column="30" severity="error" message="Argument should be on a separate line (unless all arguments can fit a single line)" source="argument-list-wrapping" />
+        <error line="93" column="45" severity="error" message="Argument should be on a separate line (unless all arguments can fit a single line)" source="argument-list-wrapping" />
+        <error line="93" column="59" severity="error" message="Argument should be on a separate line (unless all arguments can fit a single line)" source="argument-list-wrapping" />
+        <error line="93" column="79" severity="error" message="Missing trailing comma before &quot;)&quot;" source="trailing-comma-on-call-site" />
+        <error line="97" column="24" severity="error" message="Argument should be on a separate line (unless all arguments can fit a single line)" source="argument-list-wrapping" />
+        <error line="97" column="24" severity="error" message="Missing newline after &quot;(&quot;" source="wrapping" />
+        <error line="98" column="70" severity="error" message="Missing newline before &quot;)&quot;" source="wrapping" />
+        <error line="98" column="71" severity="error" message="Missing newline before &quot;)&quot;" source="argument-list-wrapping" />
+        <error line="98" column="71" severity="error" message="Missing trailing comma before &quot;)&quot;" source="trailing-comma-on-call-site" />
+        <error line="118" column="32" severity="error" message="Missing trailing comma before &quot;)&quot;" source="trailing-comma-on-call-site" />
+        <error line="133" column="30" severity="error" message="Argument should be on a separate line (unless all arguments can fit a single line)" source="argument-list-wrapping" />
+        <error line="133" column="45" severity="error" message="Argument should be on a separate line (unless all arguments can fit a single line)" source="argument-list-wrapping" />
+        <error line="133" column="57" severity="error" message="Argument should be on a separate line (unless all arguments can fit a single line)" source="argument-list-wrapping" />
+        <error line="133" column="77" severity="error" message="Missing trailing comma before &quot;)&quot;" source="trailing-comma-on-call-site" />
+        <error line="140" column="24" severity="error" message="Argument should be on a separate line (unless all arguments can fit a single line)" source="argument-list-wrapping" />
+        <error line="140" column="24" severity="error" message="Missing newline after &quot;(&quot;" source="wrapping" />
+        <error line="141" column="66" severity="error" message="Missing newline before &quot;)&quot;" source="wrapping" />
+        <error line="141" column="67" severity="error" message="Missing newline before &quot;)&quot;" source="argument-list-wrapping" />
+        <error line="141" column="67" severity="error" message="Missing trailing comma before &quot;)&quot;" source="trailing-comma-on-call-site" />
+        <error line="156" column="30" severity="error" message="Argument should be on a separate line (unless all arguments can fit a single line)" source="argument-list-wrapping" />
+        <error line="156" column="45" severity="error" message="Argument should be on a separate line (unless all arguments can fit a single line)" source="argument-list-wrapping" />
+        <error line="156" column="57" severity="error" message="Argument should be on a separate line (unless all arguments can fit a single line)" source="argument-list-wrapping" />
+        <error line="156" column="72" severity="error" message="Missing trailing comma before &quot;)&quot;" source="trailing-comma-on-call-site" />
+        <error line="174" column="35" severity="error" message="Missing newline after &quot;(&quot;" source="wrapping" />
+        <error line="177" column="22" severity="error" message="Missing trailing comma before &quot;)&quot;" source="trailing-comma-on-call-site" />
+        <error line="178" column="17" severity="error" message="Missing newline before &quot;)&quot;" source="wrapping" />
+        <error line="178" column="18" severity="error" message="Missing trailing comma before &quot;)&quot;" source="trailing-comma-on-call-site" />
+        <error line="189" column="30" severity="error" message="Argument should be on a separate line (unless all arguments can fit a single line)" source="argument-list-wrapping" />
+        <error line="189" column="45" severity="error" message="Argument should be on a separate line (unless all arguments can fit a single line)" source="argument-list-wrapping" />
+        <error line="189" column="57" severity="error" message="Argument should be on a separate line (unless all arguments can fit a single line)" source="argument-list-wrapping" />
+        <error line="189" column="77" severity="error" message="Missing trailing comma before &quot;)&quot;" source="trailing-comma-on-call-site" />
+        <error line="215" column="30" severity="error" message="Argument should be on a separate line (unless all arguments can fit a single line)" source="argument-list-wrapping" />
+        <error line="215" column="45" severity="error" message="Argument should be on a separate line (unless all arguments can fit a single line)" source="argument-list-wrapping" />
+        <error line="215" column="54" severity="error" message="Argument should be on a separate line (unless all arguments can fit a single line)" source="argument-list-wrapping" />
+        <error line="215" column="74" severity="error" message="Missing trailing comma before &quot;)&quot;" source="trailing-comma-on-call-site" />
+        <error line="223" column="24" severity="error" message="Argument should be on a separate line (unless all arguments can fit a single line)" source="argument-list-wrapping" />
+        <error line="223" column="24" severity="error" message="Missing newline after &quot;(&quot;" source="wrapping" />
+        <error line="224" column="66" severity="error" message="Missing newline before &quot;)&quot;" source="wrapping" />
+        <error line="224" column="67" severity="error" message="Missing newline before &quot;)&quot;" source="argument-list-wrapping" />
+        <error line="224" column="67" severity="error" message="Missing trailing comma before &quot;)&quot;" source="trailing-comma-on-call-site" />
+        <error line="239" column="30" severity="error" message="Argument should be on a separate line (unless all arguments can fit a single line)" source="argument-list-wrapping" />
+        <error line="239" column="45" severity="error" message="Argument should be on a separate line (unless all arguments can fit a single line)" source="argument-list-wrapping" />
+        <error line="239" column="57" severity="error" message="Argument should be on a separate line (unless all arguments can fit a single line)" source="argument-list-wrapping" />
+        <error line="239" column="83" severity="error" message="Missing trailing comma before &quot;)&quot;" source="trailing-comma-on-call-site" />
+        <error line="256" column="18" severity="error" message="Missing trailing comma before &quot;)&quot;" source="trailing-comma-on-call-site" />
+        <error line="260" column="36" severity="error" message="Argument should be on a separate line (unless all arguments can fit a single line)" source="argument-list-wrapping" />
+        <error line="260" column="58" severity="error" message="Argument should be on a separate line (unless all arguments can fit a single line)" source="argument-list-wrapping" />
+        <error line="260" column="70" severity="error" message="Argument should be on a separate line (unless all arguments can fit a single line)" source="argument-list-wrapping" />
+        <error line="260" column="88" severity="error" message="Missing trailing comma before &quot;)&quot;" source="trailing-comma-on-call-site" />
+        <error line="278" column="30" severity="error" message="Argument should be on a separate line (unless all arguments can fit a single line)" source="argument-list-wrapping" />
+        <error line="278" column="43" severity="error" message="Argument should be on a separate line (unless all arguments can fit a single line)" source="argument-list-wrapping" />
+        <error line="278" column="62" severity="error" message="Argument should be on a separate line (unless all arguments can fit a single line)" source="argument-list-wrapping" />
+        <error line="278" column="83" severity="error" message="Missing trailing comma before &quot;)&quot;" source="trailing-comma-on-call-site" />
+        <error line="290" column="30" severity="error" message="Argument should be on a separate line (unless all arguments can fit a single line)" source="argument-list-wrapping" />
+        <error line="290" column="45" severity="error" message="Argument should be on a separate line (unless all arguments can fit a single line)" source="argument-list-wrapping" />
+        <error line="290" column="64" severity="error" message="Argument should be on a separate line (unless all arguments can fit a single line)" source="argument-list-wrapping" />
+        <error line="290" column="88" severity="error" message="Missing trailing comma before &quot;)&quot;" source="trailing-comma-on-call-site" />
+        <error line="309" column="39" severity="error" message="Missing newline after &quot;(&quot;" source="wrapping" />
+        <error line="312" column="26" severity="error" message="Missing trailing comma before &quot;)&quot;" source="trailing-comma-on-call-site" />
+        <error line="313" column="21" severity="error" message="Missing newline before &quot;)&quot;" source="wrapping" />
+        <error line="313" column="22" severity="error" message="Missing trailing comma before &quot;)&quot;" source="trailing-comma-on-call-site" />
+        <error line="319" column="30" severity="error" message="Argument should be on a separate line (unless all arguments can fit a single line)" source="argument-list-wrapping" />
+        <error line="319" column="45" severity="error" message="Argument should be on a separate line (unless all arguments can fit a single line)" source="argument-list-wrapping" />
+        <error line="319" column="57" severity="error" message="Argument should be on a separate line (unless all arguments can fit a single line)" source="argument-list-wrapping" />
+        <error line="319" column="77" severity="error" message="Missing trailing comma before &quot;)&quot;" source="trailing-comma-on-call-site" />
+        <error line="323" column="24" severity="error" message="Argument should be on a separate line (unless all arguments can fit a single line)" source="argument-list-wrapping" />
+        <error line="323" column="24" severity="error" message="Missing newline after &quot;(&quot;" source="wrapping" />
+        <error line="324" column="69" severity="error" message="Missing newline before &quot;)&quot;" source="wrapping" />
+        <error line="324" column="70" severity="error" message="Missing newline before &quot;)&quot;" source="argument-list-wrapping" />
+        <error line="324" column="70" severity="error" message="Missing trailing comma before &quot;)&quot;" source="trailing-comma-on-call-site" />
+        <error line="348" column="38" severity="error" message="Missing trailing comma before &quot;)&quot;" source="trailing-comma-on-call-site" />
+        <error line="362" column="22" severity="error" message="Missing trailing comma before &quot;)&quot;" source="trailing-comma-on-declaration-site" />
+        <error line="373" column="35" severity="error" message="Missing trailing comma before &quot;)&quot;" source="trailing-comma-on-call-site" />
+        <error line="384" column="52" severity="error" message="Missing trailing comma before &quot;)&quot;" source="trailing-comma-on-call-site" />
+        <error line="411" column="54" severity="error" message="Argument should be on a separate line (unless all arguments can fit a single line)" source="argument-list-wrapping" />
+        <error line="411" column="70" severity="error" message="Missing trailing comma before &quot;)&quot;" source="trailing-comma-on-call-site" />
+        <error line="432" column="26" severity="error" message="Missing trailing comma before &quot;)&quot;" source="trailing-comma-on-call-site" />
+        <error line="447" column="26" severity="error" message="Missing trailing comma before &quot;)&quot;" source="trailing-comma-on-call-site" />
+        <error line="462" column="26" severity="error" message="Missing trailing comma before &quot;)&quot;" source="trailing-comma-on-call-site" />
+        <error line="471" column="44" severity="error" message="Missing newline after &quot;(&quot;" source="wrapping" />
+        <error line="474" column="22" severity="error" message="Missing trailing comma before &quot;)&quot;" source="trailing-comma-on-call-site" />
+        <error line="475" column="17" severity="error" message="Missing newline before &quot;)&quot;" source="wrapping" />
+        <error line="475" column="18" severity="error" message="Missing trailing comma before &quot;)&quot;" source="trailing-comma-on-call-site" />
+    </file>
+    <file name="/home/vlb/food-diary/app/src/test/java/com/fooddiary/domain/analysis/FODMAPAnalyzerTest.kt">
+        <error line="1" column="1" severity="error" message="File must end with a newline (\n)" source="final-newline" />
+        <error line="3" column="1" severity="error" message="Imports must be ordered in lexicographic order without any empty lines in-between" source="import-ordering" />
+        <error line="10" column="1" severity="error" message="Wildcard import" source="no-wildcard-imports" />
+        <error line="32" column="32" severity="error" message="Missing trailing comma before &quot;)&quot;" source="trailing-comma-on-call-site" />
+        <error line="43" column="28" severity="error" message="Missing trailing comma before &quot;)&quot;" source="trailing-comma-on-call-site" />
+        <error line="54" column="28" severity="error" message="Missing trailing comma before &quot;)&quot;" source="trailing-comma-on-call-site" />
+        <error line="292" column="36" severity="error" message="Missing trailing comma before &quot;)&quot;" source="trailing-comma-on-call-site" />
+        <error line="303" column="34" severity="error" message="Missing trailing comma before &quot;)&quot;" source="trailing-comma-on-call-site" />
+        <error line="318" column="33" severity="error" message="Missing trailing comma before &quot;)&quot;" source="trailing-comma-on-call-site" />
+        <error line="348" column="33" severity="error" message="Missing trailing comma before &quot;)&quot;" source="trailing-comma-on-call-site" />
+        <error line="372" column="33" severity="error" message="Missing trailing comma before &quot;)&quot;" source="trailing-comma-on-call-site" />
+        <error line="396" column="33" severity="error" message="Missing trailing comma before &quot;)&quot;" source="trailing-comma-on-call-site" />
+        <error line="454" column="33" severity="error" message="Missing trailing comma before &quot;)&quot;" source="trailing-comma-on-call-site" />
+        <error line="455" column="14" severity="error" message="Missing trailing comma before &quot;)&quot;" source="trailing-comma-on-call-site" />
+        <error line="467" column="24" severity="error" message="Argument should be on a separate line (unless all arguments can fit a single line)" source="argument-list-wrapping" />
+        <error line="467" column="43" severity="error" message="Argument should be on a separate line (unless all arguments can fit a single line)" source="argument-list-wrapping" />
+        <error line="467" column="51" severity="error" message="Missing trailing comma before &quot;)&quot;" source="trailing-comma-on-call-site" />
+        <error line="489" column="24" severity="error" message="Argument should be on a separate line (unless all arguments can fit a single line)" source="argument-list-wrapping" />
+        <error line="489" column="43" severity="error" message="Argument should be on a separate line (unless all arguments can fit a single line)" source="argument-list-wrapping" />
+        <error line="489" column="54" severity="error" message="Missing trailing comma before &quot;)&quot;" source="trailing-comma-on-call-site" />
+        <error line="509" column="24" severity="error" message="Argument should be on a separate line (unless all arguments can fit a single line)" source="argument-list-wrapping" />
+        <error line="509" column="43" severity="error" message="Argument should be on a separate line (unless all arguments can fit a single line)" source="argument-list-wrapping" />
+        <error line="509" column="54" severity="error" message="Missing trailing comma before &quot;)&quot;" source="trailing-comma-on-call-site" />
+        <error line="621" column="24" severity="error" message="Argument should be on a separate line (unless all arguments can fit a single line)" source="argument-list-wrapping" />
+        <error line="621" column="24" severity="error" message="Missing newline after &quot;(&quot;" source="wrapping" />
+        <error line="622" column="1" severity="error" message="Unexpected indentation (22) (should be 16)" source="indent" />
+        <error line="622" column="54" severity="error" message="Missing newline before &quot;)&quot;" source="wrapping" />
+        <error line="622" column="55" severity="error" message="Missing newline before &quot;)&quot;" source="argument-list-wrapping" />
+        <error line="622" column="55" severity="error" message="Missing trailing comma before &quot;)&quot;" source="trailing-comma-on-call-site" />
+        <error line="638" column="34" severity="error" message="Missing trailing comma before &quot;)&quot;" source="trailing-comma-on-call-site" />
+    </file>
+    <file name="/home/vlb/food-diary/app/src/test/java/com/fooddiary/domain/usecase/AddFoodEntryUseCaseTest.kt">
+        <error line="1" column="1" severity="error" message="File must end with a newline (\n)" source="final-newline" />
+        <error line="3" column="1" severity="error" message="Imports must be ordered in lexicographic order without any empty lines in-between" source="import-ordering" />
+        <error line="12" column="1" severity="error" message="Wildcard import" source="no-wildcard-imports" />
+        <error line="53" column="42" severity="error" message="Missing trailing comma before &quot;)&quot;" source="trailing-comma-on-call-site" />
+        <error line="92" column="42" severity="error" message="Missing trailing comma before &quot;)&quot;" source="trailing-comma-on-call-site" />
+        <error line="130" column="41" severity="error" message="Missing trailing comma before &quot;)&quot;" source="trailing-comma-on-call-site" />
+        <error line="162" column="42" severity="error" message="Missing trailing comma before &quot;)&quot;" source="trailing-comma-on-call-site" />
+        <error line="192" column="42" severity="error" message="Missing trailing comma before &quot;)&quot;" source="trailing-comma-on-call-site" />
+        <error line="213" column="42" severity="error" message="Missing trailing comma before &quot;)&quot;" source="trailing-comma-on-call-site" />
+        <error line="231" column="42" severity="error" message="Missing trailing comma before &quot;)&quot;" source="trailing-comma-on-call-site" />
+        <error line="249" column="42" severity="error" message="Missing trailing comma before &quot;)&quot;" source="trailing-comma-on-call-site" />
+        <error line="267" column="42" severity="error" message="Missing trailing comma before &quot;)&quot;" source="trailing-comma-on-call-site" />
+        <error line="288" column="42" severity="error" message="Missing trailing comma before &quot;)&quot;" source="trailing-comma-on-call-site" />
+        <error line="313" column="42" severity="error" message="Missing trailing comma before &quot;)&quot;" source="trailing-comma-on-call-site" />
+        <error line="330" column="1" severity="error" message="Exceeded max line length (120)" source="max-line-length" />
+        <error line="330" column="102" severity="error" message="Argument should be on a separate line (unless all arguments can fit a single line)" source="argument-list-wrapping" />
+        <error line="330" column="126" severity="error" message="Missing newline before &quot;)&quot;" source="argument-list-wrapping" />
+        <error line="339" column="42" severity="error" message="Missing trailing comma before &quot;)&quot;" source="trailing-comma-on-call-site" />
+        <error line="362" column="42" severity="error" message="Missing trailing comma before &quot;)&quot;" source="trailing-comma-on-call-site" />
+        <error line="390" column="42" severity="error" message="Missing trailing comma before &quot;)&quot;" source="trailing-comma-on-call-site" />
+        <error line="410" column="42" severity="error" message="Missing trailing comma before &quot;)&quot;" source="trailing-comma-on-call-site" />
+        <error line="435" column="29" severity="error" message="Missing trailing comma before &quot;)&quot;" source="trailing-comma-on-call-site" />
+        <error line="470" column="42" severity="error" message="Missing trailing comma before &quot;)&quot;" source="trailing-comma-on-call-site" />
+        <error line="493" column="42" severity="error" message="Missing trailing comma before &quot;)&quot;" source="trailing-comma-on-call-site" />
+        <error line="518" column="46" severity="error" message="Missing trailing comma before &quot;)&quot;" source="trailing-comma-on-call-site" />
+        <error line="543" column="56" severity="error" message="Missing trailing comma before &quot;)&quot;" source="trailing-comma-on-call-site" />
+    </file>
+    <file name="/home/vlb/food-diary/app/src/test/java/com/fooddiary/domain/usecase/AddSymptomEventUseCaseTest.kt">
+        <error line="1" column="1" severity="error" message="File must end with a newline (\n)" source="final-newline" />
+        <error line="3" column="1" severity="error" message="Imports must be ordered in lexicographic order without any empty lines in-between" source="import-ordering" />
+        <error line="11" column="1" severity="error" message="Wildcard import" source="no-wildcard-imports" />
+        <error line="47" column="42" severity="error" message="Missing trailing comma before &quot;)&quot;" source="trailing-comma-on-call-site" />
+        <error line="81" column="33" severity="error" message="Missing trailing comma before &quot;)&quot;" source="trailing-comma-on-call-site" />
+        <error line="106" column="33" severity="error" message="Missing trailing comma before &quot;)&quot;" source="trailing-comma-on-call-site" />
+        <error line="131" column="33" severity="error" message="Missing trailing comma before &quot;)&quot;" source="trailing-comma-on-call-site" />
+        <error line="162" column="50" severity="error" message="Missing trailing comma before &quot;)&quot;" source="trailing-comma-on-call-site" />
+        <error line="191" column="29" severity="error" message="Missing trailing comma before &quot;)&quot;" source="trailing-comma-on-call-site" />
+        <error line="218" column="29" severity="error" message="Missing trailing comma before &quot;)&quot;" source="trailing-comma-on-call-site" />
+        <error line="236" column="30" severity="error" message="Missing trailing comma before &quot;)&quot;" source="trailing-comma-on-call-site" />
+        <error line="256" column="40" severity="error" message="Missing trailing comma before &quot;)&quot;" source="trailing-comma-on-call-site" />
+        <error line="273" column="33" severity="error" message="Missing trailing comma before &quot;)&quot;" source="trailing-comma-on-call-site" />
+        <error line="289" column="33" severity="error" message="Missing trailing comma before &quot;)&quot;" source="trailing-comma-on-call-site" />
+        <error line="310" column="48" severity="error" message="Missing trailing comma before &quot;)&quot;" source="trailing-comma-on-call-site" />
+        <error line="331" column="29" severity="error" message="Missing trailing comma before &quot;)&quot;" source="trailing-comma-on-call-site" />
+        <error line="347" column="29" severity="error" message="Missing trailing comma before &quot;)&quot;" source="trailing-comma-on-call-site" />
+        <error line="363" column="29" severity="error" message="Missing trailing comma before &quot;)&quot;" source="trailing-comma-on-call-site" />
+        <error line="380" column="33" severity="error" message="Missing trailing comma before &quot;)&quot;" source="trailing-comma-on-call-site" />
+        <error line="386" column="1" severity="error" message="Exceeded max line length (120)" source="max-line-length" />
+        <error line="386" column="26" severity="error" message="Argument should be on a separate line (unless all arguments can fit a single line)" source="argument-list-wrapping" />
+        <error line="386" column="90" severity="error" message="Argument should be on a separate line (unless all arguments can fit a single line)" source="argument-list-wrapping" />
+        <error line="386" column="123" severity="error" message="Missing newline before &quot;)&quot;" source="argument-list-wrapping" />
+        <error line="396" column="33" severity="error" message="Missing trailing comma before &quot;)&quot;" source="trailing-comma-on-call-site" />
+        <error line="401" column="1" severity="error" message="Exceeded max line length (120)" source="max-line-length" />
+        <error line="401" column="26" severity="error" message="Argument should be on a separate line (unless all arguments can fit a single line)" source="argument-list-wrapping" />
+        <error line="401" column="90" severity="error" message="Argument should be on a separate line (unless all arguments can fit a single line)" source="argument-list-wrapping" />
+        <error line="401" column="123" severity="error" message="Missing newline before &quot;)&quot;" source="argument-list-wrapping" />
+        <error line="414" column="36" severity="error" message="Missing trailing comma before &quot;)&quot;" source="trailing-comma-on-call-site" />
+        <error line="439" column="29" severity="error" message="Missing trailing comma before &quot;)&quot;" source="trailing-comma-on-call-site" />
+        <error line="456" column="29" severity="error" message="Missing trailing comma before &quot;)&quot;" source="trailing-comma-on-call-site" />
+        <error line="477" column="29" severity="error" message="Missing trailing comma before &quot;)&quot;" source="trailing-comma-on-call-site" />
+        <error line="515" column="41" severity="error" message="Missing trailing comma before &quot;)&quot;" source="trailing-comma-on-call-site" />
+        <error line="521" column="37" severity="error" message="Missing trailing comma before &quot;)&quot;" source="trailing-comma-on-call-site" />
+        <error line="543" column="49" severity="error" message="Missing trailing comma before &quot;)&quot;" source="trailing-comma-on-call-site" />
+        <error line="565" column="59" severity="error" message="Missing trailing comma before &quot;)&quot;" source="trailing-comma-on-call-site" />
+        <error line="590" column="36" severity="error" message="Missing trailing comma before &quot;)&quot;" source="trailing-comma-on-call-site" />
+        <error line="611" column="46" severity="error" message="Missing trailing comma before &quot;)&quot;" source="trailing-comma-on-call-site" />
+        <error line="632" column="48" severity="error" message="Missing trailing comma before &quot;)&quot;" source="trailing-comma-on-call-site" />
+    </file>
+    <file name="/home/vlb/food-diary/app/src/test/java/com/fooddiary/domain/usecase/CalculateCorrelationsUseCaseTest.kt">
+        <error line="1" column="1" severity="error" message="File must end with a newline (\n)" source="final-newline" />
+        <error line="3" column="1" severity="error" message="Imports must be ordered in lexicographic order without any empty lines in-between" source="import-ordering" />
+        <error line="13" column="1" severity="error" message="Unused import" source="no-unused-imports" />
+        <error line="16" column="1" severity="error" message="Wildcard import" source="no-wildcard-imports" />
+        <error line="23" column="1" severity="error" message="Unused import" source="no-unused-imports" />
+        <error line="46" column="37" severity="error" message="Missing trailing comma before &quot;)&quot;" source="trailing-comma-on-call-site" />
+        <error line="61" column="80" severity="error" message="Missing trailing comma before &quot;)&quot;" source="trailing-comma-on-call-site" />
+        <error line="66" column="1" severity="error" message="Exceeded max line length (120)" source="max-line-length" />
+        <error line="66" column="36" severity="error" message="Argument should be on a separate line (unless all arguments can fit a single line)" source="argument-list-wrapping" />
+        <error line="66" column="41" severity="error" message="Argument should be on a separate line (unless all arguments can fit a single line)" source="argument-list-wrapping" />
+        <error line="66" column="63" severity="error" message="Argument should be on a separate line (unless all arguments can fit a single line)" source="argument-list-wrapping" />
+        <error line="66" column="102" severity="error" message="Argument should be on a separate line (unless all arguments can fit a single line)" source="argument-list-wrapping" />
+        <error line="66" column="105" severity="error" message="Argument should be on a separate line (unless all arguments can fit a single line)" source="argument-list-wrapping" />
+        <error line="66" column="121" severity="error" message="Missing newline before &quot;)&quot;" source="argument-list-wrapping" />
+        <error line="66" column="122" severity="error" message="Missing newline before &quot;)&quot;" source="argument-list-wrapping" />
+        <error line="67" column="1" severity="error" message="Exceeded max line length (120)" source="max-line-length" />
+        <error line="67" column="36" severity="error" message="Argument should be on a separate line (unless all arguments can fit a single line)" source="argument-list-wrapping" />
+        <error line="67" column="41" severity="error" message="Argument should be on a separate line (unless all arguments can fit a single line)" source="argument-list-wrapping" />
+        <error line="67" column="63" severity="error" message="Argument should be on a separate line (unless all arguments can fit a single line)" source="argument-list-wrapping" />
+        <error line="67" column="102" severity="error" message="Argument should be on a separate line (unless all arguments can fit a single line)" source="argument-list-wrapping" />
+        <error line="67" column="105" severity="error" message="Argument should be on a separate line (unless all arguments can fit a single line)" source="argument-list-wrapping" />
+        <error line="67" column="121" severity="error" message="Missing newline before &quot;)&quot;" source="argument-list-wrapping" />
+        <error line="67" column="122" severity="error" message="Missing newline before &quot;)&quot;" source="argument-list-wrapping" />
+        <error line="67" column="123" severity="error" message="Missing trailing comma before &quot;)&quot;" source="trailing-comma-on-call-site" />
+        <error line="77" column="38" severity="error" message="Missing trailing comma before &quot;)&quot;" source="trailing-comma-on-call-site" />
+        <error line="102" column="107" severity="error" message="Missing trailing comma before &quot;)&quot;" source="trailing-comma-on-call-site" />
+        <error line="108" column="1" severity="error" message="Exceeded max line length (120)" source="max-line-length" />
+        <error line="108" column="36" severity="error" message="Argument should be on a separate line (unless all arguments can fit a single line)" source="argument-list-wrapping" />
+        <error line="108" column="41" severity="error" message="Argument should be on a separate line (unless all arguments can fit a single line)" source="argument-list-wrapping" />
+        <error line="108" column="63" severity="error" message="Argument should be on a separate line (unless all arguments can fit a single line)" source="argument-list-wrapping" />
+        <error line="108" column="102" severity="error" message="Argument should be on a separate line (unless all arguments can fit a single line)" source="argument-list-wrapping" />
+        <error line="108" column="105" severity="error" message="Argument should be on a separate line (unless all arguments can fit a single line)" source="argument-list-wrapping" />
+        <error line="108" column="121" severity="error" message="Missing newline before &quot;)&quot;" source="argument-list-wrapping" />
+        <error line="108" column="122" severity="error" message="Missing newline before &quot;)&quot;" source="argument-list-wrapping" />
+        <error line="109" column="1" severity="error" message="Exceeded max line length (120)" source="max-line-length" />
+        <error line="109" column="36" severity="error" message="Argument should be on a separate line (unless all arguments can fit a single line)" source="argument-list-wrapping" />
+        <error line="109" column="41" severity="error" message="Argument should be on a separate line (unless all arguments can fit a single line)" source="argument-list-wrapping" />
+        <error line="109" column="63" severity="error" message="Argument should be on a separate line (unless all arguments can fit a single line)" source="argument-list-wrapping" />
+        <error line="109" column="102" severity="error" message="Argument should be on a separate line (unless all arguments can fit a single line)" source="argument-list-wrapping" />
+        <error line="109" column="106" severity="error" message="Argument should be on a separate line (unless all arguments can fit a single line)" source="argument-list-wrapping" />
+        <error line="109" column="122" severity="error" message="Missing newline before &quot;)&quot;" source="argument-list-wrapping" />
+        <error line="109" column="123" severity="error" message="Missing newline before &quot;)&quot;" source="argument-list-wrapping" />
+        <error line="109" column="124" severity="error" message="Missing trailing comma before &quot;)&quot;" source="trailing-comma-on-call-site" />
+        <error line="119" column="38" severity="error" message="Missing trailing comma before &quot;)&quot;" source="trailing-comma-on-call-site" />
+        <error line="128" column="1" severity="error" message="Exceeded max line length (120)" source="max-line-length" />
+        <error line="140" column="81" severity="error" message="Missing trailing comma before &quot;)&quot;" source="trailing-comma-on-call-site" />
+        <error line="145" column="1" severity="error" message="Exceeded max line length (120)" source="max-line-length" />
+        <error line="145" column="36" severity="error" message="Argument should be on a separate line (unless all arguments can fit a single line)" source="argument-list-wrapping" />
+        <error line="145" column="41" severity="error" message="Argument should be on a separate line (unless all arguments can fit a single line)" source="argument-list-wrapping" />
+        <error line="145" column="63" severity="error" message="Argument should be on a separate line (unless all arguments can fit a single line)" source="argument-list-wrapping" />
+        <error line="145" column="102" severity="error" message="Argument should be on a separate line (unless all arguments can fit a single line)" source="argument-list-wrapping" />
+        <error line="145" column="106" severity="error" message="Argument should be on a separate line (unless all arguments can fit a single line)" source="argument-list-wrapping" />
+        <error line="145" column="122" severity="error" message="Missing newline before &quot;)&quot;" source="argument-list-wrapping" />
+        <error line="145" column="123" severity="error" message="Missing newline before &quot;)&quot;" source="argument-list-wrapping" />
+        <error line="145" column="124" severity="error" message="Missing trailing comma before &quot;)&quot;" source="trailing-comma-on-call-site" />
+        <error line="156" column="40" severity="error" message="Missing trailing comma before &quot;)&quot;" source="trailing-comma-on-call-site" />
+        <error line="186" column="38" severity="error" message="Missing trailing comma before &quot;)&quot;" source="trailing-comma-on-call-site" />
+        <error line="207" column="57" severity="error" message="Missing trailing comma before &quot;)&quot;" source="trailing-comma-on-call-site" />
+        <error line="211" column="1" severity="error" message="Exceeded max line length (120)" source="max-line-length" />
+        <error line="211" column="40" severity="error" message="Argument should be on a separate line (unless all arguments can fit a single line)" source="argument-list-wrapping" />
+        <error line="211" column="59" severity="error" message="Argument should be on a separate line (unless all arguments can fit a single line)" source="argument-list-wrapping" />
+        <error line="211" column="64" severity="error" message="Argument should be on a separate line (unless all arguments can fit a single line)" source="argument-list-wrapping" />
+        <error line="211" column="87" severity="error" message="Argument should be on a separate line (unless all arguments can fit a single line)" source="argument-list-wrapping" />
+        <error line="211" column="101" severity="error" message="Argument should be on a separate line (unless all arguments can fit a single line)" source="argument-list-wrapping" />
+        <error line="211" column="105" severity="error" message="Argument should be on a separate line (unless all arguments can fit a single line)" source="argument-list-wrapping" />
+        <error line="211" column="123" severity="error" message="Missing newline before &quot;)&quot;" source="argument-list-wrapping" />
+        <error line="211" column="124" severity="error" message="Missing newline before &quot;)&quot;" source="argument-list-wrapping" />
+        <error line="211" column="125" severity="error" message="Missing newline before &quot;)&quot;" source="argument-list-wrapping" />
+        <error line="221" column="38" severity="error" message="Missing trailing comma before &quot;)&quot;" source="trailing-comma-on-call-site" />
+        <error line="240" column="82" severity="error" message="Missing trailing comma before &quot;)&quot;" source="trailing-comma-on-call-site" />
+        <error line="245" column="1" severity="error" message="Exceeded max line length (120)" source="max-line-length" />
+        <error line="245" column="36" severity="error" message="Argument should be on a separate line (unless all arguments can fit a single line)" source="argument-list-wrapping" />
+        <error line="245" column="41" severity="error" message="Argument should be on a separate line (unless all arguments can fit a single line)" source="argument-list-wrapping" />
+        <error line="245" column="62" severity="error" message="Argument should be on a separate line (unless all arguments can fit a single line)" source="argument-list-wrapping" />
+        <error line="245" column="101" severity="error" message="Argument should be on a separate line (unless all arguments can fit a single line)" source="argument-list-wrapping" />
+        <error line="245" column="105" severity="error" message="Argument should be on a separate line (unless all arguments can fit a single line)" source="argument-list-wrapping" />
+        <error line="245" column="123" severity="error" message="Missing newline before &quot;)&quot;" source="argument-list-wrapping" />
+        <error line="245" column="124" severity="error" message="Missing newline before &quot;)&quot;" source="argument-list-wrapping" />
+        <error line="245" column="125" severity="error" message="Missing trailing comma before &quot;)&quot;" source="trailing-comma-on-call-site" />
+        <error line="255" column="38" severity="error" message="Missing trailing comma before &quot;)&quot;" source="trailing-comma-on-call-site" />
+        <error line="271" column="80" severity="error" message="Missing trailing comma before &quot;)&quot;" source="trailing-comma-on-call-site" />
+        <error line="277" column="1" severity="error" message="Exceeded max line length (120)" source="max-line-length" />
+        <error line="277" column="99" severity="error" message="Missing trailing comma before &quot;)&quot;" source="trailing-comma-on-call-site" />
+        <error line="287" column="38" severity="error" message="Missing trailing comma before &quot;)&quot;" source="trailing-comma-on-call-site" />
+        <error line="302" column="1" severity="error" message="Exceeded max line length (120)" source="max-line-length" />
+        <error line="302" column="40" severity="error" message="Argument should be on a separate line (unless all arguments can fit a single line)" source="argument-list-wrapping" />
+        <error line="302" column="121" severity="error" message="Missing newline before &quot;)&quot;" source="argument-list-wrapping" />
+        <error line="311" column="38" severity="error" message="Missing trailing comma before &quot;)&quot;" source="trailing-comma-on-call-site" />
+        <error line="330" column="81" severity="error" message="Missing trailing comma before &quot;)&quot;" source="trailing-comma-on-call-site" />
+        <error line="334" column="1" severity="error" message="Exceeded max line length (120)" source="max-line-length" />
+        <error line="335" column="1" severity="error" message="Exceeded max line length (120)" source="max-line-length" />
+        <error line="335" column="36" severity="error" message="Argument should be on a separate line (unless all arguments can fit a single line)" source="argument-list-wrapping" />
+        <error line="335" column="41" severity="error" message="Argument should be on a separate line (unless all arguments can fit a single line)" source="argument-list-wrapping" />
+        <error line="335" column="69" severity="error" message="Argument should be on a separate line (unless all arguments can fit a single line)" source="argument-list-wrapping" />
+        <error line="335" column="108" severity="error" message="Argument should be on a separate line (unless all arguments can fit a single line)" source="argument-list-wrapping" />
+        <error line="335" column="113" severity="error" message="Argument should be on a separate line (unless all arguments can fit a single line)" source="argument-list-wrapping" />
+        <error line="335" column="131" severity="error" message="Missing newline before &quot;)&quot;" source="argument-list-wrapping" />
+        <error line="335" column="132" severity="error" message="Missing newline before &quot;)&quot;" source="argument-list-wrapping" />
+        <error line="335" column="133" severity="error" message="Missing trailing comma before &quot;)&quot;" source="trailing-comma-on-call-site" />
+        <error line="345" column="38" severity="error" message="Missing trailing comma before &quot;)&quot;" source="trailing-comma-on-call-site" />
+        <error line="368" column="1" severity="error" message="Exceeded max line length (120)" source="max-line-length" />
+        <error line="368" column="36" severity="error" message="Argument should be on a separate line (unless all arguments can fit a single line)" source="argument-list-wrapping" />
+        <error line="368" column="42" severity="error" message="Argument should be on a separate line (unless all arguments can fit a single line)" source="argument-list-wrapping" />
+        <error line="368" column="64" severity="error" message="Argument should be on a separate line (unless all arguments can fit a single line)" source="argument-list-wrapping" />
+        <error line="368" column="112" severity="error" message="Argument should be on a separate line (unless all arguments can fit a single line)" source="argument-list-wrapping" />
+        <error line="368" column="115" severity="error" message="Argument should be on a separate line (unless all arguments can fit a single line)" source="argument-list-wrapping" />
+        <error line="368" column="131" severity="error" message="Missing newline before &quot;)&quot;" source="argument-list-wrapping" />
+        <error line="368" column="132" severity="error" message="Missing newline before &quot;)&quot;" source="argument-list-wrapping" />
+        <error line="378" column="38" severity="error" message="Missing trailing comma before &quot;)&quot;" source="trailing-comma-on-call-site" />
+        <error line="402" column="1" severity="error" message="Exceeded max line length (120)" source="max-line-length" />
+        <error line="402" column="36" severity="error" message="Argument should be on a separate line (unless all arguments can fit a single line)" source="argument-list-wrapping" />
+        <error line="402" column="42" severity="error" message="Argument should be on a separate line (unless all arguments can fit a single line)" source="argument-list-wrapping" />
+        <error line="402" column="64" severity="error" message="Argument should be on a separate line (unless all arguments can fit a single line)" source="argument-list-wrapping" />
+        <error line="402" column="113" severity="error" message="Argument should be on a separate line (unless all arguments can fit a single line)" source="argument-list-wrapping" />
+        <error line="402" column="117" severity="error" message="Argument should be on a separate line (unless all arguments can fit a single line)" source="argument-list-wrapping" />
+        <error line="402" column="135" severity="error" message="Missing newline before &quot;)&quot;" source="argument-list-wrapping" />
+        <error line="402" column="136" severity="error" message="Missing newline before &quot;)&quot;" source="argument-list-wrapping" />
+        <error line="412" column="38" severity="error" message="Missing trailing comma before &quot;)&quot;" source="trailing-comma-on-call-site" />
+        <error line="497" column="38" severity="error" message="Missing trailing comma before &quot;)&quot;" source="trailing-comma-on-call-site" />
+        <error line="517" column="107" severity="error" message="Missing trailing comma before &quot;)&quot;" source="trailing-comma-on-call-site" />
+        <error line="528" column="40" severity="error" message="Missing trailing comma before &quot;)&quot;" source="trailing-comma-on-call-site" />
+        <error line="550" column="98" severity="error" message="Missing trailing comma before &quot;)&quot;" source="trailing-comma-on-call-site" />
+        <error line="560" column="38" severity="error" message="Missing trailing comma before &quot;)&quot;" source="trailing-comma-on-call-site" />
+        <error line="584" column="29" severity="error" message="Missing trailing comma before &quot;)&quot;" source="trailing-comma-on-call-site" />
+        <error line="593" column="34" severity="error" message="Missing trailing comma before &quot;)&quot;" source="trailing-comma-on-call-site" />
+        <error line="600" column="47" severity="error" message="Missing trailing comma before &quot;)&quot;" source="trailing-comma-on-declaration-site" />
+    </file>
+    <file name="/home/vlb/food-diary/app/src/test/java/com/fooddiary/presentation/viewmodel/FoodEntryViewModelTest.kt">
+        <error line="1" column="1" severity="error" message="File must end with a newline (\n)" source="final-newline" />
+        <error line="3" column="1" severity="error" message="Imports must be ordered in lexicographic order without any empty lines in-between" source="import-ordering" />
+        <error line="5" column="1" severity="error" message="Wildcard import" source="no-wildcard-imports" />
+        <error line="9" column="1" severity="error" message="Wildcard import" source="no-wildcard-imports" />
+        <error line="12" column="1" severity="error" message="Wildcard import" source="no-wildcard-imports" />
+        <error line="13" column="1" severity="error" message="Wildcard import" source="no-wildcard-imports" />
+        <error line="14" column="1" severity="error" message="Wildcard import" source="no-wildcard-imports" />
+        <error line="44" column="32" severity="error" message="Missing trailing comma before &quot;)&quot;" source="trailing-comma-on-call-site" />
+        <error line="108" column="46" severity="error" message="Missing trailing comma before &quot;)&quot;" source="trailing-comma-on-call-site" />
+        <error line="510" column="37" severity="error" message="Missing newline after &quot;(&quot;" source="wrapping" />
+        <error line="512" column="1" severity="error" message="Unexpected indentation (20) (should be 24)" source="indent" />
+        <error line="513" column="1" severity="error" message="Unexpected indentation (20) (should be 24)" source="indent" />
+        <error line="514" column="1" severity="error" message="Unexpected indentation (20) (should be 24)" source="indent" />
+        <error line="515" column="17" severity="error" message="Missing newline before &quot;)&quot;" source="wrapping" />
+        <error line="515" column="18" severity="error" message="Missing trailing comma before &quot;)&quot;" source="trailing-comma-on-call-site" />
+        <error line="630" column="37" severity="error" message="Missing newline after &quot;(&quot;" source="wrapping" />
+        <error line="632" column="1" severity="error" message="Unexpected indentation (20) (should be 24)" source="indent" />
+        <error line="633" column="1" severity="error" message="Unexpected indentation (20) (should be 24)" source="indent" />
+        <error line="634" column="1" severity="error" message="Unexpected indentation (20) (should be 24)" source="indent" />
+        <error line="635" column="1" severity="error" message="Unexpected indentation (20) (should be 24)" source="indent" />
+        <error line="636" column="1" severity="error" message="Unexpected indentation (20) (should be 24)" source="indent" />
+        <error line="637" column="1" severity="error" message="Unexpected indentation (20) (should be 24)" source="indent" />
+        <error line="638" column="1" severity="error" message="Unexpected indentation (20) (should be 24)" source="indent" />
+        <error line="639" column="1" severity="error" message="Unexpected indentation (20) (should be 24)" source="indent" />
+        <error line="640" column="1" severity="error" message="Unexpected indentation (20) (should be 24)" source="indent" />
+        <error line="641" column="17" severity="error" message="Missing newline before &quot;)&quot;" source="wrapping" />
+        <error line="641" column="18" severity="error" message="Missing trailing comma before &quot;)&quot;" source="trailing-comma-on-call-site" />
+        <error line="671" column="65" severity="error" message="Missing trailing comma before &quot;)&quot;" source="trailing-comma-on-call-site" />
+        <error line="746" column="100" severity="error" message="Missing trailing comma before &quot;)&quot;" source="trailing-comma-on-call-site" />
+        <error line="793" column="84" severity="error" message="Missing trailing comma before &quot;)&quot;" source="trailing-comma-on-call-site" />
+        <error line="872" column="45" severity="error" message="Missing trailing comma before &quot;)&quot;" source="trailing-comma-on-call-site" />
+        <error line="874" column="56" severity="error" message="Missing trailing comma before &quot;)&quot;" source="trailing-comma-on-call-site" />
+    </file>
+</checkstyle>
