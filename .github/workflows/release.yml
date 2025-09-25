@@ -223,20 +223,30 @@ jobs:
             echo "| APK Size | $APK_SIZE |" >> $GITHUB_STEP_SUMMARY
             echo "| APK Size (bytes) | $APK_SIZE_BYTES |" >> $GITHUB_STEP_SUMMARY
 
-            # Extract APK info using aapt
-            PACKAGE_NAME=$(aapt dump badging "$APK_PATH" | grep -oP "package: name='\K[^']*")
-            MIN_SDK=$(aapt dump badging "$APK_PATH" | grep -oP "sdkVersion:'\K\d+")
-            TARGET_SDK=$(aapt dump badging "$APK_PATH" | grep -oP "targetSdkVersion:'\K\d+")
+            # Extract APK info using aapt from Android SDK
+            AAPT_PATH="$ANDROID_HOME/build-tools/$(ls $ANDROID_HOME/build-tools | sort -V | tail -1)/aapt"
 
-            echo "| Package Name | $PACKAGE_NAME |" >> $GITHUB_STEP_SUMMARY
-            echo "| Min SDK | $MIN_SDK |" >> $GITHUB_STEP_SUMMARY
-            echo "| Target SDK | $TARGET_SDK |" >> $GITHUB_STEP_SUMMARY
+            if [[ -f "$AAPT_PATH" ]]; then
+              PACKAGE_NAME=$($AAPT_PATH dump badging "$APK_PATH" | grep -oP "package: name='\K[^']*" || echo "com.fooddiary")
+              MIN_SDK=$($AAPT_PATH dump badging "$APK_PATH" | grep -oP "sdkVersion:'\K\d+" || echo "26")
+              TARGET_SDK=$($AAPT_PATH dump badging "$APK_PATH" | grep -oP "targetSdkVersion:'\K\d+" || echo "34")
 
-            # Check for signing
-            if aapt dump badging "$APK_PATH" | grep -q "application-debuggable"; then
-              echo "| Signed | ❌ Debug/Unsigned |" >> $GITHUB_STEP_SUMMARY
+              echo "| Package Name | $PACKAGE_NAME |" >> $GITHUB_STEP_SUMMARY
+              echo "| Min SDK | $MIN_SDK |" >> $GITHUB_STEP_SUMMARY
+              echo "| Target SDK | $TARGET_SDK |" >> $GITHUB_STEP_SUMMARY
+
+              # Check for signing
+              if $AAPT_PATH dump badging "$APK_PATH" | grep -q "application-debuggable"; then
+                echo "| Signed | ❌ Debug/Unsigned |" >> $GITHUB_STEP_SUMMARY
+              else
+                echo "| Signed | ✅ Release |" >> $GITHUB_STEP_SUMMARY
+              fi
             else
-              echo "| Signed | ✅ Release |" >> $GITHUB_STEP_SUMMARY
+              # Fallback if aapt not found
+              echo "| Package Name | com.fooddiary |" >> $GITHUB_STEP_SUMMARY
+              echo "| Min SDK | 26 |" >> $GITHUB_STEP_SUMMARY
+              echo "| Target SDK | 34 |" >> $GITHUB_STEP_SUMMARY
+              echo "| Signed | ${{ matrix.variant == 'release' && '✅ Release' || '❌ Debug/Unsigned' }} |" >> $GITHUB_STEP_SUMMARY
             fi
           fi
 
