@@ -143,6 +143,10 @@ dependencies {
     // WorkManager for background tasks
     implementation("androidx.work:work-runtime-ktx:2.9.0")
 
+    // Verification Testing Dependencies
+    implementation("com.google.code.gson:gson:2.10.1") // JSON parsing for test results
+    implementation("org.apache.commons:commons-lang3:3.14.0") // String utilities for validation
+
     // Testing Dependencies
     testImplementation("junit:junit:4.13.2")
     testImplementation("org.mockito:mockito-core:5.8.0")
@@ -163,6 +167,10 @@ dependencies {
     androidTestImplementation("androidx.room:room-testing:2.6.1")
     androidTestImplementation("com.google.dagger:hilt-android-testing:2.48.1")
     kaptAndroidTest("com.google.dagger:hilt-compiler:2.48.1")
+
+    // Verification-specific test dependencies
+    testImplementation("org.json:json:20231013") // JSON assertions for contract tests
+    androidTestImplementation("androidx.test.uiautomator:uiautomator:2.2.0") // UI automation for verification
 }
 
 // Ktlint configuration
