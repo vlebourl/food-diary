@@ -6,6 +6,7 @@ import androidx.room.TypeConverters
 import com.fooddiary.data.database.converters.ConsumptionContextConverter
 import com.fooddiary.data.database.converters.InstantConverter
 import com.fooddiary.data.database.converters.StringListConverter
+import com.fooddiary.data.database.converters.StringMapConverter
 import com.fooddiary.data.models.*
 import java.time.Instant
 import java.util.*
@@ -15,74 +16,49 @@ import java.util.*
     InstantConverter::class,
     StringListConverter::class,
     ConsumptionContextConverter::class,
+    StringMapConverter::class,
 )
 data class FoodEntry(
-    @PrimaryKey val id: String = UUID.randomUUID().toString(),
+    @PrimaryKey val id: Long = 0L,
     val timestamp: Instant,
-    val timezone: String,
-    val name: String,
-    val ingredients: List<String>,
-    val portions: Float,
-    val portionUnit: String,
-    val preparationMethod: String?,
     val mealType: MealType,
-    val context: ConsumptionContext,
+    val foods: List<String>,
+    val portions: Map<String, String>,
     val notes: String?,
-    val createdAt: Instant = Instant.now(),
-    val modifiedAt: Instant?,
     val isDeleted: Boolean = false,
-    val deletedAt: Instant? = null,
+    val createdAt: Instant = Instant.now(),
+    val modifiedAt: Instant = Instant.now(),
 ) {
     companion object {
         fun create(
-            name: String,
-            ingredients: List<String>,
-            portions: Float,
-            portionUnit: String,
+            foods: List<String>,
+            portions: Map<String, String>,
             mealType: MealType,
-            context: ConsumptionContext,
             timestamp: Instant = Instant.now(),
-            timezone: String = "UTC",
-            preparationMethod: String? = null,
             notes: String? = null,
         ) = FoodEntry(
             timestamp = timestamp,
-            timezone = timezone,
-            name = name,
-            ingredients = ingredients,
-            portions = portions,
-            portionUnit = portionUnit,
-            preparationMethod = preparationMethod,
             mealType = mealType,
-            context = context,
+            foods = foods,
+            portions = portions,
             notes = notes,
-            modifiedAt = null,
         )
     }
 
     fun softDelete(): FoodEntry = copy(
         isDeleted = true,
-        deletedAt = Instant.now(),
         modifiedAt = Instant.now(),
     )
 
     fun update(
-        name: String? = null,
-        ingredients: List<String>? = null,
-        portions: Float? = null,
-        portionUnit: String? = null,
-        preparationMethod: String? = null,
+        foods: List<String>? = null,
+        portions: Map<String, String>? = null,
         mealType: MealType? = null,
-        context: ConsumptionContext? = null,
         notes: String? = null,
     ): FoodEntry = copy(
-        name = name ?: this.name,
-        ingredients = ingredients ?: this.ingredients,
+        foods = foods ?: this.foods,
         portions = portions ?: this.portions,
-        portionUnit = portionUnit ?: this.portionUnit,
-        preparationMethod = preparationMethod ?: this.preparationMethod,
         mealType = mealType ?: this.mealType,
-        context = context ?: this.context,
         notes = notes ?: this.notes,
         modifiedAt = Instant.now(),
     )
