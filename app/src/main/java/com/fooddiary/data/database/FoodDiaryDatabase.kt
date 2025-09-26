@@ -17,13 +17,18 @@ import com.fooddiary.data.database.entities.*
         EliminationProtocol::class,
         TriggerPattern::class,
         MedicalReport::class,
+        CorrelationPattern::class,
+        ReportData::class,
+        UserPreferences::class,
     ],
-    version = 1,
+    version = 3,
     exportSchema = true,
 )
 @TypeConverters(
     InstantConverter::class,
     LocalDateConverter::class,
+    LocalTimeConverter::class,
+    DurationConverter::class,
     StringListConverter::class,
     StringMapConverter::class,
     ConsumptionContextConverter::class,
@@ -38,9 +43,11 @@ abstract class FoodDiaryDatabase : RoomDatabase() {
     abstract fun eliminationProtocolDao(): EliminationProtocolDao
     abstract fun triggerPatternDao(): TriggerPatternDao
     abstract fun medicalReportDao(): MedicalReportDao
+    abstract fun correlationPatternDao(): CorrelationPatternDao
+    abstract fun userPreferencesDao(): UserPreferencesDao
 
     companion object {
         const val DATABASE_NAME = "food_diary_database"
-        const val LATEST_VERSION = 1
+        const val LATEST_VERSION = 3
     }
 }

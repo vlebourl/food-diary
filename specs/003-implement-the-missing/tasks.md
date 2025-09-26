@@ -39,19 +39,19 @@
 
 **CRITICAL: These tests MUST be written and MUST FAIL before ANY implementation**
 
-- [ ] **T007** [P] Unit test for enhanced FoodEntryDao in `app/src/test/java/com/fooddiary/data/database/dao/FoodEntryDaoTest.kt`
-- [ ] **T008** [P] Unit test for enhanced SymptomEventDao in `app/src/test/java/com/fooddiary/data/database/dao/SymptomEventDaoTest.kt`
-- [ ] **T009** [P] Unit test for CorrelationPatternDao in `app/src/test/java/com/fooddiary/data/database/dao/CorrelationPatternDaoTest.kt`
-- [ ] **T010** [P] Unit test for ReportDataDao in `app/src/test/java/com/fooddiary/data/database/dao/ReportDataDaoTest.kt`
-- [ ] **T011** [P] Unit test for enhanced UserPreferencesDao in `app/src/test/java/com/fooddiary/data/database/dao/UserPreferencesDaoTest.kt`
+- [x] **T007** [P] Unit test for enhanced FoodEntryDao in `app/src/test/java/com/fooddiary/data/database/dao/FoodEntryDaoTest.kt`
+- [x] **T008** [P] Unit test for enhanced SymptomEventDao in `app/src/test/java/com/fooddiary/data/database/dao/SymptomEventDaoTest.kt`
+- [x] **T009** [P] Unit test for CorrelationPatternDao in `app/src/test/java/com/fooddiary/data/database/dao/CorrelationPatternDaoTest.kt`
+- [x] **T010** [P] Unit test for ReportDataDao in `app/src/test/java/com/fooddiary/data/database/dao/ReportDataDaoTest.kt`
+- [x] **T011** [P] Unit test for enhanced UserPreferencesDao in `app/src/test/java/com/fooddiary/data/database/dao/UserPreferencesDaoTest.kt`
 
 ## Phase 3.3: DAO Implementation (ONLY after tests are failing)
 
-- [ ] **T012** [P] Implement enhanced FoodEntryDao with correlation queries in `app/src/main/java/com/fooddiary/data/database/dao/FoodEntryDao.kt`
-- [ ] **T013** [P] Implement enhanced SymptomEventDao with correlation queries in `app/src/main/java/com/fooddiary/data/database/dao/SymptomEventDao.kt`
-- [ ] **T014** [P] Implement CorrelationPatternDao with analytics queries in `app/src/main/java/com/fooddiary/data/database/dao/CorrelationPatternDao.kt`
-- [ ] **T015** [P] Implement ReportDataDao with export queries in `app/src/main/java/com/fooddiary/data/database/dao/ReportDataDao.kt`
-- [ ] **T016** [P] Implement enhanced UserPreferencesDao in `app/src/main/java/com/fooddiary/data/database/dao/UserPreferencesDao.kt`
+- [x] **T012** [P] Implement enhanced FoodEntryDao with correlation queries in `app/src/main/java/com/fooddiary/data/database/dao/FoodEntryDao.kt`
+- [x] **T013** [P] Implement enhanced SymptomEventDao with correlation queries in `app/src/main/java/com/fooddiary/data/database/dao/SymptomEventDao.kt`
+- [x] **T014** [P] Implement CorrelationPatternDao with analytics queries in `app/src/main/java/com/fooddiary/data/database/dao/CorrelationPatternDao.kt`
+- [x] **T015** [P] Implement ReportDataDao with export queries in `app/src/main/java/com/fooddiary/data/database/dao/ReportDataDao.kt`
+- [x] **T016** [P] Implement enhanced UserPreferencesDao in `app/src/main/java/com/fooddiary/data/database/dao/UserPreferencesDao.kt`
 
 ## Phase 3.4: Repository Layer Tests (TDD)
 

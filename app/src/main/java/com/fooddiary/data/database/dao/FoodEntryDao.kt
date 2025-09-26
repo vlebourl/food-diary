@@ -2,6 +2,7 @@ package com.fooddiary.data.database.dao
 
 import androidx.room.*
 import com.fooddiary.data.database.entities.FoodEntry
+import com.fooddiary.data.models.MealType
 import java.time.Instant
 import kotlinx.coroutines.flow.Flow
 
@@ -11,14 +12,23 @@ interface FoodEntryDao {
     @Insert
     suspend fun insert(entry: FoodEntry): Long
 
+    @Insert
+    suspend fun insertAll(entries: List<FoodEntry>): List<Long>
+
     @Update
-    suspend fun update(entry: FoodEntry)
+    suspend fun update(entry: FoodEntry): Int
+
+    @Delete
+    suspend fun delete(entry: FoodEntry): Int
 
     @Query("SELECT * FROM food_entries WHERE id = :id AND isDeleted = 0")
-    suspend fun getById(id: String): FoodEntry?
+    suspend fun getById(id: Long): FoodEntry?
 
     @Query("SELECT * FROM food_entries WHERE isDeleted = 0 ORDER BY timestamp DESC")
     fun getAll(): Flow<List<FoodEntry>>
+
+    @Query("SELECT * FROM food_entries WHERE isDeleted = 0 ORDER BY timestamp DESC")
+    suspend fun getAllSync(): List<FoodEntry>
 
     @Query(
         """
@@ -33,65 +43,6 @@ interface FoodEntryDao {
     @Query("SELECT * FROM food_entries WHERE isDeleted = 0 ORDER BY timestamp DESC LIMIT :limit")
     fun getRecent(limit: Int): Flow<List<FoodEntry>>
 
-    @Query(
-        """
-        SELECT * FROM food_entries
-        WHERE name LIKE '%' || :query || '%'
-        AND isDeleted = 0
-        ORDER BY timestamp DESC
-    """,
-    )
-    fun searchByName(query: String): Flow<List<FoodEntry>>
-
-    @Query(
-        """
-        SELECT * FROM food_entries
-        WHERE isDeleted = 0
-        GROUP BY name
-        ORDER BY COUNT(*) DESC
-        LIMIT :limit
-    """,
-    )
-    suspend fun getMostFrequent(limit: Int): List<FoodEntry>
-
-    @Query(
-        """
-        SELECT * FROM food_entries
-        WHERE ingredients LIKE '%' || :ingredient || '%'
-        AND isDeleted = 0
-        ORDER BY timestamp DESC
-    """,
-    )
-    fun searchByIngredient(ingredient: String): Flow<List<FoodEntry>>
-
-    @Query(
-        """
-        SELECT DISTINCT name FROM food_entries
-        WHERE isDeleted = 0
-        ORDER BY name ASC
-    """,
-    )
-    suspend fun getAllFoodNames(): List<String>
-
-    @Query(
-        """
-        SELECT DISTINCT ingredients FROM food_entries
-        WHERE isDeleted = 0 AND ingredients IS NOT NULL
-    """,
-    )
-    suspend fun getAllIngredients(): List<String>
-
-    @Query(
-        """
-        UPDATE food_entries
-        SET isDeleted = 1, deletedAt = :deletedAt, modifiedAt = :modifiedAt
-        WHERE id = :id
-    """,
-    )
-    suspend fun softDelete(id: String, deletedAt: Instant, modifiedAt: Instant)
-
-    @Query("DELETE FROM food_entries WHERE id = :id")
-    suspend fun hardDelete(id: String)
 
     @Query("DELETE FROM food_entries")
     suspend fun deleteAll()
@@ -117,4 +68,69 @@ interface FoodEntryDao {
     """,
     )
     suspend fun getEntriesInTimeWindow(startTime: Instant, endTime: Instant): List<FoodEntry>
+
+    @Query(
+        """
+        SELECT * FROM food_entries fe
+        WHERE EXISTS (
+            SELECT 1 FROM json_each(fe.foods)
+            WHERE json_each.value = :food
+        )
+        AND fe.isDeleted = 0
+        ORDER BY fe.timestamp DESC
+    """
+    )
+    suspend fun searchByFood(food: String): List<FoodEntry>
+
+    @Query(
+        """
+        SELECT * FROM food_entries fe
+        WHERE EXISTS (
+            SELECT 1 FROM json_each(fe.foods) foods
+            WHERE foods.value IN (:foodsList)
+        )
+        AND fe.isDeleted = 0
+        ORDER BY fe.timestamp DESC
+    """
+    )
+    suspend fun searchByFoodsList(foodsList: List<String>): List<FoodEntry>
+
+    @Query(
+        """
+        SELECT * FROM food_entries
+        WHERE mealType = :mealType
+        AND isDeleted = 0
+        ORDER BY timestamp DESC
+    """
+    )
+    suspend fun getEntriesByMealType(mealType: MealType): List<FoodEntry>
+
+    @Query(
+        """
+        SELECT * FROM food_entries
+        WHERE isDeleted = 0
+        ORDER BY timestamp DESC
+        LIMIT :limit
+    """
+    )
+    suspend fun getRecentEntries(limit: Int): List<FoodEntry>
+
+    @Query(
+        """
+        UPDATE food_entries
+        SET isDeleted = 1, modifiedAt = :currentTime
+        WHERE id = :id
+    """
+    )
+    suspend fun softDelete(id: Long, currentTime: Instant): Int
+
+    @Query(
+        """
+        SELECT * FROM food_entries
+        WHERE timestamp >= :sinceTime
+        AND isDeleted = 0
+        ORDER BY timestamp DESC
+    """
+    )
+    suspend fun getCorrelationData(sinceTime: Instant): List<FoodEntry>
 }
