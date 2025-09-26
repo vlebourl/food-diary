@@ -133,4 +133,51 @@ interface FoodEntryDao {
     """
     )
     suspend fun getCorrelationData(sinceTime: Instant): List<FoodEntry>
+
+    @Query(
+        """
+        SELECT * FROM food_entries
+        WHERE DATE(timestamp, 'unixepoch') = :date
+        AND isDeleted = 0
+        ORDER BY timestamp DESC
+    """
+    )
+    suspend fun getEntriesForDate(date: java.time.LocalDate): List<FoodEntry>
+
+    @Query(
+        """
+        SELECT * FROM food_entries
+        WHERE DATE(timestamp, 'unixepoch') BETWEEN :startDate AND :endDate
+        AND isDeleted = 0
+        ORDER BY timestamp DESC
+    """
+    )
+    suspend fun getEntriesInDateRange(startDate: java.time.LocalDate, endDate: java.time.LocalDate): List<FoodEntry>
+
+    @Query(
+        """
+        SELECT * FROM food_entries
+        WHERE isDeleted = 0
+        ORDER BY timestamp DESC
+    """
+    )
+    suspend fun getAllPaged(): kotlinx.coroutines.flow.Flow<List<FoodEntry>>
+
+    @Query(
+        """
+        SELECT fe.* FROM food_entries fe,
+        (SELECT food, COUNT(*) as frequency
+         FROM (SELECT value as food FROM json_each(foods) JOIN food_entries ON json_extract(foods, '$') = json_extract(fe.foods, '$'))
+         GROUP BY food
+         ORDER BY frequency DESC
+         LIMIT :limit) frequent_foods
+        WHERE fe.isDeleted = 0
+        AND EXISTS (
+            SELECT 1 FROM json_each(fe.foods)
+            WHERE json_each.value = frequent_foods.food
+        )
+        ORDER BY fe.timestamp DESC
+    """
+    )
+    suspend fun getMostFrequentFoods(limit: Int): List<FoodEntry>
 }

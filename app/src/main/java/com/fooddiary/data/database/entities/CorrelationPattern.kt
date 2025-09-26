@@ -7,6 +7,7 @@ import androidx.room.ForeignKey
 import androidx.room.Index
 import com.fooddiary.data.database.converters.InstantConverter
 import com.fooddiary.data.database.converters.DurationConverter
+import com.fooddiary.data.models.ConfidenceLevel
 import java.time.Instant
 import java.time.Duration
 
@@ -16,21 +17,21 @@ import java.time.Duration
         ForeignKey(
             entity = FoodEntry::class,
             parentColumns = ["id"],
-            childColumns = ["foodEntryId"],
+            childColumns = ["foodId"],
             onDelete = ForeignKey.CASCADE
         ),
         ForeignKey(
             entity = SymptomEvent::class,
             parentColumns = ["id"],
-            childColumns = ["symptomEventId"],
+            childColumns = ["symptomId"],
             onDelete = ForeignKey.CASCADE
         )
     ],
     indices = [
-        Index(value = ["foodEntryId"]),
-        Index(value = ["symptomEventId"]),
-        Index(value = ["timeOffset"]),
-        Index(value = ["confidenceScore"])
+        Index(value = ["foodId"]),
+        Index(value = ["symptomId"]),
+        Index(value = ["timeOffsetHours"]),
+        Index(value = ["correlationStrength"])
     ]
 )
 @TypeConverters(
@@ -39,35 +40,42 @@ import java.time.Duration
 )
 data class CorrelationPattern(
     @PrimaryKey val id: Long = 0L,
-    val foodEntryId: Long,
-    val symptomEventId: Long,
-    val timeOffset: Duration,
-    val confidenceScore: Float, // 0.0-1.0
-    val correlationType: CorrelationType,
+    val foodId: Long,
+    val symptomId: Long,
+    val correlationStrength: Float, // 0.0-1.0
+    val confidenceLevel: ConfidenceLevel,
+    val timeOffsetHours: Int,
+    val occurrenceCount: Int,
+    val isActive: Boolean = true,
     val calculatedAt: Instant = Instant.now(),
 ) {
     init {
-        require(confidenceScore in 0.0f..1.0f) {
-            "Confidence score must be between 0.0 and 1.0"
+        require(correlationStrength in 0.0f..1.0f) {
+            "Correlation strength must be between 0.0 and 1.0"
         }
-        require(!timeOffset.isNegative) {
-            "Time offset must be positive"
+        require(timeOffsetHours >= 0) {
+            "Time offset must be non-negative"
+        }
+        require(occurrenceCount > 0) {
+            "Occurrence count must be positive"
         }
     }
 
     companion object {
         fun create(
-            foodEntryId: Long,
-            symptomEventId: Long,
-            timeOffset: Duration,
-            confidenceScore: Float,
-            correlationType: CorrelationType,
+            foodId: Long,
+            symptomId: Long,
+            correlationStrength: Float,
+            confidenceLevel: ConfidenceLevel,
+            timeOffsetHours: Int,
+            occurrenceCount: Int,
         ) = CorrelationPattern(
-            foodEntryId = foodEntryId,
-            symptomEventId = symptomEventId,
-            timeOffset = timeOffset,
-            confidenceScore = confidenceScore,
-            correlationType = correlationType,
+            foodId = foodId,
+            symptomId = symptomId,
+            correlationStrength = correlationStrength,
+            confidenceLevel = confidenceLevel,
+            timeOffsetHours = timeOffsetHours,
+            occurrenceCount = occurrenceCount,
         )
     }
 }

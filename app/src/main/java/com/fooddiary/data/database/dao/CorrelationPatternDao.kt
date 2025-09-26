@@ -28,18 +28,18 @@ interface CorrelationPatternDao {
     @Query("SELECT * FROM correlation_patterns WHERE id = :id")
     suspend fun getById(id: Long): CorrelationPattern?
 
-    @Query("SELECT * FROM correlation_patterns ORDER BY confidenceScore DESC")
+    @Query("SELECT * FROM correlation_patterns ORDER BY correlationStrength DESC")
     suspend fun getAll(): List<CorrelationPattern>
 
     @Query(
         """
         SELECT cp.* FROM correlation_patterns cp
-        INNER JOIN food_entries fe ON cp.foodEntryId = fe.id
+        INNER JOIN food_entries fe ON cp.foodId = fe.id
         WHERE EXISTS (
             SELECT 1 FROM json_each(fe.foods)
             WHERE json_each.value = :food
         )
-        ORDER BY cp.confidenceScore DESC
+        ORDER BY cp.correlationStrength DESC
     """
     )
     suspend fun getCorrelationsForFood(food: String): List<CorrelationPattern>
@@ -47,9 +47,9 @@ interface CorrelationPatternDao {
     @Query(
         """
         SELECT cp.* FROM correlation_patterns cp
-        INNER JOIN symptom_events se ON cp.symptomEventId = se.id
+        INNER JOIN symptom_events se ON cp.symptomId = se.id
         WHERE se.symptomType = :symptomType
-        ORDER BY cp.confidenceScore DESC
+        ORDER BY cp.correlationStrength DESC
     """
     )
     suspend fun getCorrelationsForSymptom(symptomType: SymptomType): List<CorrelationPattern>
@@ -57,8 +57,8 @@ interface CorrelationPatternDao {
     @Query(
         """
         SELECT * FROM correlation_patterns
-        WHERE confidenceScore BETWEEN :minConfidence AND :maxConfidence
-        ORDER BY confidenceScore DESC
+        WHERE correlationStrength BETWEEN :minConfidence AND :maxConfidence
+        ORDER BY correlationStrength DESC
     """
     )
     suspend fun getByConfidenceRange(minConfidence: Float, maxConfidence: Float): List<CorrelationPattern>
@@ -66,12 +66,12 @@ interface CorrelationPatternDao {
     @Query(
         """
         SELECT cp.* FROM correlation_patterns cp
-        INNER JOIN food_entries fe ON cp.foodEntryId = fe.id
-        INNER JOIN symptom_events se ON cp.symptomEventId = se.id
-        WHERE cp.confidenceScore >= 0.6
+        INNER JOIN food_entries fe ON cp.foodId = fe.id
+        INNER JOIN symptom_events se ON cp.symptomId = se.id
+        WHERE cp.correlationStrength >= 0.6
         AND fe.isDeleted = 0
         AND se.isDeleted = 0
-        ORDER BY cp.confidenceScore DESC
+        ORDER BY cp.correlationStrength DESC
     """
     )
     suspend fun getSignificantPatterns(): List<CorrelationPattern>
@@ -79,8 +79,8 @@ interface CorrelationPatternDao {
     @Query(
         """
         SELECT * FROM correlation_patterns
-        WHERE confidenceScore >= 0.8
-        ORDER BY confidenceScore DESC
+        WHERE correlationStrength >= 0.8
+        ORDER BY correlationStrength DESC
     """
     )
     suspend fun getHighConfidencePatterns(): List<CorrelationPattern>
@@ -88,8 +88,8 @@ interface CorrelationPatternDao {
     @Query(
         """
         SELECT * FROM correlation_patterns
-        WHERE timeOffset BETWEEN :minOffset AND :maxOffset
-        ORDER BY confidenceScore DESC
+        WHERE timeOffsetHours BETWEEN :minOffset AND :maxOffset
+        ORDER BY correlationStrength DESC
     """
     )
     suspend fun getPatternsByTimeOffset(minOffset: Long, maxOffset: Long): List<CorrelationPattern>
@@ -101,4 +101,26 @@ interface CorrelationPatternDao {
     """
     )
     suspend fun deleteOldPatterns(cutoffTime: Instant): Int
+
+    @Query("SELECT * FROM correlation_patterns WHERE isActive = 1 ORDER BY correlationStrength DESC")
+    suspend fun getActiveCorrelations(): List<CorrelationPattern>
+
+    @Query(
+        """
+        SELECT * FROM correlation_patterns
+        WHERE correlationStrength >= :minConfidence
+        AND isActive = 1
+        ORDER BY correlationStrength DESC
+    """
+    )
+    suspend fun getHighConfidenceCorrelations(minConfidence: Float): List<CorrelationPattern>
+
+    @Query(
+        """
+        SELECT * FROM correlation_patterns cp
+        WHERE DATE(cp.calculatedAt, 'unixepoch') = :date
+        ORDER BY cp.correlationStrength DESC
+    """
+    )
+    suspend fun getCorrelationsForDate(date: java.time.LocalDate): List<CorrelationPattern>
 }

@@ -4,6 +4,7 @@ enum class SymptomType {
     BLOATING,
     GAS,
     PAIN,
+    ABDOMINAL_PAIN,
     CRAMPING,
     DIARRHEA,
     CONSTIPATION,
@@ -22,7 +23,8 @@ enum class SymptomType {
         get() = when (this) {
             BLOATING -> "Bloating"
             GAS -> "Gas"
-            PAIN -> "Abdominal Pain"
+            PAIN -> "Pain"
+            ABDOMINAL_PAIN -> "Abdominal Pain"
             CRAMPING -> "Cramping"
             DIARRHEA -> "Diarrhea"
             CONSTIPATION -> "Constipation"
@@ -39,4 +41,34 @@ enum class SymptomType {
 
     val requiresBristolScale: Boolean
         get() = this == BOWEL_MOVEMENT || this == DIARRHEA || this == CONSTIPATION
+}
+
+enum class ConfidenceLevel {
+    LOW,
+    MEDIUM,
+    HIGH,
+    VERY_HIGH;
+
+    val displayName: String
+        get() = when (this) {
+            LOW -> "Low"
+            MEDIUM -> "Medium"
+            HIGH -> "High"
+            VERY_HIGH -> "Very High"
+        }
+}
+
+enum class AnalysisConfidence {
+    LOW,
+    MEDIUM,
+    HIGH,
+    VERY_HIGH;
+
+    val displayName: String
+        get() = when (this) {
+            LOW -> "Low Confidence"
+            MEDIUM -> "Medium Confidence"
+            HIGH -> "High Confidence"
+            VERY_HIGH -> "Very High Confidence"
+        }
 }

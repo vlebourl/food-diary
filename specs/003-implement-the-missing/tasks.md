@@ -55,21 +55,21 @@
 
 ## Phase 3.4: Repository Layer Tests (TDD)
 
-- [ ] **T017** [P] Unit test for TimelineRepository in `app/src/test/java/com/fooddiary/data/repository/TimelineRepositoryTest.kt`
-- [ ] **T018** [P] Unit test for FoodEntryRepository in `app/src/test/java/com/fooddiary/data/repository/FoodEntryRepositoryTest.kt`
-- [ ] **T019** [P] Unit test for SymptomRepository in `app/src/test/java/com/fooddiary/data/repository/SymptomRepositoryTest.kt`
-- [ ] **T020** [P] Unit test for AnalyticsRepository in `app/src/test/java/com/fooddiary/data/repository/AnalyticsRepositoryTest.kt`
-- [ ] **T021** [P] Unit test for ReportsRepository in `app/src/test/java/com/fooddiary/data/repository/ReportsRepositoryTest.kt`
-- [ ] **T022** [P] Unit test for SettingsRepository in `app/src/test/java/com/fooddiary/data/repository/SettingsRepositoryTest.kt`
+- [x] **T017** [P] Unit test for TimelineRepository in `app/src/test/java/com/fooddiary/data/repository/TimelineRepositoryTest.kt`
+- [x] **T018** [P] Unit test for FoodEntryRepository in `app/src/test/java/com/fooddiary/data/repository/FoodEntryRepositoryTest.kt`
+- [x] **T019** [P] Unit test for SymptomRepository in `app/src/test/java/com/fooddiary/data/repository/SymptomRepositoryTest.kt`
+- [x] **T020** [P] Unit test for AnalyticsRepository in `app/src/test/java/com/fooddiary/data/repository/AnalyticsRepositoryTest.kt`
+- [x] **T021** [P] Unit test for ReportsRepository in `app/src/test/java/com/fooddiary/data/repository/ReportsRepositoryTest.kt`
+- [x] **T022** [P] Unit test for SettingsRepository in `app/src/test/java/com/fooddiary/data/repository/SettingsRepositoryTest.kt`
 
 ## Phase 3.5: Repository Implementation
 
-- [ ] **T023** [P] Implement TimelineRepository with pagination in `app/src/main/java/com/fooddiary/data/repository/TimelineRepository.kt`
-- [ ] **T024** [P] Implement FoodEntryRepository with validation in `app/src/main/java/com/fooddiary/data/repository/FoodEntryRepository.kt`
-- [ ] **T025** [P] Implement SymptomRepository with correlation logic in `app/src/main/java/com/fooddiary/data/repository/SymptomRepository.kt`
-- [ ] **T026** [P] Implement AnalyticsRepository with statistics calculations in `app/src/main/java/com/fooddiary/data/repository/AnalyticsRepository.kt`
-- [ ] **T027** [P] Implement ReportsRepository with export functionality in `app/src/main/java/com/fooddiary/data/repository/ReportsRepository.kt`
-- [ ] **T028** [P] Implement SettingsRepository with preferences management in `app/src/main/java/com/fooddiary/data/repository/SettingsRepository.kt`
+- [x] **T023** [P] Implement TimelineRepository with pagination in `app/src/main/java/com/fooddiary/data/repository/TimelineRepository.kt`
+- [x] **T024** [P] Implement FoodEntryRepository with validation in `app/src/main/java/com/fooddiary/data/repository/FoodEntryRepository.kt`
+- [x] **T025** [P] Implement SymptomRepository with correlation logic in `app/src/main/java/com/fooddiary/data/repository/SymptomRepository.kt`
+- [x] **T026** [P] Implement AnalyticsRepository with statistics calculations in `app/src/main/java/com/fooddiary/data/repository/AnalyticsRepository.kt`
+- [x] **T027** [P] Implement ReportsRepository with export functionality in `app/src/main/java/com/fooddiary/data/repository/ReportsRepository.kt`
+- [x] **T028** [P] Implement SettingsRepository with preferences management in `app/src/main/java/com/fooddiary/data/repository/SettingsRepository.kt`
 
 ## Phase 3.6: ViewModel Tests (TDD)
 

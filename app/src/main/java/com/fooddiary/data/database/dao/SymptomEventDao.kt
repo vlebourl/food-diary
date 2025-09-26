@@ -189,4 +189,43 @@ interface SymptomEventDao {
     """
     )
     suspend fun getCorrelationData(sinceTime: Instant): List<SymptomEvent>
+
+    @Query(
+        """
+        SELECT * FROM symptom_events
+        WHERE DATE(timestamp, 'unixepoch') = :date
+        AND isDeleted = 0
+        ORDER BY timestamp DESC
+    """
+    )
+    suspend fun getEntriesForDate(date: java.time.LocalDate): List<SymptomEvent>
+
+    @Query(
+        """
+        SELECT * FROM symptom_events
+        WHERE DATE(timestamp, 'unixepoch') BETWEEN :startDate AND :endDate
+        AND isDeleted = 0
+        ORDER BY timestamp DESC
+    """
+    )
+    suspend fun getEntriesInDateRange(startDate: java.time.LocalDate, endDate: java.time.LocalDate): List<SymptomEvent>
+
+    @Query(
+        """
+        SELECT * FROM symptom_events
+        WHERE isDeleted = 0
+        ORDER BY timestamp DESC
+    """
+    )
+    suspend fun getAllPaged(): kotlinx.coroutines.flow.Flow<List<SymptomEvent>>
+
+    @Query(
+        """
+        SELECT * FROM symptom_events
+        WHERE notes LIKE '%' || :query || '%'
+        AND isDeleted = 0
+        ORDER BY timestamp DESC
+    """
+    )
+    suspend fun searchByNotes(query: String): List<SymptomEvent>
 }
