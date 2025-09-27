@@ -7,6 +7,8 @@ import com.fooddiary.data.models.LocationType
 import com.fooddiary.data.models.SocialContext
 import java.time.Instant
 import java.time.LocalDate
+import java.time.LocalTime
+import java.time.Duration
 import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
@@ -35,6 +37,18 @@ class LocalDateConverter {
     }
 }
 
+class LocalTimeConverter {
+    @TypeConverter
+    fun fromLocalTime(time: LocalTime?): Long? {
+        return time?.toSecondOfDay()?.toLong()
+    }
+
+    @TypeConverter
+    fun toLocalTime(secondOfDay: Long?): LocalTime? {
+        return secondOfDay?.let { LocalTime.ofSecondOfDay(it) }
+    }
+}
+
 class StringListConverter {
     @TypeConverter
     fun fromStringList(list: List<String>?): String? {
@@ -58,6 +72,18 @@ class StringMapConverter {
     @TypeConverter
     fun toStringMap(string: String?): Map<String, String>? {
         return string?.let { json.decodeFromString(it) }
+    }
+}
+
+class DurationConverter {
+    @TypeConverter
+    fun fromDuration(duration: Duration?): Long? {
+        return duration?.seconds
+    }
+
+    @TypeConverter
+    fun toDuration(seconds: Long?): Duration? {
+        return seconds?.let { Duration.ofSeconds(it) }
     }
 }
 

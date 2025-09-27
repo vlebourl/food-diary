@@ -13,14 +13,23 @@ interface SymptomEventDao {
     @Insert
     suspend fun insert(event: SymptomEvent): Long
 
+    @Insert
+    suspend fun insertAll(events: List<SymptomEvent>): List<Long>
+
     @Update
-    suspend fun update(event: SymptomEvent)
+    suspend fun update(event: SymptomEvent): Int
+
+    @Delete
+    suspend fun delete(event: SymptomEvent): Int
 
     @Query("SELECT * FROM symptom_events WHERE id = :id AND isDeleted = 0")
-    suspend fun getById(id: String): SymptomEvent?
+    suspend fun getById(id: Long): SymptomEvent?
 
     @Query("SELECT * FROM symptom_events WHERE isDeleted = 0 ORDER BY timestamp DESC")
     fun getAll(): Flow<List<SymptomEvent>>
+
+    @Query("SELECT * FROM symptom_events WHERE isDeleted = 0 ORDER BY timestamp DESC")
+    suspend fun getAllSync(): List<SymptomEvent>
 
     @Query(
         """
@@ -32,8 +41,9 @@ interface SymptomEventDao {
     )
     fun getAllByDateRange(startDate: String, endDate: String): Flow<List<SymptomEvent>>
 
-    @Query("SELECT * FROM symptom_events WHERE type = :type AND isDeleted = 0 ORDER BY timestamp DESC")
-    fun getByType(type: SymptomType): Flow<List<SymptomEvent>>
+    @Query("SELECT * FROM symptom_events WHERE symptomType = :symptomType AND isDeleted = 0 ORDER BY timestamp DESC")
+    suspend fun getBySymptomType(symptomType: SymptomType): List<SymptomEvent>
+
 
     @Query("SELECT * FROM symptom_events WHERE severity >= :minSeverity AND isDeleted = 0 ORDER BY timestamp DESC")
     fun getBySeverity(minSeverity: Int): Flow<List<SymptomEvent>>
@@ -56,64 +66,43 @@ interface SymptomEventDao {
         ORDER BY timestamp ASC
     """,
     )
+    suspend fun getInTimeRange(startTime: Instant, endTime: Instant): List<SymptomEvent>
+
+    @Query(
+        """
+        SELECT * FROM symptom_events
+        WHERE timestamp BETWEEN :startTime AND :endTime
+        AND isDeleted = 0
+        ORDER BY timestamp ASC
+    """,
+    )
     suspend fun getEventsInTimeWindow(startTime: Instant, endTime: Instant): List<SymptomEvent>
 
     @Query(
         """
         SELECT AVG(severity) FROM symptom_events
-        WHERE type = :type AND isDeleted = 0
+        WHERE symptomType = :symptomType AND isDeleted = 0
     """,
     )
-    suspend fun getAverageSeverityByType(type: SymptomType): Float?
+    suspend fun getAverageSeverityByType(symptomType: SymptomType): Float?
 
     @Query(
         """
         SELECT COUNT(*) FROM symptom_events
-        WHERE type = :type AND isDeleted = 0
+        WHERE symptomType = :symptomType AND isDeleted = 0
     """,
     )
-    suspend fun getCountByType(type: SymptomType): Int
+    suspend fun getCountByType(symptomType: SymptomType): Int
 
     @Query(
         """
-        SELECT type, COUNT(*) as count FROM symptom_events
+        SELECT symptomType as type, COUNT(*) as count FROM symptom_events
         WHERE isDeleted = 0
-        GROUP BY type
+        GROUP BY symptomType
         ORDER BY count DESC
     """,
     )
     suspend fun getSymptomFrequency(): List<SymptomFrequency>
-
-    @Query(
-        """
-        SELECT * FROM symptom_events
-        WHERE bristolScale IS NOT NULL AND isDeleted = 0
-        ORDER BY timestamp DESC
-    """,
-    )
-    fun getBowelMovements(): Flow<List<SymptomEvent>>
-
-    @Query(
-        """
-        SELECT * FROM symptom_events
-        WHERE suspectedTriggers LIKE '%' || :trigger || '%'
-        AND isDeleted = 0
-        ORDER BY timestamp DESC
-    """,
-    )
-    fun getByTrigger(trigger: String): Flow<List<SymptomEvent>>
-
-    @Query(
-        """
-        UPDATE symptom_events
-        SET isDeleted = 1, deletedAt = :deletedAt, modifiedAt = :modifiedAt
-        WHERE id = :id
-    """,
-    )
-    suspend fun softDelete(id: String, deletedAt: Instant, modifiedAt: Instant)
-
-    @Query("DELETE FROM symptom_events WHERE id = :id")
-    suspend fun hardDelete(id: String)
 
     @Query("DELETE FROM symptom_events")
     suspend fun deleteAll()
@@ -150,4 +139,93 @@ interface SymptomEventDao {
     """,
     )
     suspend fun getLongestSymptomFreeStreak(): Int?
+
+    @Query(
+        """
+        SELECT * FROM symptom_events
+        WHERE severity BETWEEN :minSeverity AND :maxSeverity
+        AND isDeleted = 0
+        ORDER BY timestamp DESC
+    """
+    )
+    suspend fun getBySeverityRange(minSeverity: Int, maxSeverity: Int): List<SymptomEvent>
+
+    @Query(
+        """
+        SELECT * FROM symptom_events
+        WHERE isDeleted = 0
+        ORDER BY timestamp DESC
+        LIMIT :limit
+    """
+    )
+    suspend fun getRecentSymptoms(limit: Int): List<SymptomEvent>
+
+    @Query(
+        """
+        SELECT * FROM symptom_events
+        WHERE duration BETWEEN :minDuration AND :maxDuration
+        AND duration IS NOT NULL
+        AND isDeleted = 0
+        ORDER BY timestamp DESC
+    """
+    )
+    suspend fun getSymptomsByDuration(minDuration: Long, maxDuration: Long): List<SymptomEvent>
+
+    @Query(
+        """
+        UPDATE symptom_events
+        SET isDeleted = 1, modifiedAt = :currentTime
+        WHERE id = :id
+    """
+    )
+    suspend fun softDelete(id: Long, currentTime: Instant): Int
+
+    @Query(
+        """
+        SELECT * FROM symptom_events
+        WHERE timestamp >= :sinceTime
+        AND isDeleted = 0
+        ORDER BY timestamp DESC
+    """
+    )
+    suspend fun getCorrelationData(sinceTime: Instant): List<SymptomEvent>
+
+    @Query(
+        """
+        SELECT * FROM symptom_events
+        WHERE DATE(timestamp, 'unixepoch') = :date
+        AND isDeleted = 0
+        ORDER BY timestamp DESC
+    """
+    )
+    suspend fun getEntriesForDate(date: java.time.LocalDate): List<SymptomEvent>
+
+    @Query(
+        """
+        SELECT * FROM symptom_events
+        WHERE DATE(timestamp, 'unixepoch') BETWEEN :startDate AND :endDate
+        AND isDeleted = 0
+        ORDER BY timestamp DESC
+    """
+    )
+    suspend fun getEntriesInDateRange(startDate: java.time.LocalDate, endDate: java.time.LocalDate): List<SymptomEvent>
+
+    @Query(
+        """
+        SELECT * FROM symptom_events
+        WHERE isDeleted = 0
+        ORDER BY timestamp DESC
+    """
+    )
+    fun getAllPaged(): kotlinx.coroutines.flow.Flow<List<SymptomEvent>>
+
+    @Query(
+        """
+        SELECT * FROM symptom_events
+        WHERE notes LIKE '%' || :query || '%'
+        AND isDeleted = 0
+        ORDER BY timestamp DESC
+    """
+    )
+    suspend fun searchByNotes(query: String): List<SymptomEvent>
 }
