@@ -2,7 +2,7 @@
   "formatVersion": 1,
   "database": {
     "version": 3,
-    "identityHash": "0c4a16d99e96404531efbce6d72216a7",
+    "identityHash": "7134d96c08082c55569f4cc6d519d867",
     "entities": [
       {
         "tableName": "food_entries",
@@ -664,7 +664,7 @@
       },
       {
         "tableName": "correlation_patterns",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER NOT NULL, `foodEntryId` INTEGER NOT NULL, `symptomEventId` INTEGER NOT NULL, `timeOffset` INTEGER NOT NULL, `confidenceScore` REAL NOT NULL, `correlationType` TEXT NOT NULL, `calculatedAt` INTEGER NOT NULL, PRIMARY KEY(`id`), FOREIGN KEY(`foodEntryId`) REFERENCES `food_entries`(`id`) ON UPDATE NO ACTION ON DELETE CASCADE , FOREIGN KEY(`symptomEventId`) REFERENCES `symptom_events`(`id`) ON UPDATE NO ACTION ON DELETE CASCADE )",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER NOT NULL, `foodId` INTEGER NOT NULL, `symptomId` INTEGER NOT NULL, `correlationStrength` REAL NOT NULL, `confidenceLevel` TEXT NOT NULL, `timeOffsetHours` INTEGER NOT NULL, `occurrenceCount` INTEGER NOT NULL, `isActive` INTEGER NOT NULL, `calculatedAt` INTEGER NOT NULL, PRIMARY KEY(`id`), FOREIGN KEY(`foodId`) REFERENCES `food_entries`(`id`) ON UPDATE NO ACTION ON DELETE CASCADE , FOREIGN KEY(`symptomId`) REFERENCES `symptom_events`(`id`) ON UPDATE NO ACTION ON DELETE CASCADE )",
         "fields": [
           {
             "fieldPath": "id",
@@ -673,33 +673,45 @@
             "notNull": true
           },
           {
-            "fieldPath": "foodEntryId",
-            "columnName": "foodEntryId",
+            "fieldPath": "foodId",
+            "columnName": "foodId",
             "affinity": "INTEGER",
             "notNull": true
           },
           {
-            "fieldPath": "symptomEventId",
-            "columnName": "symptomEventId",
+            "fieldPath": "symptomId",
+            "columnName": "symptomId",
             "affinity": "INTEGER",
             "notNull": true
           },
           {
-            "fieldPath": "timeOffset",
-            "columnName": "timeOffset",
-            "affinity": "INTEGER",
-            "notNull": true
-          },
-          {
-            "fieldPath": "confidenceScore",
-            "columnName": "confidenceScore",
+            "fieldPath": "correlationStrength",
+            "columnName": "correlationStrength",
             "affinity": "REAL",
             "notNull": true
           },
           {
-            "fieldPath": "correlationType",
-            "columnName": "correlationType",
+            "fieldPath": "confidenceLevel",
+            "columnName": "confidenceLevel",
             "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "timeOffsetHours",
+            "columnName": "timeOffsetHours",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "occurrenceCount",
+            "columnName": "occurrenceCount",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "isActive",
+            "columnName": "isActive",
+            "affinity": "INTEGER",
             "notNull": true
           },
           {
@@ -717,40 +729,40 @@
         },
         "indices": [
           {
-            "name": "index_correlation_patterns_foodEntryId",
+            "name": "index_correlation_patterns_foodId",
             "unique": false,
             "columnNames": [
-              "foodEntryId"
+              "foodId"
             ],
             "orders": [],
-            "createSql": "CREATE INDEX IF NOT EXISTS `index_correlation_patterns_foodEntryId` ON `${TABLE_NAME}` (`foodEntryId`)"
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_correlation_patterns_foodId` ON `${TABLE_NAME}` (`foodId`)"
           },
           {
-            "name": "index_correlation_patterns_symptomEventId",
+            "name": "index_correlation_patterns_symptomId",
             "unique": false,
             "columnNames": [
-              "symptomEventId"
+              "symptomId"
             ],
             "orders": [],
-            "createSql": "CREATE INDEX IF NOT EXISTS `index_correlation_patterns_symptomEventId` ON `${TABLE_NAME}` (`symptomEventId`)"
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_correlation_patterns_symptomId` ON `${TABLE_NAME}` (`symptomId`)"
           },
           {
-            "name": "index_correlation_patterns_timeOffset",
+            "name": "index_correlation_patterns_timeOffsetHours",
             "unique": false,
             "columnNames": [
-              "timeOffset"
+              "timeOffsetHours"
             ],
             "orders": [],
-            "createSql": "CREATE INDEX IF NOT EXISTS `index_correlation_patterns_timeOffset` ON `${TABLE_NAME}` (`timeOffset`)"
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_correlation_patterns_timeOffsetHours` ON `${TABLE_NAME}` (`timeOffsetHours`)"
           },
           {
-            "name": "index_correlation_patterns_confidenceScore",
+            "name": "index_correlation_patterns_correlationStrength",
             "unique": false,
             "columnNames": [
-              "confidenceScore"
+              "correlationStrength"
             ],
             "orders": [],
-            "createSql": "CREATE INDEX IF NOT EXISTS `index_correlation_patterns_confidenceScore` ON `${TABLE_NAME}` (`confidenceScore`)"
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_correlation_patterns_correlationStrength` ON `${TABLE_NAME}` (`correlationStrength`)"
           }
         ],
         "foreignKeys": [
@@ -759,7 +771,7 @@
             "onDelete": "CASCADE",
             "onUpdate": "NO ACTION",
             "columns": [
-              "foodEntryId"
+              "foodId"
             ],
             "referencedColumns": [
               "id"
@@ -770,7 +782,7 @@
             "onDelete": "CASCADE",
             "onUpdate": "NO ACTION",
             "columns": [
-              "symptomEventId"
+              "symptomId"
             ],
             "referencedColumns": [
               "id"
@@ -954,7 +966,7 @@
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '0c4a16d99e96404531efbce6d72216a7')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '7134d96c08082c55569f4cc6d519d867')"
     ]
   }
 }

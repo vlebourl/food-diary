@@ -73,52 +73,52 @@
 
 ## Phase 3.6: ViewModel Tests (TDD)
 
-- [ ] **T029** [P] Unit test for TimelineViewModel in `app/src/test/java/com/fooddiary/presentation/ui/timeline/TimelineViewModelTest.kt`
-- [ ] **T030** [P] Unit test for FoodEntryViewModel in `app/src/test/java/com/fooddiary/presentation/ui/entry/FoodEntryViewModelTest.kt`
-- [ ] **T031** [P] Unit test for SymptomEntryViewModel in `app/src/test/java/com/fooddiary/presentation/ui/entry/SymptomEntryViewModelTest.kt`
-- [ ] **T032** [P] Unit test for AnalyticsViewModel in `app/src/test/java/com/fooddiary/presentation/ui/analytics/AnalyticsViewModelTest.kt`
-- [ ] **T033** [P] Unit test for ReportsViewModel in `app/src/test/java/com/fooddiary/presentation/ui/reports/ReportsViewModelTest.kt`
-- [ ] **T034** [P] Unit test for SettingsViewModel in `app/src/test/java/com/fooddiary/presentation/ui/settings/SettingsViewModelTest.kt`
+- [x] **T029** [P] Unit test for TimelineViewModel in `app/src/test/java/com/fooddiary/presentation/ui/timeline/TimelineViewModelTest.kt`
+- [x] **T030** [P] Unit test for FoodEntryViewModel in `app/src/test/java/com/fooddiary/presentation/ui/entry/FoodEntryViewModelTest.kt`
+- [x] **T031** [P] Unit test for SymptomEntryViewModel in `app/src/test/java/com/fooddiary/presentation/ui/entry/SymptomEntryViewModelTest.kt`
+- [x] **T032** [P] Unit test for AnalyticsViewModel in `app/src/test/java/com/fooddiary/presentation/ui/analytics/AnalyticsViewModelTest.kt`
+- [x] **T033** [P] Unit test for ReportsViewModel in `app/src/test/java/com/fooddiary/presentation/ui/reports/ReportsViewModelTest.kt`
+- [x] **T034** [P] Unit test for SettingsViewModel in `app/src/test/java/com/fooddiary/presentation/ui/settings/SettingsViewModelTest.kt`
 
 ## Phase 3.7: ViewModel Implementation
 
-- [ ] **T035** [P] Implement TimelineViewModel with state management in `app/src/main/java/com/fooddiary/presentation/ui/timeline/TimelineViewModel.kt`
-- [ ] **T036** [P] Implement FoodEntryViewModel with form validation in `app/src/main/java/com/fooddiary/presentation/ui/entry/FoodEntryViewModel.kt`
-- [ ] **T037** [P] Implement SymptomEntryViewModel with correlation detection in `app/src/main/java/com/fooddiary/presentation/ui/entry/SymptomEntryViewModel.kt`
-- [ ] **T038** [P] Implement AnalyticsViewModel with chart data processing in `app/src/main/java/com/fooddiary/presentation/ui/analytics/AnalyticsViewModel.kt`
-- [ ] **T039** [P] Implement ReportsViewModel with generation logic in `app/src/main/java/com/fooddiary/presentation/ui/reports/ReportsViewModel.kt`
-- [ ] **T040** [P] Implement SettingsViewModel with preferences binding in `app/src/main/java/com/fooddiary/presentation/ui/settings/SettingsViewModel.kt`
+- [x] **T035** [P] Implement TimelineViewModel with state management in `app/src/main/java/com/fooddiary/presentation/ui/timeline/TimelineViewModel.kt`
+- [x] **T036** [P] Implement FoodEntryViewModel with form validation in `app/src/main/java/com/fooddiary/presentation/ui/entry/FoodEntryViewModel.kt`
+- [x] **T037** [P] Implement SymptomEntryViewModel with correlation detection in `app/src/main/java/com/fooddiary/presentation/ui/entry/SymptomEntryViewModel.kt`
+- [x] **T038** [P] Implement AnalyticsViewModel with chart data processing in `app/src/main/java/com/fooddiary/presentation/ui/analytics/AnalyticsViewModel.kt`
+- [x] **T039** [P] Implement ReportsViewModel with generation logic in `app/src/main/java/com/fooddiary/presentation/ui/reports/ReportsViewModel.kt`
+- [x] **T040** [P] Implement SettingsViewModel with preferences binding in `app/src/main/java/com/fooddiary/presentation/ui/settings/SettingsViewModel.kt`
 
 ## Phase 3.8: Layout Resources
 
-- [ ] **T041** [P] Design timeline item layout in `app/src/main/res/layout/item_timeline_entry.xml`
-- [ ] **T042** [P] Design food entry form layout in `app/src/main/res/layout/fragment_food_entry.xml`
-- [ ] **T043** [P] Design symptom entry form layout in `app/src/main/res/layout/fragment_symptom_entry.xml`
-- [ ] **T044** [P] Design analytics dashboard layout in `app/src/main/res/layout/fragment_analytics.xml`
-- [ ] **T045** [P] Design reports screen layout in `app/src/main/res/layout/fragment_reports.xml`
-- [ ] **T046** [P] Design settings screen layout in `app/src/main/res/layout/fragment_settings.xml`
+- [x] **T041** [P] Design timeline item layout in `app/src/main/res/layout/item_timeline_entry.xml`
+- [x] **T042** [P] Design food entry form layout in `app/src/main/res/layout/fragment_food_entry.xml`
+- [x] **T043** [P] Design symptom entry form layout in `app/src/main/res/layout/fragment_symptom_entry.xml`
+- [x] **T044** [P] Design analytics dashboard layout in `app/src/main/res/layout/fragment_analytics.xml`
+- [x] **T045** [P] Design reports screen layout in `app/src/main/res/layout/fragment_reports.xml`
+- [x] **T046** [P] Design settings screen layout in `app/src/main/res/layout/fragment_settings.xml`
 
 ## Phase 3.9: Fragment Implementation
 
-- [ ] **T047** Replace TimelineFragment placeholder with full implementation in `app/src/main/java/com/fooddiary/presentation/ui/timeline/TimelineFragment.kt`
-- [ ] **T048** Replace FoodEntryFragment placeholder with form handling in `app/src/main/java/com/fooddiary/presentation/ui/entry/FoodEntryFragment.kt`
-- [ ] **T049** Replace SymptomEntryFragment placeholder with correlation UI in `app/src/main/java/com/fooddiary/presentation/ui/entry/SymptomEntryFragment.kt`
-- [ ] **T050** Replace AnalyticsFragment placeholder with charts integration in `app/src/main/java/com/fooddiary/presentation/ui/analytics/AnalyticsFragment.kt`
-- [ ] **T051** Replace ReportsFragment placeholder with generation UI in `app/src/main/java/com/fooddiary/presentation/ui/reports/ReportsFragment.kt`
-- [ ] **T052** Replace SettingsFragment placeholder with preferences UI in `app/src/main/java/com/fooddiary/presentation/ui/settings/SettingsFragment.kt`
+- [x] **T047** Replace TimelineFragment placeholder with full implementation in `app/src/main/java/com/fooddiary/presentation/ui/timeline/TimelineFragment.kt`
+- [x] **T048** Replace FoodEntryFragment placeholder with form handling in `app/src/main/java/com/fooddiary/presentation/ui/entry/FoodEntryFragment.kt`
+- [x] **T049** Replace SymptomEntryFragment placeholder with correlation UI in `app/src/main/java/com/fooddiary/presentation/ui/entry/SymptomEntryFragment.kt`
+- [x] **T050** Replace AnalyticsFragment placeholder with charts integration in `app/src/main/java/com/fooddiary/presentation/ui/analytics/AnalyticsFragment.kt`
+- [x] **T051** Replace ReportsFragment placeholder with generation UI in `app/src/main/java/com/fooddiary/presentation/ui/reports/ReportsFragment.kt`
+- [x] **T052** Replace SettingsFragment placeholder with preferences UI in `app/src/main/java/com/fooddiary/presentation/ui/settings/SettingsFragment.kt`
 
 ## Phase 3.10: Integration Tests
 
-- [ ] **T053** [P] UI test for complete food entry flow in `app/src/androidTest/java/com/fooddiary/integration/FoodEntryFlowTest.kt`
-- [ ] **T054** [P] UI test for symptom correlation workflow in `app/src/androidTest/java/com/fooddiary/integration/SymptomCorrelationTest.kt`
-- [ ] **T055** [P] UI test for analytics dashboard functionality in `app/src/androidTest/java/com/fooddiary/integration/AnalyticsDashboardTest.kt`
+- [x] **T053** [P] UI test for complete food entry flow in `app/src/androidTest/java/com/fooddiary/integration/FoodEntryFlowTest.kt`
+- [x] **T054** [P] UI test for symptom correlation workflow in `app/src/androidTest/java/com/fooddiary/integration/SymptomCorrelationTest.kt`
+- [x] **T055** [P] UI test for analytics dashboard functionality in `app/src/androidTest/java/com/fooddiary/integration/AnalyticsDashboardTest.kt`
 
 ## Phase 3.11: Edge Case Validation Tests
 
-- [ ] **T056** [P] Test symptom logging with no recent food entries in `app/src/test/java/com/fooddiary/validation/NoFoodCorrelationTest.kt`
-- [ ] **T057** [P] Test duplicate food entry prevention within 1-minute window in `app/src/test/java/com/fooddiary/validation/DuplicateEntryTest.kt`
-- [ ] **T058** [P] Test report generation with insufficient data handling in `app/src/test/java/com/fooddiary/validation/InsufficientDataReportTest.kt`
-- [ ] **T059** [P] Test invalid input validation (portion sizes, severity ratings) in `app/src/test/java/com/fooddiary/validation/InputValidationTest.kt`
+- [x] **T056** [P] Test symptom logging with no recent food entries in `app/src/test/java/com/fooddiary/validation/NoFoodCorrelationTest.kt`
+- [x] **T057** [P] Test duplicate food entry prevention within 1-minute window in `app/src/test/java/com/fooddiary/validation/DuplicateEntryTest.kt`
+- [x] **T058** [P] Test report generation with insufficient data handling in `app/src/test/java/com/fooddiary/validation/InsufficientDataReportTest.kt`
+- [x] **T059** [P] Test invalid input validation (portion sizes, severity ratings) in `app/src/test/java/com/fooddiary/validation/InputValidationTest.kt`
 
 ## Dependencies
 
