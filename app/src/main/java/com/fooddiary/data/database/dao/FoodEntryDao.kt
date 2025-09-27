@@ -161,16 +161,20 @@ interface FoodEntryDao {
         ORDER BY timestamp DESC
     """
     )
-    suspend fun getAllPaged(): kotlinx.coroutines.flow.Flow<List<FoodEntry>>
+    fun getAllPaged(): kotlinx.coroutines.flow.Flow<List<FoodEntry>>
 
     @Query(
         """
-        SELECT fe.* FROM food_entries fe,
-        (SELECT food, COUNT(*) as frequency
-         FROM (SELECT value as food FROM json_each(foods) JOIN food_entries ON json_extract(foods, '$') = json_extract(fe.foods, '$'))
-         GROUP BY food
-         ORDER BY frequency DESC
-         LIMIT :limit) frequent_foods
+        SELECT DISTINCT fe.* FROM food_entries fe
+        JOIN (
+            SELECT json_each.value as food, COUNT(*) as frequency
+            FROM food_entries fe2
+            CROSS JOIN json_each(fe2.foods)
+            WHERE fe2.isDeleted = 0
+            GROUP BY json_each.value
+            ORDER BY frequency DESC
+            LIMIT :limit
+        ) frequent_foods
         WHERE fe.isDeleted = 0
         AND EXISTS (
             SELECT 1 FROM json_each(fe.foods)

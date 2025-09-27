@@ -217,7 +217,7 @@ interface SymptomEventDao {
         ORDER BY timestamp DESC
     """
     )
-    suspend fun getAllPaged(): kotlinx.coroutines.flow.Flow<List<SymptomEvent>>
+    fun getAllPaged(): kotlinx.coroutines.flow.Flow<List<SymptomEvent>>
 
     @Query(
         """
